@@ -1,3 +1,17 @@
 .align{
     text-align: center;
 }
+
+.barcolor{
+    background-color:lemonchiffon;
+}
+
+.divide{
+    background-color:darkred;
+    color:white;
+}
+
+body{
+    background-color: darkred;
+    color:white;
+}
