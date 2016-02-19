@@ -16,7 +16,7 @@
     <!-- angular js cdn -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <!-- angular js routing -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
 
     <!-- cdns used by sir
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
@@ -24,27 +24,36 @@
 
     <script src="app.js"></script>
     <script src="config.js"></script>
+    <script src="views/main/main.controller.js"></script>
+    <script src="views/users/login.controller.js"></script>
+    <!--<script src="../assignment/views/users/profile.controller.js"></script>-->
+    <script src="../assignment/views/users/register.controller.js"></script>
+    <script src="services/user.service.client.js"></script>
     <meta charset="UTF-8">
 
 
 
 
     <!-- Custom styles for this template -->
-    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link href="../assignment/css/dashboard.css" rel="stylesheet">
+    <link href="../assignment/css/styles.css" rel="stylesheet">
 
 </head>
 
 <body>
-<div ng-controller = "MainController">
+<div ng-controller="MainController">
 
-<div ng-include ="header/header.view.html"></div>
+<div ng-include ="'../assignment/views/header/header.view.html'"></div>
 
 <div class="container-fluid">
     <div class="row">
-        <div ng-include="sidebar/sidebar.view.html"></div>
-        <div ng-view="">
+        <div class="col-sm-3  col-md-3">
+        <div ng-include="'../assignment/views/sidebar/sidebar.view.html'"></div>
+            </div>
 
-        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-2 main">
+        <div ng-view></div>
+            </div>
         </div>
     </div>
 </div>

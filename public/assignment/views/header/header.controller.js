@@ -1,3 +1,9 @@
-/**
- * Created by Biyanta on 18/02/16.
- */
+(function(){
+    angular
+        .module("FormBuilderApp")
+        .controller("HeaderController", HeaderController);
+
+    function HeaderController(){
+
+    }
+})();

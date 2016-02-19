@@ -1,3 +1,10 @@
-/**
- * Created by Biyanta on 18/02/16.
- */
+(function(){
+    angular
+        .module("FormBuilderApp")
+        .controller("ProfileController", ProfileController);
+
+    function ProfileController($scope, $location){
+        $scope.$location = $location;
+    }
+
+})();

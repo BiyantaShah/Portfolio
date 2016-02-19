@@ -1,70 +1,24 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Login Page</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
-
-
-    <!-- Custom styles for this template -->
-    <link href="../../css/dashboard.css" rel="stylesheet">
-    <link href="../../css/styles.css" rel="stylesheet">
-
-
-</head>
-
-<body>
-
-<!-- header -->
-
-<div class="container-fluid">
-    <div class="row">
-        <!-- sidebar -->
-        <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-2 main">
-            <h1>Login</h1>
-            <br>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="inputUsername" class="col-sm-2">Username:</label>
-                    <div class="col-sm-10">
-                        <input type="Username" class="form-control" id="inputUsername" placeholder="Username">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2">Password:</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                    </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <a href="profile.view.html" class="btn btn-default form-control">
-                                Login</a>
-                        </div>
-                    </div>
-            </form>
+<div ng-controller="LoginController">
+    <h1>Login</h1>
+    <br>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-2">Username:</label>
+            <div class="col-sm-10">
+                <input type="text" ng-model="username" class="form-control" id="inputUsername" placeholder="Username">
+            </div>
         </div>
-
-
-    </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2">Password:</label>
+            <div class="col-sm-10">
+                <input type="password" ng-model="password" class="form-control" id="inputPassword3" placeholder="Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <a ng-click="login(username,password)" class="btn btn-default form-control">
+                    Login</a>
+            </div>
+        </div>
+    </form>
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-</body>
-</html>
