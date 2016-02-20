@@ -16,11 +16,13 @@
             })
 
             .when("/profile", {
-                templateUrl: "views/users/profile.view.html"
+                templateUrl: "views/users/profile.view.html",
+                controller:"ProfileController"
             })
 
             .when("/register", {
-                templateUrl: "views/users/register.view.html"
+                templateUrl: "views/users/register.view.html",
+                controller:"RegisterController"
             })
 
             .when("/admin", {

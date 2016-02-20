@@ -10,9 +10,10 @@
             UserService.findUserByUsernameAndPassword(username, password,render);
         }
 
+
         function render(user){
             if(user!=null){
-            $scope.$rootscope = user;
+            $rootScope = user;
             $location.path('/profile');}
 
         }

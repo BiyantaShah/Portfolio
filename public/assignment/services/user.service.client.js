@@ -56,11 +56,26 @@
         }
 
         function deleteUserById(userId, callback){
+            for(var i=0;i<users.length;i++){
+                if(users[i]._id == userId){
+                    users.splice(i,1);
+                }
+            }
+            //console.log(users);
+            callback(users);
 
         }
 
         function updateUser(userId, user, callback)
         {
+            for(var i=0;i<users.length;i++){
+                if(users[i]._id == userId){
+                    users[i]=user;
+                }
+            }
+            console.log(users);
+            callback(users);
+
 
         }
 

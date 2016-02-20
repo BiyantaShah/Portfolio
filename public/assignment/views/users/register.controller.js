@@ -26,7 +26,7 @@
 
         function render(newUser){
             if(newUser!=null){
-                $scope.$rootscope = newUser;
+                $scope.$rootScope = newUser;
                 $location.path('/profile');
             }
 

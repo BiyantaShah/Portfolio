@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="HeaderController">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -12,11 +12,12 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/register">Register</a></li>
-                    <li><a href="#/login">Login</a></li>
-                    <li><a href="#/admin">Admin</a></li>
-                    <li><a href="#/home">Logout</a></li>
-                    <li><a href="#/profile">Username</a></li>
+
+                    <li ng-show="showRegister()"><a href="#/register">Register</a></li>
+                    <li ng-show="showLogin()"><a href="#/login">Login</a></li>
+                    <li ng-show="showLogout()"><a href="#/home">Logout</a></li>
+                    <li ng-show="showName()"><a href="#/profile">Username</a></li>
+                    <li ng-show="showAdmin()"><a href="#/admin">Admin</a></li>
                 </ul>
 
             </div>
