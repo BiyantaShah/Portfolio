@@ -31,9 +31,7 @@
                 for(var i=0; i < $rootScope.roles.length;i++){
                     if($rootScope.roles[i]== "admin")
                     {return true;}
-
                 }
-
             }
 
         }

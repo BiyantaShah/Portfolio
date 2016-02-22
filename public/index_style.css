@@ -3,16 +3,16 @@
     color:white;
 
 }
+
+.cent{
+    margin-left: 40%;
+}
 .heading{
     text-align:center;
     color:white;
     font-size: 400%;
 }
 
-.hrbreak{
-    width:0%;
-    height: 15px;
-}
 
 .name{
     font-size: 165%;
@@ -29,7 +29,7 @@
     background-color:transparent;
     height: 75px;
     font-size: 125%;
-    color:black;
+
 }
 .pos{
     top: 15px;
@@ -39,19 +39,7 @@
     background-color:transparent;
     color:black;
 }
-.takedown{
-    top:900px;
-}
-body{
-    background-color:transparent;
-    color:gray;
-    background-image: url("BS.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-   -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
 
-
+.custom{
+    background-color: orange;
 }

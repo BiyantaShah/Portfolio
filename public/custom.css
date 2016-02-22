@@ -1,0 +1,19 @@
+body{
+    background-color:transparent;
+    color:gray;
+    background-image: url("BS.jpg");
+    opacity: 5.4;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+
+
+}
+
+.hrbreak{
+    width:0%;
+
+}

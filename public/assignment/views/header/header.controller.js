@@ -10,6 +10,8 @@
         $scope.showAdmin = showAdmin;
         $scope.showName = showName;
         $scope.showLogout = showLogout;
+        $scope.loggingOut = loggingOut;
+
 
 
         $rootScope = null;
@@ -26,20 +28,27 @@
             if($rootScope !=null){
                 for(var i=0; i < $rootScope.roles.length;i++){
                     if($rootScope.roles[i]== "admin")
-                    {break;}
+                    {return true;}
 
                 }
-                return true;
+
             }
 
         }
 
         function showName(){
-            return $rootScope !=null;
+            if ($rootScope !=null){
+                $scope.username = $rootScope.username;
+                return true;
+            }
+        }
+
+        function loggingOut(){
+            $rootScope = null;
         }
 
         function showLogout(){
-         return $rootScope !=null;
+         return $rootScope!=null;
         }
     }
 })();

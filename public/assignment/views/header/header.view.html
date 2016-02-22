@@ -15,8 +15,8 @@
 
                     <li ng-show="showRegister()"><a href="#/register">Register</a></li>
                     <li ng-show="showLogin()"><a href="#/login">Login</a></li>
-                    <li ng-show="showLogout()"><a href="#/home">Logout</a></li>
-                    <li ng-show="showName()"><a href="#/profile">Username</a></li>
+                    <li ng-show="showLogout()" ng-click="loggingOut()"><a href="#/home">Logout</a></li>
+                    <li ng-show="showName()"><a href="#/profile">{{username}}</a></li>
                     <li ng-show="showAdmin()"><a href="#/admin">Admin</a></li>
                 </ul>
 
