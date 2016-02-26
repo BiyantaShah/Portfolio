@@ -8,22 +8,22 @@
 
         var store = $rootScope;
 
-        $scope.username = $rootScope.username;
-        $scope.password = $rootScope.password;
-        $scope.firstName = $rootScope.firstName;
-        $scope.lastName = $rootScope.lastName;
-        $scope.email = $rootScope.email;
+        $scope.username = store.username;
+        $scope.password = store.password;
+        $scope.firstName = store.firstName;
+        $scope.lastName = store.lastName;
+        $scope.email = store.email;
 
         function update(username,password,firstName,lastName, email){
 
 
                 var updateUser = {
-                    "_id": $rootScope._id,
+                    "_id": store._id,
                     "firstName": firstName,
                     "lastName": lastName,
                     "username": username,
                     "password": password,
-                    "roles": $rootScope.roles
+                    "roles": store.roles
                 }
 
 

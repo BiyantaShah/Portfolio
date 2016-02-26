@@ -7,9 +7,11 @@
 
                 <li ng-show="showAdmin()" ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">Admin</a></li>
 
-                <li ng-show="showForms()" ng-class="{'active': $location.url() == '/forms'}"><a href="#/forms">Forms</a></li>
+                <li ng-show="showForms()" ng-class="{'active': $location.url() == '/forms' || $location.url() == '/fields'}"><a href="#/forms">Forms</a></li>
 
-                </ul>
+
+
+            </ul>
         </div>
 </div>
 
