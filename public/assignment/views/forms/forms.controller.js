@@ -41,7 +41,6 @@
         }
 
         function deleteForm(index) {
-            selectedFormIndex= index;
             FormService.deleteFormById(currentAllUserForms[index]._id, renderDelete);
         }
 
@@ -60,7 +59,7 @@
                 var selectedForm = currentAllUserForms[selectedFormIndex];
                 selectedForm.title = formName;
                 FormService.updateFormById(selectedForm._id, selectedForm, renderUpdate);
-                selectedFormIndex = -1;
+
                 $scope.formName = null;
             }
         }
@@ -84,6 +83,7 @@
 
         function renderUpdate(newForm) {
             FormService.findAllFormsForUser(currentUser._id, renderAllForms);
+            selectedFormIndex = -1;
         }
 
 
