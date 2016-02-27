@@ -42,7 +42,7 @@
 
 
             .otherwise({
-                redirectTo:"/"
+                redirectTo:"/home"
             })
 
 
