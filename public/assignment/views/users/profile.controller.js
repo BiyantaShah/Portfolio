@@ -4,6 +4,7 @@
         .controller("ProfileController", ProfileController);
 
     function ProfileController($scope, $location, UserService){
+
         $scope.update = update;
 
         var store = $rootScope;
@@ -21,7 +22,7 @@
                     "_id": store._id,
                     "firstName": firstName,
                     "lastName": lastName,
-                    "username": username,
+                    "username": store.username,
                     "password": password,
                     "roles": store.roles
                 }
