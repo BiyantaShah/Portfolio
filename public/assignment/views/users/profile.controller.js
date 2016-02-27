@@ -1,13 +1,18 @@
 (function(){
+    'use strict';
+
     angular
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
     function ProfileController($scope, $location, UserService){
 
+        //event declarations
         $scope.update = update;
 
-        var store = $rootScope;
+        var store; //to store the $rootScope
+
+        store = UserService.getCurrentUser();
 
         $scope.username = store.username;
         $scope.password = store.password;
@@ -15,28 +20,26 @@
         $scope.lastName = store.lastName;
         $scope.email = store.email;
 
-        function update(username,password,firstName,lastName, email){
-
+        //event implementation
+        function update(username,password,firstName,lastName, email) {
 
                 var updateUser = {
-                    "_id": store._id,
+                    "_id": UserService.getCurrentUser()._id,
                     "firstName": firstName,
                     "lastName": lastName,
-                    "username": store.username,
+                    "username": UserService.getCurrentUser().username,
                     "password": password,
-                    "roles": store.roles
+                    "roles": UserService.getCurrentUser().roles
                 }
 
 
-            UserService.updateUser(store._id, updateUser, render)
-
-
+            UserService.updateUser(UserService.getCurrentUser()._id, updateUser, render)
 
         }
 
-        function render(updateUser){
-            if(updateUser!=null){
-                $rootScope = updateUser;
+        function render(updateUser) {
+            if (updateUser != null) {
+                UserService.setCurrentUser(updateUser);
                 $location.path('/profile');
             }
 

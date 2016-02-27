@@ -1,54 +1,62 @@
 (function(){
+
+    'use strict';
+
+
     angular
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope){
+    function HeaderController($scope, UserService) {
 
-        $scope.showRegister = showRegister;
-        $scope.showLogin = showLogin;
-        $scope.showAdmin = showAdmin;
-        $scope.showName = showName;
-        $scope.showLogout = showLogout;
+        UserService.setCurrentUser(null);
+
+
+        //event declarations
         $scope.loggingOut = loggingOut;
+        $scope.showAdmin = showAdmin;
+        $scope.showLogout = showLogout;
+        $scope.showLogin = showLogin;
+        $scope.showName = showName;
+        $scope.showRegister = showRegister;
 
 
 
-        $rootScope = null;
-
-        function showRegister(){
-            return $rootScope == null;
+        //event implementation
+        function loggingOut() {
+            UserService.setCurrentUser(null);
         }
 
-        function showLogin(){
-            return $rootScope == null;
-        }
+        function showAdmin() {
 
-        function showAdmin(){
-            if($rootScope !=null){
-                for(var i=0; i < $rootScope.roles.length;i++){
-                    if($rootScope.roles[i]== "admin")
+            if (UserService.getCurrentUser() != null) {
+                for (var i = 0; i < UserService.getCurrentUser().roles.length; i++) {
+                    if(UserService.getCurrentUser().roles[i] == "admin")
                     {return true;}
 
                 }
-
             }
-
         }
 
-        function showName(){
-            if ($rootScope !=null){
-                $scope.username = $rootScope.username;
+        function showLogin() {
+            return UserService.getCurrentUser() == null;
+        }
+
+        function showLogout() {
+            return UserService.getCurrentUser() != null;
+        }
+
+        function showName() {
+            if (UserService.getCurrentUser() != null) {
+                $scope.username = UserService.getCurrentUser().username;
                 return true;
             }
         }
 
-        function loggingOut(){
-            $rootScope = null;
+        function showRegister() {
+            return (UserService.getCurrentUser() == null);
         }
 
-        function showLogout(){
-         return $rootScope!=null;
-        }
+
     }
 })();

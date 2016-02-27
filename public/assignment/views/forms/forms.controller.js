@@ -1,66 +1,60 @@
 (function(){
+
+    'use strict';
+
     angular
         .module("FormBuilderApp")
         .controller("FormController",FormController);
 
-    function FormController($scope, FormService,$location){
-        var currentAllUserForms= [];
-        var currentUser = null;
-        var selectedFormIndex = -1;
+    function FormController($scope, FormService,$location, UserService) {
 
-        if($rootScope == null){
+        var currentAllUserForms= []; //Forms of the current user
+        var currentUser = null; //Current user is stored
+        var selectedFormIndex = -1; //the index of the form selected
+
+        if (UserService.getCurrentUser() == null) {
             $location.path("/home");
         }
         else{
-            currentUser = $rootScope;
+            currentUser =UserService.getCurrentUser();
             FormService.findAllFormsForUser(currentUser._id, renderAllForms);
-        }
-
-        function renderAllForms(userForm){
-            $scope.forms = userForm;
-            currentAllUserForms = userForm;
         }
 
         //event declarations
         $scope.addForm = addForm;
-        $scope.selectForm = selectForm;
         $scope.deleteForm = deleteForm;
+        $scope.selectForm = selectForm;
         $scope.updateForm = updateForm;
 
-        function addForm(formName){
+
+        //event implementations
+        function addForm(formName) {
+
             var newForm = {
             "_id" : null,
             "title" : formName,
-            "userId" : null};
+            "userId" : null
+            };
 
             FormService.createFormForUser(currentUser._id, newForm, renderAdd);
         }
 
-        function renderAdd(newForm){
-            $scope.formName = null;
-            currentAllUserForms.push(newForm);
-            $scope.forms = currentAllUserForms;
-
+        function deleteForm(index) {
+            selectedFormIndex= index;
+            FormService.deleteFormById(currentAllUserForms[index]._id, renderDelete);
         }
 
-        function selectForm(index){
+
+
+        function selectForm(index) {
             selectedFormIndex = index;
             var selectForm = currentAllUserForms[index];
             $scope.formName = selectForm.title ;
 
         }
 
-        function deleteForm(index){
-            selectedFormIndex= index;
-            FormService.deleteFormById(currentAllUserForms[index]._id, renderDelete);
-        }
 
-        function renderDelete(allForms){
-            FormService.findAllFormsForUser(currentUser._id, renderAllForms);
-            
-        }
-
-        function updateForm(formName){
+        function updateForm(formName) {
             if(selectedFormIndex != -1){
                 var selectedForm = currentAllUserForms[selectedFormIndex];
                 selectedForm.title = formName;
@@ -70,7 +64,24 @@
             }
         }
 
-        function renderUpdate(newForm){
+        function renderAllForms(userForm) {
+            $scope.forms = userForm;
+            currentAllUserForms = userForm;
+        }
+
+        function renderAdd(newForm) {
+            $scope.formName = null;
+            currentAllUserForms.push(newForm);
+            $scope.forms = currentAllUserForms;
+
+        }
+
+        function renderDelete(allForms) {
+            FormService.findAllFormsForUser(currentUser._id, renderAllForms);
+
+        }
+
+        function renderUpdate(newForm) {
             FormService.findAllFormsForUser(currentUser._id, renderAllForms);
         }
 

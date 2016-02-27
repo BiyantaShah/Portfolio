@@ -1,9 +1,14 @@
 (function(){
+    'use strict';
+
     angular
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
     function FormService(){
+
+        //initializing array of forms with JSON data
+
         var forms = [
             {"_id": "000", "title": "Contacts", "userId": 123},
             {"_id": "010", "title": "ToDo",     "userId": 123},
@@ -19,8 +24,9 @@
 
         return api;
 
-        function createFormForUser(userId, form, callback){
-            var newForm;
+        function createFormForUser(userId, form, callback) {
+            var newForm; //new form for the user
+
             form._id = (new Date).getTime();
             form.title = form.title;
             form.userId = userId;
@@ -30,10 +36,11 @@
 
         }
 
-        function findAllFormsForUser(userId, callback){
-            var userForms = [];
-            for(var i=0;i<forms.length;i++){
-                if(forms[i].userId == userId){
+        function findAllFormsForUser(userId, callback) {
+            var userForms = []; //array containing the forms of the particular user
+
+            for (var i = 0; i < forms.length; i++) {
+                if (forms[i].userId == userId) {
                     userForms.push(forms[i]);
                 }
             }
@@ -42,8 +49,8 @@
 
         function deleteFormById(formId, callback){
 
-            for(var i=0;i<forms.length; i++){
-                if(forms[i]._id == formId){
+            for (var i = 0; i < forms.length; i++) {
+                if (forms[i]._id == formId) {
                     forms.splice(i,1);
                     break;
                 }
@@ -52,8 +59,9 @@
         }
 
         function updateFormById(formId, newForm, callback){
-            for(var i=0; i< forms.length;i++){
-                if(forms[i]._id == formId){
+
+            for (var i = 0; i < forms.length; i++) {
+                if (forms[i]._id == formId) {
                     forms[i].title =newForm.title;
                     forms[i].userId = newForm.userId;
                     break;

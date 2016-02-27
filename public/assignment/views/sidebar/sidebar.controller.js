@@ -1,39 +1,46 @@
-/**
- * Created by Biyanta on 19/02/16.
- */
+
 (function(){
+    'use strict';
+
     angular
         .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController($scope){
+    function SidebarController($scope, UserService){
+
+        UserService.setCurrentUser(null);
+
+        //event declarations
+        $scope.showAdmin = showAdmin;
+        $scope.showForms = showForms;
         $scope.showHome = showHome;
         $scope.showProfile = showProfile;
-        $scope.showForms = showForms;
-        $scope.showAdmin = showAdmin;
 
-        $rootScope = null;
 
-        function showHome(){
-            return true;
-        }
 
-        function showProfile(){
-            return $rootScope!=null;
-        }
-
-        function showForms(){
-            return $rootScope!=null;
-        }
-
-        function showAdmin(){
-            if($rootScope !=null){
-                for(var i=0; i < $rootScope.roles.length;i++){
-                    if($rootScope.roles[i]== "admin")
-                    {return true;}
+        //event implementation
+        function showAdmin() {
+            if (UserService.getCurrentUser() != null) {
+                for(var i = 0; i < UserService.getCurrentUser().roles.length; i++) {
+                    if (UserService.getCurrentUser().roles[i] == "admin") {
+                        return true;
+                    }
                 }
             }
 
         }
+
+        function showForms() {
+            return UserService.getCurrentUser()!=null;
+        }
+
+        function showHome() {
+            return true;
+        }
+
+        function showProfile() {
+            return UserService.getCurrentUser()!=null;
+        }
+
     }
 })();
