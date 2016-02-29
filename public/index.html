@@ -1,84 +1,241 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="icon.jpeg">
-
 
     <title>Biyanta Shah</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
 
-
-
-    <!-- Custom styles for this template -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assignment/css/dashboard.css" rel="stylesheet">
-    <link href="index_style.css" rel="stylesheet">
+    <!-- Custom CSS -->
     <link href="custom.css" rel="stylesheet">
-
 
 
 
 </head>
 
-<body>
+<body id="page-top" class="index">
 
-<div>
-    <nav class="navbar navbar-inverse navbar-fixed-top barcolor">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand name" href="#">BIYANTA SHAH</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li class="pos"><a href="project/index.html">Eco-Note</a></li>
-                    <li class="pos"><a href="https://github.com/BiyantaShah/WebDevSpring2016.git">Github</a></li>
-                    <li class="pos"><a href="assignment/#/home">Assignments</a></li>
-                    <li class="pos"><a href="about.html">About</a></li>
-                    <li class="pos"><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <hr>
-        </div>
-    </nav>
-</div>
-
-
-
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="divide jumbotron">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">BIYANTA SHAH</a>
+        </div>
 
-        <h2 class="heading">Hello! I am Biyanta</h2>
-        <hr class="hrbreak">
-        <h2 class="align">I am a Husky and an ethusiastic Software Developer </h2>
-        <hr class="hrbreak">
-        <a href="about.html" class="btn btn-success btn-lg cent">More About Me</a>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="index.html"></a>
+                </li>
+                <li>
+                    <a href="project/index.html">Eco-Note</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#portfolio">Projects</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#portfolio">Github</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">About Me</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#contact">Contact Me</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-</div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-text">
+                    <span class="name">Software Developer</span>
+                    <h3>Masters in Computer Science </h3>
+                    <h3>Student at Northeastern University</h3>
+                    <hr>
+                    <span class="skills">Front End - Back End - Full Stack - Java Developer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Portfolio Grid Section -->
+<section id="portfolio">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Projects</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 portfolio-item">
+                <a href="project/index.html" class="portfolio-link" data-toggle="modal">
+                    <h3 align="center">Eco-Note</h3>
+                </a>
+                <p class="text-justify"> Eco Note is a note taker. It allows the user to take notes, organize according to various subjects and
+                taking into consideration whether the user is a student or faculty. This note taker has been developed using HTML5, CSS3,  Bootstrap, Angular.js and Node.js</p>
+
+                <div class="row">
+                    <div class="form-group col-xs-12" align="center">
+                        <a href="project/index.html" class="portfolio-link" data-toggle="modal">
+                            <button type="submit" class="btn btn-success btn-lg bcolor">Click to view Eco-Note</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+         <div class="col-sm-4 portfolio-item">
+                <a href="https://github.com/BiyantaShah/WebDevSpring2016.git" class="portfolio-link" data-toggle="modal">
+                    <img src="github_logo.png" class="align">
+                </a>
+            </div>
+
+            <div class="col-sm-4 portfolio-item">
+                <a href="assignment/#/home" class="portfolio-link" data-toggle="modal">
+
+
+                    <h3 align="center">Form Maker</h3>
+
+                </a>
+
+                <p class="text-justify">This website can create forms according to the user's needs.The admin has specific advantages than the general users.
+                    This website has been developed using technologies like HTML5, CSS3, Boostrap, Angular.js, and Nodejs.</p>
+                <div class="row">
+                    <div class="form-group col-xs-12" align="center">
+                        <a href="assignment/#/home" class="portfolio-link" data-toggle="modal">
+                            <button type="submit" class="btn btn-success btn-lg bcolor">Click to view Form-Maker</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
 
 
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="success" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>About Me</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-offset-1">
+                <p>I am currently a Masters in Computer Science student at Northeastern University, Boston.
+                    Areas of my interest include Graphics, Data Mining, Map Reduce, Image Processing.I am passionate about Software Developing and looking forward to work with motivated individuals like me.
+                To know more about me, check my resume below!</p>
+            </div>
+
+
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <a href="Shah_Biyanta.pdf">
+                    <button type="submit" class="btn btn-default btn-lg">Resume</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Contact Me</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <p align="center"> Hello! I am Biyanta.</p>
+                <p> Interested in talking to me? You can always shoot me an email! You can also drop me a message at one of the social media's as well!</p>
+                 <h4 align="center"> <a href = "mailto:shah.bi@husky.neu.edu"><img src="envelope.png" ></span> </a></h4>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center">
+    <div class="footer-above">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col col-md-6">
+                    <h3>Address</h3>
+                    <p>75 St Alphonsus Street<br>Boston, MA 02120</p>
+                </div>
+                <div class="footer-col col-md-6">
+                    <h3>Social Media</h3>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://www.facebook.com/biyanta.shah">
+                                <img src="facebook.jpeg" class="resize">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/biyantashah93">
+                                <img src="linkedin.png" class="resize">
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-below">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Copyright &copy; Biyanta Shah
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>
