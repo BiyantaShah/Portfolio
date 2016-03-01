@@ -31,13 +31,15 @@
 
         function addForm(formName) {
 
-            var newForm = {
-            "_id" : null,
-            "title" : formName,
-            "userId" : null
-            };
+            if (formName != null) {
+                var newForm = {
+                    "_id": null,
+                    "title": formName,
+                    "userId": null
+                };
 
-            FormService.createFormForUser(currentUser._id, newForm, renderAdd);
+                FormService.createFormForUser(currentUser._id, newForm, renderAdd);
+            }
         }
 
         function deleteForm(index) {
