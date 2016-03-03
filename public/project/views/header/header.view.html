@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="HeaderController">
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -15,27 +15,27 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li ng-show="showHome()">
                     <a href="#/home">Home</a>
                 </li>
-                <li>
+                <li ng-show="showProposal()">
                     <a href="Projectproposal.pdf">Documentation</a>
                 </li>
 
-                <li>
+                <li ng-show="showLogin()">
                     <a href="#/login">Login</a>
                 </li>
-                <li>
+                <li ng-show="showRegister()">
                     <a href="#/register">Register</a>
                 </li>
-                <li>
+                <li ng-show="showName()">
+                    <a href="#/profile">{{username}}</a>
+                </li>
+                <li ng-show="showSearch()">
+                    <a href="#/search">Search</a>
+                </li>
+                <li ng-show="showLogout()" ng-click="loggingOut()">
                     <a href="#/home">Logout</a>
-                </li>
-                <li>
-                    <a href="#/profile">Profile</a>
-                </li>
-                <li class="page-scroll">
-                    <a href="Projectproposal.pdf">Contact</a>
                 </li>
 
             </ul>
