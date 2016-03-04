@@ -20,7 +20,10 @@
             NoteService.findAllNotesForUser(currentUser._id, renderAllForms);
         }
 
-
+        function renderAllForms(userNote) {
+            $scope.notes = userNote;
+            currentAllUserNotes = userNote;
+        }
     }
 })();
 
