@@ -42,8 +42,25 @@
             })
 
             .when("/noteList",{
-                templateUrl:"views/search/noteList.view.html"
+                templateUrl:"views/search/noteList.view.html",
+                controller: "NoteListController"
             })
+
+            // only for CRUD
+
+            .when("/users",{
+                templateUrl: "views/crud/users.view.html",
+                controller: "UserController"
+            })
+
+            .when("/notes",{
+                templateUrl: "views/crud/notes.view.html",
+                controller: "NoteController"
+            })
+
+
+
+            //
 
             .otherwise({
                 redirectTo:"/home"

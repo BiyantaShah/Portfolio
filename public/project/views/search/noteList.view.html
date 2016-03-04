@@ -1,6 +1,6 @@
 
 
-<div>
+<div ng-controller="NoteListController">
     <div class="col-sm-3 col-md-3">
         <div class="col-sm-3 col-md-3 sidebar">
             <br><br> <br> <br>
@@ -20,22 +20,19 @@
             <li role="presentation"><a href="#/groupList">Groups</a></li>
         </ul>
 
-        <div class="container">
-            <form>
+        <div>
                 <div>
-                    <h2 class="pull-left">Name of the Notes</h2>
                     <hr class="hr-break">
-                    <div class="pull-left">
-                    </div>
-                    <div class="col-sm-12">
-
-                    </div>
+                    <h4>Notes for:</h4>
                 </div>
-            </form>
+                    <br>
+                    <div>
+                    <ul ng-repeat="note in notes">
+                        <li><a>{{note.title}}</a></li>
+                    </ul>
+                        </div>
 
         </div>
-
-
 
 
     </div>

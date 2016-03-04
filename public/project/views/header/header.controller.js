@@ -16,6 +16,7 @@
         $scope.showLogin = showLogin;
         $scope.showLogout = showLogout;
         $scope.showName = showName;
+        $scope.showNotesCrud = showNotesCrud;
         $scope.showProposal = showProposal;
         $scope.showRegister = showRegister;
         $scope.showSearch = showSearch;
@@ -43,6 +44,10 @@
                 $scope.username = UserService.getCurrentUser().username;
                 return true;
             }
+        }
+
+        function showNotesCrud(){
+            return UserService.getCurrentUser() != null;
         }
 
         function showProposal(){

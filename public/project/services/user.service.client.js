@@ -69,6 +69,7 @@
             for (var i = 0; i < users.length; i++) {
                 if (users[i]._id == userId) {
                     users.splice(i,1);
+                    break;
                 }
             }
             callback(users);
@@ -79,11 +80,13 @@
         {
             for (var i = 0; i < users.length; i++) {
                 if (users[i]._id == userId) {
-                    users[i] = user;
+                    users[i].username = user.username;
+                    users[i].firstName = user.firstName;
+                    users[i].lastName = user.lastName;
                     break;
                 }
             }
-            callback(user);
+            callback(users[i]);
 
 
         }
