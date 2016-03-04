@@ -58,6 +58,10 @@
                 controller: "NoteController"
             })
 
+            .when("/groups",{
+                templateUrl: "views/crud/groups.view.html",
+                controller: "GroupController"
+            })
 
 
             //

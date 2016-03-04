@@ -1,6 +1,7 @@
 (function(){
     'use strict';
-
+    // service for notes of a particular user
+    //actual functionality
     angular
         .module("NoteTakerWebsite")
         .factory("NoteService", NoteService);

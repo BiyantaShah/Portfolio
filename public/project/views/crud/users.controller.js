@@ -52,7 +52,7 @@
         }
 
 
-        function updateUser(username,firstName,lastName,type) {
+        function updateUser(username,firstName,lastName) {
             if(selectedUserIndex != -1){
                 var selectedUser = currentAllUsers[selectedUserIndex];
                 selectedUser.username = username;
@@ -79,7 +79,6 @@
             $scope.username = null;
             $scope.firstName = null;
             $scope.lastName = null;
-            currentAllUsers.push(newUser);
             $scope.users = currentAllUsers;
 
         }

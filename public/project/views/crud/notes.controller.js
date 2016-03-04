@@ -6,19 +6,14 @@
         .module("NoteTakerWebsite")
         .controller("NoteController",NoteController);
 
-    function NoteController($scope, NoteService,$location, UserService) {
+    function NoteController($scope, NoteCrudService) {
 
         var currentAllUserNotes= []; //Notes of the current user
-        var currentUser = null; //Current user is stored
+        var currentNotes = null; //Current user is stored
         var selectedNoteIndex = -1; //the index of the Note selected
 
-        if (UserService.getCurrentUser() == null) {
-            $location.path("/home");
-        }
-        else{
-            currentUser = UserService.getCurrentUser();
-            NoteService.findAllNotesForUser(currentUser._id, renderAllForms);
-        }
+        currentNotes = NoteCrudService.findAllNotesForUser(renderAllNotes);
+
 
         //event declarations
         $scope.addNote = addNote;
@@ -29,21 +24,22 @@
 
         //event implementations
 
-        function addNote(noteName) {
+        function addNote(noteName,username) {
 
-            if (noteName != null) {
+            if (noteName != null && username !=null) {
                 var newForm = {
                     "_id": null,
                     "title": noteName,
-                    "userId": null
+                    "userId": null,
+                    "username": username
                 };
 
-                NoteService.createNoteForUser(currentUser._id, newForm, renderAdd);
+                NoteCrudService.createNoteForUser(newForm, renderAdd);
             }
         }
 
         function deleteNote(index) {
-            NoteService.deleteNoteById(currentAllUserNotes[index]._id, renderDelete);
+            NoteCrudService.deleteNoteById(currentAllUserNotes[index]._id, renderDelete);
         }
 
 
@@ -52,39 +48,42 @@
             selectedNoteIndex = index;
             var selectNote = currentAllUserNotes[index];
             $scope.noteName = selectNote.title ;
+            $scope.username = selectNote.username;
 
         }
 
 
-        function updateNote(noteName) {
+        function updateNote(noteName,username) {
             if(selectedNoteIndex != -1){
                 var selectedNote = currentAllUserNotes[selectedNoteIndex];
                 selectedNote.title = noteName;
-                NoteService.updateNoteById(selectedNote._id, selectedNote, renderUpdate);
+                selectedNote.username = username;
+                NoteCrudService.updateNoteById(selectedNote._id, selectedNote, renderUpdate);
 
                 $scope.noteName = null;
+                $scope.username = null;
             }
         }
 
-        function renderAllForms(userNote) {
+        function renderAllNotes(userNote) {
             $scope.notes = userNote;
             currentAllUserNotes = userNote;
         }
 
         function renderAdd(newNote) {
             $scope.noteName = null;
-            currentAllUserNotes.push(newNote);
+            $scope.username = null;
             $scope.notes = currentAllUserNotes;
 
         }
 
         function renderDelete(allNotes) {
-            NoteService.findAllNotesForUser(currentUser._id, renderAllForms);
+            NoteCrudService.findAllNotesForUser(renderAllNotes);
 
         }
 
         function renderUpdate(newForm) {
-            NoteService.findAllNotesForUser(currentUser._id, renderAllForms);
+            NoteCrudService.findAllNotesForUser(renderAllNotes);
             selectedNoteIndex = -1;
         }
 
