@@ -64,11 +64,24 @@
             })
 
 
+            .when("/notebooks",{
+                templateUrl: "views/crud/notebooks.view.html",
+                controller: "NotebookController"
+            })
+
+            .when("/subjects",{
+                templateUrl: "views/crud/subjects.view.html",
+                controller: "SubjectController"
+            })
+
+
+
+
             //
 
-            .otherwise({
+           /* .otherwise({
                 redirectTo:"/home"
-            })
+            })*/
     }
 
 })();

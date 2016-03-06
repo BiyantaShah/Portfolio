@@ -19,12 +19,12 @@
                     <td><input type="text" ng-model="firstName" class="form-control"  placeholder="First Name"></td>
                     <td><input type="text" ng-model="lastName" class="form-control"  placeholder="Last name"></td>
                     <td>
-                        <a ng-click="addUser(username,firstName,lastName)"  class="btn btn-default">
+                        <a ng-click="addUser(username,firstName,lastName)"  class="btn btn-primary">
                          <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true">
                          </span>
                         </a>
 
-                        <a ng-click="updateUser(username,firstName,lastName)" class="btn btn-default">
+                        <a ng-click="updateUser(username,firstName,lastName)" class="btn btn-success">
                             <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -35,10 +35,10 @@
                     <td><a>{{user.firstName}}</a></td>
                     <td><a>{{user.lastName}}</a></td>
                     <td>
-                        <a ng-click="deleteUser($index)" class="btn btn-default">
+                        <a ng-click="deleteUser($index)" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
                         </a>
-                        <a ng-click="selectUser($index)" class="btn btn-default">
+                        <a ng-click="selectUser($index)" class="btn btn-warning">
                             <span class ="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
                         </a>
 

@@ -18,25 +18,25 @@
                     <td><input type="text" ng-model="username" class="form-control"  placeholder="User Name"></td>
                     <td><input type="text" ng-model="noteName" class="form-control"  placeholder="Note Title"></td>
                     <td>
-                        <a ng-click="addNote(noteName, username)"  class="btn btn-default">
+                        <a ng-click="addNote(noteName, username)"  class="btn btn-primary">
                          <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true">
                          </span>
                         </a>
 
-                        <a ng-click="updateNote(noteName, username)" class="btn btn-default">
+                        <a ng-click="updateNote(noteName, username)" class="btn btn-success">
                             <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
                         </a>
                     </td>
 
                 </tr>
-                <tr ng-repeat="note in notes">
+                <tr ng-repeat="note in notes track by $index">
                     <td><a>{{note.username}}</a></td>
-                    <td><a>{{note.title}}</a></td>
+                    <td><a>{{note.title.toString()}}</a></td>
                     <td>
-                        <a ng-click="deleteNote($index)" class="btn btn-default">
+                        <a ng-click="deleteNote($index)" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
                         </a>
-                        <a ng-click="selectNote($index)" class="btn btn-default">
+                        <a ng-click="selectNote($index)" class="btn btn-warning">
                             <span class ="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
                         </a>
 

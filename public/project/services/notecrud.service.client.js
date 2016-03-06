@@ -11,17 +11,10 @@
         //initializing array of notes with JSON data
 
         var notes = [
-            {"_id": "000", "title": "Physics", "userId": 123, "username":"alice"},
-            {"_id": "010", "title": "Chemistry", "userId": 123, "username":"alice"},
-            {"_id": "020", "title": "English",   "userId": 123, "username":"alice"},
-            {"_id": "030", "title": "Algorithms","userId": 234, "username":"bob"},
-            {"_id": "040", "title": "PDP",      "userId": 234, "username":"bob"},
-            {"_id": "050", "title": "DB",      "userId": 234, "username":"bob"},
-            {"_id": "060", "title": "MapReduce","userId": 345, "username":"dan"},
-            {"_id": "070", "title": "Data Mining","userId": 345, "username":"dan"},
-            {"_id": "080", "title": "Information Retrieval","userId": 345, "username":"dan"},
-            {"_id": "090", "title": "Geography","userId": 456, "username":"charlie"},
-            {"_id": "100", "title": "History","userId": 456, "username":"charlie"}
+            {"_id": "000", "title": ["Physics", "Chemistry", "English"], "userId": 123, "username":"alice"},
+            {"_id": "030", "title": ["Algorithms", "DB","PDP"],"userId": 234, "username":"bob"},
+            {"_id": "060", "title": ["MapReduce","Data Mining", "Information Retrieval"],"userId": 345, "username":"dan"},
+            {"_id": "090", "title": ["Geography","History"],"userId": 456, "username":"charlie"},
 
         ]
 

@@ -29,7 +29,7 @@
             if (noteName != null && username !=null) {
                 var newForm = {
                     "_id": null,
-                    "title": noteName,
+                    "title": noteName.split(","),
                     "userId": null,
                     "username": username
                 };
@@ -56,7 +56,7 @@
         function updateNote(noteName,username) {
             if(selectedNoteIndex != -1){
                 var selectedNote = currentAllUserNotes[selectedNoteIndex];
-                selectedNote.title = noteName;
+                selectedNote.title = noteName.split(",");
                 selectedNote.username = username;
                 NoteCrudService.updateNoteById(selectedNote._id, selectedNote, renderUpdate);
 

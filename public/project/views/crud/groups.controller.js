@@ -65,7 +65,7 @@
         }
 
         function renderAllGroups(userGroup) {
-            console.log(userGroup);
+            //console.log(userGroup);
             $scope.groups = userGroup;
             currentAllUserGroups = userGroup;
         }

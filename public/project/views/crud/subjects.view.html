@@ -1,43 +1,43 @@
 <div>
-    <h1 align="center">Group List For all Users</h1>
+    <h1 align="center">Subjects and Notebooks</h1>
     <form>
-        <div class="table-responsive" ng-controller="GroupController">
+        <div class="table-responsive" ng-controller="SubjectController">
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
 
-                    <th>Group Name</th>
-                    <th>Users in the Group</th>
+                    <th>Subject</th>
+                    <th>Notebooks</th>
                     <th>Action</th>
 
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td><input type="text" ng-model="groupName" class="form-control"  placeholder="Note Title"></td>
-                    <td><input type="text" ng-model="username" class="form-control"  placeholder="User Name"></td>
+                    <td><input type="text" ng-model="subjectName" class="form-control"  placeholder="Subject"></td>
+                    <td><input type="text" ng-model="noteBookName" class="form-control"  placeholder="Notebooks"></td>
 
                     <td>
-                        <a ng-click="addGroup(groupName, username)"  class="btn btn-primary">
+                        <a ng-click="addSubject(subjectName, noteBookName)"  class="btn btn-primary">
                          <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true">
                          </span>
                         </a>
 
-                        <a ng-click="updateGroup(groupName, username)" class="btn btn-success">
+                        <a ng-click="updateSubject(subjectName, noteBookName)" class="btn btn-success">
                             <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
                         </a>
                     </td>
 
                 </tr>
-                <tr ng-repeat="group in groups track by $index">
+                <tr ng-repeat="subject in subjects track by $index">
 
-                    <td><a>{{group.name}}</a></td>
-                    <td>{{group.users.toString()}}</td>
+                    <td><a>{{subject.title}}</a></td>
+                    <td>{{subject.notebooks.toString()}}</td>
                     <td>
-                        <a ng-click="deleteGroup($index)" class="btn btn-danger">
+                        <a ng-click="deleteSubject($index)" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
                         </a>
-                        <a ng-click="selectGroup($index)" class="btn btn-warning">
+                        <a ng-click="selectSubject($index)" class="btn btn-warning">
                             <span class ="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
                         </a>
 
