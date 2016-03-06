@@ -83,6 +83,7 @@
                     users[i].username = user.username;
                     users[i].firstName = user.firstName;
                     users[i].lastName = user.lastName;
+                    users[i].type = user.type;
                     break;
                 }
             }

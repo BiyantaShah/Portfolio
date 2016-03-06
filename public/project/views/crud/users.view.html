@@ -9,6 +9,7 @@
                     <th>Username</th>
                     <th>First Name</th>
                     <th>Last Name</th>
+                    <th>Type Of User</th>
                     <th>Action</th>
 
                 </tr>
@@ -18,13 +19,18 @@
                     <td><input type="text" ng-model="username" class="form-control"  placeholder="Username"></td>
                     <td><input type="text" ng-model="firstName" class="form-control"  placeholder="First Name"></td>
                     <td><input type="text" ng-model="lastName" class="form-control"  placeholder="Last name"></td>
+                    <td><select class="form-control" ng-model="type">
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="other">Other</option>
+                    </select></td>
                     <td>
-                        <a ng-click="addUser(username,firstName,lastName)"  class="btn btn-primary">
+                        <a ng-click="addUser(username,firstName,lastName,type)"  class="btn btn-primary">
                          <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true">
                          </span>
                         </a>
 
-                        <a ng-click="updateUser(username,firstName,lastName)" class="btn btn-success">
+                        <a ng-click="updateUser(username,firstName,lastName,type)" class="btn btn-success">
                             <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -34,6 +40,7 @@
                     <td><a>{{user.username}}</a></td>
                     <td><a>{{user.firstName}}</a></td>
                     <td><a>{{user.lastName}}</a></td>
+                    <td>{{user.type}}</td>
                     <td>
                         <a ng-click="deleteUser($index)" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>

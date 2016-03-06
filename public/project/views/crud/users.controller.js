@@ -21,14 +21,15 @@
         currentUser = UserService.findAllUsers(renderAllUsers);
         //event implementations
 
-        function addUser(username,firstName,lastName) {
+        function addUser(username,firstName,lastName, type) {
 
-            if (username != null && firstName != null && lastName != null) {
+            if (username != null && firstName != null && lastName != null && type != null) {
                 var newUser = {
                     "_id": null ,
                     "username": username,
                     "firstName": firstName,
-                    "lastName": lastName
+                    "lastName": lastName,
+                    "type": type
                 };
 
                 UserService.createUser(newUser, renderAdd);
@@ -47,17 +48,19 @@
             $scope.username = selectUser.username ;
             $scope.firstName = selectUser.firstName ;
             $scope.lastName = selectUser.lastName ;
+            $scope.type = selectUser.type;
 
 
         }
 
 
-        function updateUser(username,firstName,lastName) {
+        function updateUser(username,firstName,lastName,type) {
             if(selectedUserIndex != -1){
                 var selectedUser = currentAllUsers[selectedUserIndex];
                 selectedUser.username = username;
                 selectedUser.firstName = firstName;
                 selectedUser.lastName = lastName;
+                selectedUser.type = type;
 
                 UserService.updateUser(selectedUser._id, selectedUser, renderUpdate);
 

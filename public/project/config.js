@@ -76,8 +76,16 @@
 
 
 
+            .when("/notetext",{
+                templateUrl: "views/crud/notesText.view.html",
+                controller: "TextController"
+            })
 
-            //
+
+
+
+
+        //
 
            /* .otherwise({
                 redirectTo:"/home"
