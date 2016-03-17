@@ -1,34 +1,34 @@
 module.exports = function(app,model){
-    app.post("api/project/delete", deleteUserById);
-    app.post("api/project/login",findUserByCredentials);
-    app.post("api/project/user",findUserByUsername);
-    app.post("api/project/userId",findUserById);
-    app.get("/api/project/loggedin", loggedin);
-    app.post("/api/project/logout", logout);
-    app.post("/api/project/register", register);
-    app.get("/api/project/allUsers", findAllUsers);
-    app.post("api/project/update",updateUser);
+    app.delete("/api/assignment/user/:id", deleteUserById);
+    app.get("/api/assignment/user?username=username&password=password",findUserByCredentials);
+    app.get("/api/assignment/user?username=username",findUserByUsername);
+    app.get("/api/assignment/user/:id",findUserById);
+    app.get("/api/assignment/loggedin", loggedin);
+    app.post("/api/assignment/logout", logout);
+    app.post("/api/assignment/user", register);
+    app.get("/api/assignment/user", findAllUsers);
+    app.put("/api/assignment/user/:id",updateUser);
 
 
     function deleteUserById(req,res){
-        var userId = req.body;
+        var userId = req.params.userId;
         var user = model.deleteUserById(userId);
         res.json(user);
     }
 
     function findUserByCredentials(req,res){
-        var credentials = req.body;
-        var user = model.findUserByCredentials(credentials);
+        var username = req.params.username;
+        var password = req.params.password
+        var user = model.findUserByCredentials(username, password);
         res.json(user);
     }
 
     function findAllUsers(req,res){
-        // var users = model.findAllUsers();
-        res.json(req.body);
+        res.json(model.findAllUsers());
     }
 
     function findUserById(req,res){
-        var userId = req.body;
+        var userId = req.params.userId;
         var user = model.findUserById(userId);
         res.json(user);
     }
@@ -59,8 +59,8 @@ module.exports = function(app,model){
     }
 
     function updateUser(req,res){
-        var userId = req.body;
-        var user = model.findUserById(userId);
+        var userId = req.params.userId;
+        var user = req.body;
         var update = model.updateUser(userId,user);
         res.json(update);
     }

@@ -14,7 +14,12 @@ module.exports = function() {
     return api;
 
     function createUser(user){
-        user._id = (new Date()).getTime();
+        var user = {
+            _id: (new Date()).getTime(),
+            username: user.username,
+            password: user.password
+        }
+
         mock.push(user);
         return user;
 
@@ -24,11 +29,11 @@ module.exports = function() {
         return mock;
     }
 
-    function findUserByCredentials(credentials) {
+    function findUserByCredentials(username,password) {
         var flag = false;
         for (var u in mock){
-            if( mock[u].username === credentials.username &&
-                mock[u].password === credentials.password) {
+            if( mock[u].username === username &&
+                mock[u].password === password) {
                 flag = true
                 return mock[u];
             }
@@ -90,11 +95,7 @@ module.exports = function() {
         for(var u in mock) {
             if(mock[u]._id === userId) {
 
-                mock[u].firstName = user.firstName;
-                mock[u].lastName = user.lastName;
-                mock[u].username = user.username;
-                mock[u].password = user.password;
-
+                mock[u] = user;
                 return mock[u];
 
             }

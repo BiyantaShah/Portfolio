@@ -33,6 +33,9 @@
     <script src="server/models/user.mock.json"></script>
     <script src="server/models/user.model.js"></script>
     <script src="server/services/user.service.server.js"></script>
+    <script src="server/models/form.mock.json"></script>
+    <script src="server/models/form.model.js"></script>
+    <script src="server/services/form.service.server.js"></script>
 
     <meta charset="UTF-8">
 
@@ -46,7 +49,7 @@
 </head>
 
 <body>
-<div ng-controller="MainController">
+<div ng-controller="MainController as model">
 
 <div ng-include ="'../assignment/views/header/header.view.html'"></div>
 

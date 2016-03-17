@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController(  UserService) {
+    function HeaderController(UserService) {
 
         UserService.setCurrentUser(null);
 
