@@ -6,15 +6,22 @@
         .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController($scope, UserService){
+    function SidebarController(UserService){
 
         UserService.setCurrentUser(null);
 
+        var vm = this;
+
         //event declarations
-        $scope.showAdmin = showAdmin;
-        $scope.showForms = showForms;
-        $scope.showHome = showHome;
-        $scope.showProfile = showProfile;
+        vm.showAdmin = showAdmin;
+        vm.showForms = showForms;
+        vm.showHome = showHome;
+        vm.showProfile = showProfile;
+
+        function init(){
+
+        }
+        init();
 
 
 

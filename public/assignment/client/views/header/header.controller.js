@@ -7,24 +7,33 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, UserService) {
+    function HeaderController(  UserService) {
 
         UserService.setCurrentUser(null);
 
+        var  vm = this;
 
         //event declarations
-        $scope.loggingOut = loggingOut;
-        $scope.showAdmin = showAdmin;
-        $scope.showLogout = showLogout;
-        $scope.showLogin = showLogin;
-        $scope.showName = showName;
-        $scope.showRegister = showRegister;
+        vm.logout = logout;
+        vm.showAdmin = showAdmin;
+        vm.showLogout = showLogout;
+        vm.showLogin = showLogin;
+        vm.showName = showName;
+        vm.showRegister = showRegister;
 
+        function init(){
 
+        }
+        init();
 
         //event implementation
-        function loggingOut() {
-            UserService.setCurrentUser(null);
+        function logout() {
+            UserService
+                .logout()
+                .then(function(){
+                    UserService.setCurrentUser(null);
+                    $location.url("/home");
+                });
         }
 
         function showAdmin() {

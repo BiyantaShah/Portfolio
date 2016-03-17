@@ -1,35 +1,35 @@
-<div ng-controller="RegisterController">
+<div>
     <h1>Register</h1>
     <br>
     <form class="form-horizontal">
         <div class="form-group">
             <label for="inputUsername" class="col-sm-2 ">Username:</label>
             <div class="col-sm-10">
-                <input type="text" ng-model="username" class="form-control" id="inputUsername" placeholder="Username">
+                <input type="text" ng-model="model.user.username" class="form-control" id="inputUsername" placeholder="Username">
             </div>
         </div>
         <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 ">Password:</label>
             <div class="col-sm-10">
-                <input type="password" ng-model="password" class="form-control"
+                <input type="password" ng-model="model.user.password" class="form-control"
                        id="inputPassword3" placeholder="Password">
             </div>
         </div>
         <div class="form-group">
             <label for="inputVerifyPwd" class="col-sm-2 ">Verify Password:</label>
             <div class="col-sm-10">
-                <input type="password" ng-model="verifyPassword" class="form-control" id="inputVerifyPwd" placeholder="Verify Password">
+                <input type="password" ng-model="model.user.password2" class="form-control" id="inputVerifyPwd" placeholder="Verify Password">
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail" class="col-sm-2 ">Email:</label>
             <div class="col-sm-10">
-                <input type="email" ng-model="email" class="form-control" id="inputEmail" placeholder="Email">
+                <input type="email" ng-model="model.user.email" class="form-control" id="inputEmail" placeholder="Email">
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10 ">
-                <a type="submit" ng-click="register(username,password,verifyPassword,email )" class="btn btn-default form-control">Register</a>
+                <a type="submit" ng-click="model.register(model.user);" class="btn btn-default form-control">Register</a>
             </div>
         </div>
     </form>
