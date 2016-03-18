@@ -20,8 +20,8 @@
 
         return model;
 
-        function createFormForUser(form, userId) {
-            return $http.post ("/api/assignment/user/" + userId+ "/form" +form);
+        function createFormForUser(userId,form) {
+            return $http.post ("/api/assignment/user/" + userId+ "/form" ,form);
 
         }
 
@@ -34,13 +34,13 @@
         }
 
         function findFormById(formId){
-            return $http.get("/api/assignment/form/:formId",formId);
+            return $http.get("/api/assignment/form/"+formId);
         }
 
 
         function deleteFormById(formId){
 
-            return $http.delete("/api/assignment/form/"+ formId);
+            return $http.delete("/api/assignment/form/"+formId);
         }
 
         function updateFormById(formId, form){

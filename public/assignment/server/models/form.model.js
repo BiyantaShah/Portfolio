@@ -12,15 +12,15 @@ module.exports = function(app) {
     };
     return api;
 
-    function createFormForUser(form,userId){
-        var form = {
-            _id: (new Date()).getTime(),
-            title: form.title,
-            userId: userId
-        }
+    function createFormForUser(userId,form){
+        var newForm = {
+            "_id": (new Date()).getTime(),
+            "title": form.title,
+            "userId": userId
+        };
 
-        mockForm.push(form);
-        return form;
+        mockForm.push(newForm);
+        return newForm;
 
     }
 
@@ -28,7 +28,7 @@ module.exports = function(app) {
 
         var userForm = [];
         for(var f in mockForm){
-            if (mockForm[f].userId === userId){
+            if (mockForm[f].userId == userId){
                 userForm.push(mockForm[f]);
             }
         }
@@ -61,27 +61,27 @@ module.exports = function(app) {
         var flag = false;
 
         for (var f in mockForm) {
-            if(mockForm[f].title === title) {
+            if(mockForm[f].title == title) {
                 flag = true;
                 return mockForm[f];
                 break;
             }
         }
 
-        if(flag === false) {
+        if(flag == false) {
             return null;
         }
     }
 
     function deleteFormById(formId){
-
         for(var f in mockForm) {
-            if(mockForm[f]._id === formId) {
-                delete mockForm[f];
+            if(mockForm[f]._id == formId) {
+                mockForm.splice(f,1);
+                console.log(mockForm.length);
                 break;
-
             }
         }
+        return mockForm;
 
     }
 

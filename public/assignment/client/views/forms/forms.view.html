@@ -33,12 +33,12 @@
 
                 </tr>
                 <tr ng-repeat="form in model.forms">
-                    <td><a>{{form.title}}</a></td>
+                    <td><a href="#/fields">{{form.title}}</a></td>
                     <td>
                         <a ng-click="model.deleteForm($index);" class="btn btn-default">
                             <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
                         </a>
-                        <a ng-click="model.selectForm($index);" class="btn btn-default">
+                        <a ng-click="model.selectForm($index);" ng-model="model.index" class="btn btn-default">
                         <span class ="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
                             </a>
 
