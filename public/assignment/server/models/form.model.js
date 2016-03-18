@@ -179,7 +179,6 @@ module.exports = function(app) {
         }
 
         field._id=(new Date).getTime();
-
         form.fields.push(field);
         return form;
 

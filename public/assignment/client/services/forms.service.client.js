@@ -5,12 +5,14 @@
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService($http){
+    function FormService($http,$rootScope){
 
 
 
         var model={
             createFormForUser:createFormForUser,
+            getFormId:getFormId,
+            setFormId:setFormId,
             findFormByTitle: findFormByTitle,
             findAllFormsForUser: findAllFormsForUser,
             findFormById: findFormById,
@@ -19,6 +21,18 @@
         }
 
         return model;
+
+        //function implementation
+
+        function getFormId(){
+            return $rootScope.formId;
+        }
+
+        function  setFormId(formId){
+            $rootScope.formId = formId;
+        }
+
+
 
         function createFormForUser(userId,form) {
             return $http.post ("/api/assignment/user/" + userId+ "/form" ,form);

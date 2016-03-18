@@ -15,6 +15,7 @@
         vm.deleteForm = deleteForm;
         vm.selectForm = selectForm;
         vm.updateForm = updateForm;
+        vm.goToFields = goToFields;
 
         function init() {
             if (UserService.getCurrentUser() == null) {
@@ -93,6 +94,11 @@
                 vm.index = -1;
                 vm.form.formName = null;
             }
+        }
+
+        function goToFields(formId){
+            FormService.setFormId(formId);
+            $location.path('/fields');
         }
 
     }

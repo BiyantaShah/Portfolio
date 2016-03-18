@@ -22,24 +22,24 @@
                     <td><input type="text" ng-model="model.form.formName" class="form-control"  placeholder="name"></td>
                     <td>
                         <a ng-click="model.addForm(model.form.formName);"  class="btn btn-default">
-                         <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true">
+                         <span class="glyphicon glyphicon-plus right-place " aria-hidden="true">
                          </span>
                             </a>
 
                         <a ng-click="model.updateForm(model.form.formName);" class="btn btn-default">
-                            <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-ok right-place" aria-hidden="true"></span>
                         </a>
                     </td>
 
                 </tr>
                 <tr ng-repeat="form in model.forms">
-                    <td><a href="#/fields">{{form.title}}</a></td>
+                    <td><a ng-click="model.goToFields(form._id);">{{form.title}}</a></td>
                     <td>
                         <a ng-click="model.deleteForm($index);" class="btn btn-default">
-                            <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-remove right-place " aria-hidden="true"></span>
                         </a>
                         <a ng-click="model.selectForm($index);" ng-model="model.index" class="btn btn-default">
-                        <span class ="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
+                        <span class ="glyphicon glyphicon-pencil right-place " aria-hidden="true"></span>
                             </a>
 
 

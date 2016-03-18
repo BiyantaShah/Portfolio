@@ -17,8 +17,13 @@
     padding-left: 15px;
 }
 
+.right-place{
+    float:right;
+}
+
 .pull-right{
     float: right;
+    margin-right:100px;
 }
 
 .pull-left{
@@ -38,4 +43,9 @@
 
 .control-label{
     text-align:left !important;
+}
+
+.empty{
+    display:inline-block;
+    width:115px;
 }
