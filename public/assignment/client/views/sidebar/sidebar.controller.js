@@ -6,9 +6,9 @@
         .module("FormBuilderApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController(UserService){
+    function SidebarController($scope, $location){
 
-        UserService.setCurrentUser(null);
+        /*UserService.setCurrentUser(null);
 
         var vm = this;
 
@@ -21,12 +21,12 @@
         function init(){
 
         }
-        init();
+        init();*/
 
-
+        $scope.$location = $location;
 
         //event implementation
-        function showAdmin() {
+       /* function showAdmin() {
             if (UserService.getCurrentUser() != null) {
                 for(var i = 0; i < UserService.getCurrentUser().roles.length; i++) {
                     if (UserService.getCurrentUser().roles[i] == "admin") {
@@ -47,7 +47,7 @@
 
         function showProfile() {
             return UserService.getCurrentUser()!=null;
-        }
+        }*/
 
     }
 })();

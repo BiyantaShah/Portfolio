@@ -1,6 +1,7 @@
 var mock = require("./user.mock.json");
 
-module.exports = function() {
+
+module.exports = function(app) {
     var api = {
         createUser: createUser,
         deleteUserById: deleteUserById,
@@ -14,14 +15,16 @@ module.exports = function() {
     return api;
 
     function createUser(user){
-        var user = {
-            _id: (new Date()).getTime(),
-            username: user.username,
-            password: user.password
+        var newUser = {
+           // _id: (new Date()).getTime(),
+            "_id":(new Date()).getTime(),
+            "username": user.username,
+            "password": user.password,
+            "email": user.email
         }
 
-        mock.push(user);
-        return user;
+        mock.push(newUser);
+        return mock;
 
     }
 
@@ -29,11 +32,11 @@ module.exports = function() {
         return mock;
     }
 
-    function findUserByCredentials(username,password) {
+    function findUserByCredentials(credentials) {
         var flag = false;
         for (var u in mock){
-            if( mock[u].username === username &&
-                mock[u].password === password) {
+            if( mock[u].username == credentials.username &&
+                mock[u].password == credenials.password) {
                 flag = true
                 return mock[u];
             }
@@ -101,4 +104,4 @@ module.exports = function() {
             }
         }
     }
-}
+};

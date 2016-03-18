@@ -7,19 +7,14 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController(UserService) {
+    function HeaderController($scope,UserService) {
 
-        UserService.setCurrentUser(null);
 
-        var  vm = this;
+        //var vm = this;
 
         //event declarations
-        vm.logout = logout;
-        vm.showAdmin = showAdmin;
-        vm.showLogout = showLogout;
-        vm.showLogin = showLogin;
-        vm.showName = showName;
-        vm.showRegister = showRegister;
+        $scope.logout = logout;
+
 
         function init(){
 
@@ -28,15 +23,11 @@
 
         //event implementation
         function logout() {
-            UserService
-                .logout()
-                .then(function(){
-                    UserService.setCurrentUser(null);
-                    $location.url("/home");
-                });
+            UserService.setCurrentUser(null);
+
         }
 
-        function showAdmin() {
+       /* function showAdmin() {
 
             if (UserService.getCurrentUser() != null) {
                 for (var i = 0; i < UserService.getCurrentUser().roles.length; i++) {
@@ -64,7 +55,7 @@
 
         function showRegister() {
             return (UserService.getCurrentUser() == null);
-        }
+        }*/
 
 
     }

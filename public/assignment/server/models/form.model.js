@@ -1,6 +1,6 @@
 var mockForm = require("./form.mock.json");
 
-module.exports = function() {
+module.exports = function(app) {
     var api = {
         createFormForUser: createFormForUser,
         deleteFormById: deleteFormById,
@@ -79,6 +79,8 @@ module.exports = function() {
         for(var f in mockForm) {
             if(mockForm[f]._id === formId) {
                 delete mockForm[f];
+                break;
+
             }
         }
 
@@ -89,10 +91,12 @@ module.exports = function() {
         for(var f in mockForm) {
             if(mockForm[f]._id === formId) {
 
-                mockForm[f] = form;
-                return mockForm[f];
+                mockForm[f].title = form.title;
+                mockForm[f].userId = form.userId;
+                break;
 
             }
         }
+        return mockForm[f];
     }
-}
+};

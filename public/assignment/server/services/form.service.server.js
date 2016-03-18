@@ -1,6 +1,6 @@
-module.exports = function(app,model){
-    app.delete("/api/assignment/form/:formId", deleteFormById);
-    app.get("api/assignment/form?title=title",findFormByTitle);
+module.exports = function(app, userModel, formModel){
+    app.delete("/api/assignment/form:formId", deleteFormById);
+    app.get("api/assignment/form/:title",findFormByTitle);
     app.get("/api/assignment/form/:formId",findFormById);
     app.post("/api/assignment/user/:userId/form", createFormForUser);
     app.get("/api/assignment/user/:userId/form", findAllFormsForUser);
@@ -9,19 +9,19 @@ module.exports = function(app,model){
 
     function deleteFormById(req,res){
         var formId = req.params.formId;
-        var form = model.deleteFormById(formId);
+        var form = formModel.deleteFormById(formId);
         res.json(form);
     }
 
 
     function findAllFormsForUser(req,res){
         var userId = req.params.userId;
-        res.json(model.findAllFormsForUser(userId));
+        res.json(formModel.findAllFormsForUser(userId));
     }
 
     function findFormById(req,res){
         var formId = req.params.formId;
-        var form = model.findFormById(formId);
+        var form = formModel.findFormById(formId);
         res.json(form);
     }
 
@@ -29,7 +29,7 @@ module.exports = function(app,model){
 
     function findFormByTitle(req,res){
         var title = req.body;
-        var form = model.findFormByTitle(title);
+        var form = formModel.findFormByTitle(title);
         res.json(form);
     }
 
@@ -37,16 +37,16 @@ module.exports = function(app,model){
     function createFormForUser(req,res){
         var userId = req.params.userId;
         var form = req.body;
-        form = model.createFormForUser(userId,form);
-        req.session.currentForm = form;
-        res.json(form);
+        newForm = formModel.createFormForUser(userId,form);
+        req.session.currentForm = newForm;
+        res.json(newForm);
 
     }
 
     function updateFormById(req,res){
         var formId = req.params.formId;
         var form = req.body;
-        var update = model.updateFormById(formId,form);
+        var update = formModel.updateFormById(formId,form);
         res.json(update);
     }
-}
+};

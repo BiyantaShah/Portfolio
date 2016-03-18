@@ -5,11 +5,11 @@
         .module("FormBuilderApp")
         .factory("FormService", FormService);
 
-    function FormService(){
+    function FormService($http){
 
 
 
-        var api={
+        var model={
             createFormForUser:createFormForUser,
             findFormByTitle: findFormByTitle,
             findAllFormsForUser: findAllFormsForUser,
@@ -18,19 +18,19 @@
             updateFormById:updateFormById
         }
 
-        return api;
+        return model;
 
         function createFormForUser(form, userId) {
-            return $http.post ("/api/assignment/user/:userId/form", form, userId);
+            return $http.post ("/api/assignment/user/" + userId+ "/form" +form);
 
         }
 
         function findFormByTitle(title){
-            return $http.get("api/assignment/form?title=title",title);
+            return $http.get("api/assignment/form/"+ title);
         }
 
         function findAllFormsForUser(userId) {
-            return $http.get("/api/assignment/user/:userId/form", userId);
+            return $http.get("/api/assignment/user/"+ userId +"/form");
         }
 
         function findFormById(formId){
@@ -40,11 +40,11 @@
 
         function deleteFormById(formId){
 
-            return $http.delete("/api/assignment/form/:formId", formId);
+            return $http.delete("/api/assignment/form/"+ formId);
         }
 
         function updateFormById(formId, form){
-            return $http.put("/api/assignment/form/:formId",formId, form)
+            return $http.put("/api/assignment/form/"+ formId, form)
 
         }
 

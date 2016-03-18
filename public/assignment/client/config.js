@@ -8,41 +8,42 @@
         $routeProvider
 
             .when("/home", {
-                templateUrl: "client/views/home/home.view.html"
+                templateUrl: "views/home/home.view.html"
             })
 
             .when("/login", {
-                templateUrl: "client/views/users/login.view.html",
+                templateUrl: "views/users/login.view.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
 
             .when("/profile", {
-                templateUrl: "client/views/users/profile.view.html",
+                templateUrl: "views/users/profile.view.html",
                 controller:"ProfileController",
-                controllerAs: "model",
-                resolve: {
+                controllerAs: "model"
+                /*resolve: {
                     checkLoggedIn: checkLoggedIn
-                }
+                }*/
             })
 
             .when("/register", {
-                templateUrl: "client/views/users/register.view.html",
+                templateUrl: "views/users/register.view.html",
                 controller:"RegisterController",
                 controllerAs: "model"
             })
 
             .when("/admin", {
-                templateUrl: "client/views/admin/admin.view.html"
+                templateUrl: "views/admin/admin.view.html"
             })
 
             .when("/forms", {
-                templateUrl: "client/views/forms/forms.view.html",
-                controller:"FormController"
+                templateUrl: "views/forms/forms.view.html",
+                controller:"FormController",
+                controllerAs: "model"
             })
 
             .when("/fields", {
-                templateUrl: "client/views/forms/fields.view.html"
+                templateUrl: "views/forms/fields.view.html"
             })
 
 
@@ -51,7 +52,7 @@
                 redirectTo:"/home"
             })
 
-        function checkLoggedIn(UserService, $q, $location) {
+        /*function checkLoggedIn(UserService, $q, $location) {
 
             var deferred = $q.defer();
 
@@ -69,7 +70,7 @@
                 });
 
             return deferred.promise;
-        }
+        }*/
 
 
     }

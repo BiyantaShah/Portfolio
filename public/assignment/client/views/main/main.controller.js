@@ -1,20 +1,8 @@
-(function(){
-
-    'use strict';
-
-    angular
-        .module("FormBuilderApp")
-        .controller("MainController", MainController);
-
-    function MainController($location){
-            var vm = this;
-
-            vm.$location = $location;
-
-        function init(){
-
-        }
-        init();
+(function() {
+    "use strict";
+    angular.module("FormBuilderApp")
+        .controller("MainController",MainController);
+    function MainController($scope, $location) {
+        $scope.$location = $location;
     }
-
 })();

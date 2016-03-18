@@ -1,12 +1,25 @@
 (function(){
 
-    'use strict';
+    "use strict";
 
     angular
         .module("FormBuilderApp")
         .controller("FormController",FormController);
 
     function FormController($scope, FormService,$location, UserService) {
+
+        var vm = this;
+
+        vm.register = register;
+        vm.addForm = addForm;
+        vm.deleteForm = deleteForm;
+        vm.selectForm = selectForm;
+        vm.updateForm = updateForm;
+
+        function init() {
+
+        }
+        init();
 
         var currentAllUserForms= []; //Forms of the current user
         var currentUser = null; //Current user is stored
@@ -17,14 +30,12 @@
         }
         else{
             currentUser =UserService.getCurrentUser();
-            FormService.findAllFormsForUser(currentUser._id, renderAllForms);
+            FormService.findAllFormsForUser(currentUser._id)
+                .then(function(response){
+                    $scope.forms = userForm;
+                    currentAllUserForms = userForm;
+            });
         }
-
-        //event declarations
-        $scope.addForm = addForm;
-        $scope.deleteForm = deleteForm;
-        $scope.selectForm = selectForm;
-        $scope.updateForm = updateForm;
 
 
         //event implementations
@@ -38,14 +49,35 @@
                     "userId": null
                 };
 
-                FormService.createFormForUser(currentUser._id, newForm, renderAdd);
+                FormService.createFormForUser(currentUser._id, newForm)
+                    .then(function(response){
+                        var form = response.data;
+                        if (form != null){
+                            $scope.formName = null;
+                            currentAllUserForms.push(newForm);
+                            $scope.forms = currentAllUserForms;
+                        }
+
+                    });
             }
         }
 
         function deleteForm(index) {
-            FormService.deleteFormById(currentAllUserForms[index]._id, renderDelete);
-        }
+            FormService.deleteFormById(currentAllUserForms[index]._id)
+                .then(function(response){
+                        if(response.data !== null) {
 
+                            FormService.findAllFormsForUser(currentUser._id);
+                        }
+
+                }
+                    .then(function(response){
+                        $scope.forms = userForm;
+                        currentAllUserForms = userForm;
+                    })
+                );
+
+        }
 
 
         function selectForm(index) {
@@ -60,34 +92,23 @@
             if(selectedFormIndex != -1){
                 var selectedForm = currentAllUserForms[selectedFormIndex];
                 selectedForm.title = formName;
-                FormService.updateFormById(selectedForm._id, selectedForm, renderUpdate);
+                FormService.updateFormById(selectedForm._id, selectedForm)
+                    .then(function(response){
+                        if(response.data !== null) {
+                            FormService.findAllFormsForUser(currentUser._id);
+                            selectedFormIndex = -1;
+                        }
+
+                    }
+                        .then(function(response){
+                            $scope.forms = userForm;
+                            currentAllUserForms = userForm;
+                        })
+                    );
 
                 $scope.formName = null;
             }
         }
-
-        function renderAllForms(userForm) {
-            $scope.forms = userForm;
-            currentAllUserForms = userForm;
-        }
-
-        function renderAdd(newForm) {
-            $scope.formName = null;
-            currentAllUserForms.push(newForm);
-            $scope.forms = currentAllUserForms;
-
-        }
-
-        function renderDelete(allForms) {
-            FormService.findAllFormsForUser(currentUser._id, renderAllForms);
-
-        }
-
-        function renderUpdate(newForm) {
-            FormService.findAllFormsForUser(currentUser._id, renderAllForms);
-            selectedFormIndex = -1;
-        }
-
 
     }
 })();
