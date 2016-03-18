@@ -2,15 +2,25 @@ var mockForm = require("./form.mock.json");
 
 module.exports = function(app) {
     var api = {
+        //for forms
         createFormForUser: createFormForUser,
         deleteFormById: deleteFormById,
         findFormByTitle: findFormByTitle,
         findAllFormsForUser: findAllFormsForUser,
         findFormById: findFormById,
-        updateFormById: updateFormById
+        updateFormById: updateFormById,
+
+        // for fields
+        findAllFieldsForForm: findAllFieldsForForm,
+        findFieldByIdForForm: findFieldByIdForForm,
+        deleteFieldByIdForForm: deleteFieldByIdForForm,
+        createFieldForForm: createFieldForForm,
+        updateFieldForForm: updateFieldForForm
 
     };
     return api;
+
+    //functions for forms
 
     function createFormForUser(userId,form){
         var newForm = {
@@ -20,7 +30,7 @@ module.exports = function(app) {
         };
 
         mockForm.push(newForm);
-        return newForm;
+        return mockForm;
 
     }
 
@@ -97,5 +107,106 @@ module.exports = function(app) {
             }
         }
         return mockForm[f];
+    }
+
+    //functions for fields
+
+    function findAllFieldsForForm(formId){
+
+        var form=null;
+
+        for(var u in mockForm){
+            if(mockForm[u]._id==formId) {
+                form = mockForm[u];
+                break;
+            }
+        }
+
+        return form.fields;
+    }
+
+    function findFieldByIdForForm(formId,fieldId){
+
+        var form=null;
+
+        for(var u in mockForm){
+            if(mockForm[u]._id == formId) {
+                form = mockForm[u];
+                break;
+            }
+        }
+
+        var fieldSelect=null;
+        for(var i in form.fields){
+            if(form.fields[i]._id == fieldId){
+                fieldSelect=form.fields[i];
+            }
+        }
+
+        return fieldSelect;
+
+    }
+
+    function deleteFieldByIdForForm(formId,fieldId){
+
+        var form=null;
+
+        for(var u in mock){
+            if(mockForm[u]._id==formId) {
+                form = mockForm[u];
+                break;
+            }
+        }
+
+        for(var i in form.fields){
+            if(form.fields[i]._id==fieldId){
+                form.fields.splice(i,1);
+            }
+        }
+        return form;
+
+    }
+
+    function createFieldForForm(formId,field){
+
+        var form=null;
+
+        for(var u in mock){
+            if(mockForm[u]._id==formId) {
+                form = mockForm[u];
+                break;
+            }
+        }
+
+        field._id=(new Date).getTime();
+
+        form.fields.push(field);
+        return form;
+
+    }
+
+    function updateFieldForForm(formId,fieldId,field){
+
+        var form=null;
+
+
+        for(var u in mock){
+            if(mockForm[u]._id==formId) {
+                form = mockForm[u];
+                break;
+            }
+        }
+
+        for(var i in form.fields){
+            if(form.fields[i]._id==fieldId){
+                form.fields[i]= field;
+                break;
+            }
+        }
+
+        return form;
+
+
+
     }
 };
