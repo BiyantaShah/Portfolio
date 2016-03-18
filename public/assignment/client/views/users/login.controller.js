@@ -7,6 +7,7 @@
 
     function LoginController(UserService, $location, $scope) {
 
+
         var vm = this;
 
         //event declaration
@@ -24,20 +25,22 @@
                 return $scope.message;
             }
 
-            UserService
-                .findUserByCredentials({
-                    username:user.username,
-                    password: user.password
 
-                })
-                .then(function(response){
-                    if(response.data) {
-                        UserService.setCurrentUser(response.data);
-                        $location.url("/profile");
-                    }
+                UserService
+                    .findUserByCredentials({
+                        username: user.username,
+                        password: user.password
 
+                    })
+                    .then(function (response) {
+                            if(response.data) {
+                                UserService.setCurrentUser(response.data);
+                                $location.url("/profile");
 
-                });
+                            }
+
+                    });
+
         }
 
 

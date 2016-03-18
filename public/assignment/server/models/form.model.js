@@ -16,8 +16,7 @@ module.exports = function(app) {
         var form = {
             _id: (new Date()).getTime(),
             title: form.title,
-            userId: userId,
-            fields: form.fields
+            userId: userId
         }
 
         mockForm.push(form);

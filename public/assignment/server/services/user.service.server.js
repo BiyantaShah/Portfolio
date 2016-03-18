@@ -1,7 +1,7 @@
 module.exports = function(app,userModel){
     app.delete("/api/assignment/user/:userId", deleteUserById);
-    app.get("/api/assignment/user/:username/:password",findUserByCredentials);
-    app.get("/api/assignment/user/:username",findUserByUsername);
+    app.get("/api/assignment/user?username=username&password=password",findUserByCredentials);
+    app.get("/api/assignment/user?username=username",findUserByUsername);
     app.get("/api/assignment/user/:userId",findUserById);
     app.post("/api/assignment/user", createUser);
     app.get("/api/assignment/user", findAllUsers);
@@ -9,10 +9,8 @@ module.exports = function(app,userModel){
 
 
     function createUser(req,res){
-        var user = req.body;
-        user = userModel.createUser(user);
-        req.session.currentUser = user;
-        res.json(user);
+        var newUser = req.body;
+        res.json(userModel.createUser(newUser));
 
     }
 
@@ -33,7 +31,21 @@ module.exports = function(app,userModel){
     }
 
     function findAllUsers(req,res){
-        res.json(userModel.findAllUsers());
+        if(req.query.username == null && req.query.password == null){
+
+            var users = userModel.findAllUsers();
+            res.json(users);
+        }
+
+        else if (req.query.username != null && req.query.password == null) {
+            findUserByUsername(req,res);
+        }
+
+        else {
+            findUserByCredentials(req,res);
+        }
+
+
     }
 
     function findUserById(req,res){
@@ -45,7 +57,7 @@ module.exports = function(app,userModel){
 
 
     function findUserByUsername(req,res){
-        var username = req.params.username;
+        var username = req.query.username;
         var user = userModel.findUserByUsername(username);
         res.json(user);
     }

@@ -3,38 +3,33 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController(UserService, $scope, $rootScope) {
+    function ProfileController(UserService, $scope) {
         var vm = this;
 
         vm.update = update;
 
-        var currentUser = $rootScope.currentUser;
-        vm.username = currentUser.username;
-        vm.firstName = currentUser.firstName;
-        vm.lastName = currentUser.lastName;
-        vm.password = currentUser.password;
-        vm.email = currentUser.email;
-
-        alert(currentUser);
-
+        var currentUser = UserService.getCurrentUser();
+        vm.user = currentUser;
         function init() {
 
         }
-        return init();
+        init();
 
-        function update(username,password,firstName,lastName, email){
+        function update(user){
             var id = currentUser._id;
+            console.log(currentUser);
             var userDetails = {
                 "_id":id,
-                "username":username,
-                "password": password,
-                "firstName": firstName,
-                "lastName":lastName,
-                "email":email
+                "username":user.username,
+                "password": user.password,
+                "firstName": user.firstName,
+                "lastName":user.lastName,
+                "email":user.email
             };
             UserService.updateUser(id,userDetails)
                 .then(function(response){
                     if(response.data){
+
                         UserService.setCurrentUser(response.data);
                         $scope.message ="Profile updated successfully!"
                     }
