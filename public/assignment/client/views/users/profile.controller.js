@@ -6,39 +6,35 @@
     function ProfileController(UserService, $scope) {
         var vm = this;
 
+        //Event handler declaration
         vm.update = update;
 
         var currentUser = UserService.getCurrentUser();
         vm.user = currentUser;
+
+        if(currentUser == null){
+            $location.path("/home");
+        }
+
         function init() {
 
         }
         init();
 
+        //Event handler implementation
         function update(user){
-            var id = currentUser._id;
-            console.log(currentUser);
+            var currentUser = UserService.getCurrentUser();
+
             var userDetails = {
-                "_id":id,
+                "_id":currentUser._id,
                 "username":user.username,
                 "password": user.password,
                 "firstName": user.firstName,
                 "lastName":user.lastName,
                 "email":user.email
             };
-            UserService.updateUser(id,userDetails)
-                .then(function(response){
-                    if(response.data){
-
-                        UserService.setCurrentUser(response.data);
-                        $scope.message ="Profile updated successfully!"
-                    }
-                    else{
-                        $scope.message="Profile not updated!"
-                    }
-
-
-            });
+            UserService.updateUser(currentUser._id,userDetails);
+            UserService.setCurrentUser(userDetails);
         }
     }
 })();

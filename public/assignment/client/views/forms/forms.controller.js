@@ -59,10 +59,8 @@
                 FormService.createFormForUser(UserService.getCurrentUser()._id, nform)
                     .then(function(response){
 
-                        if (response.data != null){
                             vm.form.formName = null;
                             init();
-                        }
 
                     });
             }

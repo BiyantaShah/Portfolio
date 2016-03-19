@@ -13,6 +13,8 @@
         vm.addField = addField;
         vm.cloneField = cloneField;
         vm.deleteField = deleteField;
+        vm.selectField = selectField;
+        vm.editField = editField;
 
         function init(){
 
@@ -27,7 +29,7 @@
         init();
 
         function addField(fieldType){
-            var newField;
+            var newField = null;
             switch(fieldType){
                 case "TEXT":
                     newField = {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
@@ -91,6 +93,60 @@
                     }
                 });
         }
+
+        function selectField(field){
+
+            vm.updatedField = field;
+            vm.label = field.label;
+
+
+            if(field.options){
+                var str = "" ;
+               for(var i in field.options){
+                   str = str + field.options[i].label;
+                   str += ":"
+                   str = str + field.options[i].value;
+                   str += "\n";
+               }
+                vm.options = str;
+
+            }
+
+            if(field.placeholder){
+                vm.placeholder = field.placeholder;
+            }
+
+        }
+
+        function editField(){
+            if(vm.updatedField.options) {
+                var opts = vm.options.split("\n");
+                var update = [];
+
+                for (var i in opts) {
+                    var pair = opts[i].split(":");
+                    var edited = {"label": pair[0], "value": pair[1]};
+                    update.push(edited);
+                }
+
+                vm.updatedField.options = update;
+            }
+
+            if(vm.updatedField.placeholder){
+                vm.updatedField.placeholder  = vm.placeholder
+            }
+
+            vm.updatedField.label = vm.label;
+
+            FieldService
+                .updateField(FormService.getFormId(),vm.updatedField._id,vm.updatedField)
+                .then(
+                    function(response){
+                        init();
+                    }
+                );
+        }
+
 
     }
 })();

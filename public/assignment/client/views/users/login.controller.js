@@ -33,12 +33,15 @@
 
                     })
                     .then(function (response) {
-                            if(response.data) {
-                                UserService.setCurrentUser(response.data);
-                                $location.url("/profile");
+                        if(response.data != null){
+                            UserService.setCurrentUser(response.data);
+                            $location.path('/profile');
+                        }
 
-                            }
-
+                        else {
+                            vm.password = null;
+                            $scope.message = "Invalid Credentials";
+                        }
                     });
 
         }

@@ -10,14 +10,33 @@ module.exports = function(app,formModel) {
 
     function findAllFieldsForForm(req,res){
         var formId = req.params.formId;
+        formModel
+            .findAllFieldsForForm(formId)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
 
-        res.json(formModel.findAllFieldsForForm(formId));
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function findFieldByIdForForm(req,res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        res.json(formModel.findFieldByIdForForm(formId,fieldId));
+        formModel
+            .findFieldByIdForForm(formId,fieldId)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
 
 
     }
@@ -25,7 +44,17 @@ module.exports = function(app,formModel) {
     function deleteFieldFromForm(req,res){
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        res.json(formModel.deleteFieldFromForm(formId,fieldId));
+        formModel
+            .deleteFieldFromForm(formId,fieldId)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
 
     }
 
@@ -33,7 +62,18 @@ module.exports = function(app,formModel) {
 
         var formId = req.params.formId;
         var newField = req.body;
-        res.json(formModel.createFieldForForm(formId,newField));
+
+        formModel
+            .createFieldForForm(formId,newField)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
 
     }
 
@@ -42,7 +82,17 @@ module.exports = function(app,formModel) {
         var fieldId = req.params.fieldId;
         var updatedField = req.body;
 
-        res.json(formModel.updateFieldByIdForForm(formId,fieldId,updatedField));
+        formModel
+            .updateFieldByIdForForm(formId,fieldId,updatedField)
+            .then(
+                function(doc){
+                    res.json(doc)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
 
     }
 };
