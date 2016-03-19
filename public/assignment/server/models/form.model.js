@@ -13,7 +13,7 @@ module.exports = function(app) {
         // for fields
         findAllFieldsForForm: findAllFieldsForForm,
         findFieldByIdForForm: findFieldByIdForForm,
-        deleteFieldByIdForForm: deleteFieldByIdForForm,
+        deleteFieldFromForm: deleteFieldFromForm,
         createFieldForForm: createFieldForForm,
         updateFieldForForm: updateFieldForForm
 
@@ -147,11 +147,11 @@ module.exports = function(app) {
 
     }
 
-    function deleteFieldByIdForForm(formId,fieldId){
+    function deleteFieldFromForm(formId,fieldId){
 
         var form=null;
 
-        for(var u in mock){
+        for(var u in mockForm){
             if(mockForm[u]._id==formId) {
                 form = mockForm[u];
                 break;
@@ -159,7 +159,7 @@ module.exports = function(app) {
         }
 
         for(var i in form.fields){
-            if(form.fields[i]._id==fieldId){
+            if(form.fields[i]._id == fieldId){
                 form.fields.splice(i,1);
             }
         }
@@ -171,7 +171,7 @@ module.exports = function(app) {
 
         var form=null;
 
-        for(var u in mock){
+        for(var u in mockForm){
             if(mockForm[u]._id==formId) {
                 form = mockForm[u];
                 break;

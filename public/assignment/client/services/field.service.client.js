@@ -20,7 +20,9 @@
         return model;
 
         function createFieldForForm(formId, field) {
+
             return $http.post ("/api/assignment/form/" + formId+ "/field" ,field);
+
 
         }
 
