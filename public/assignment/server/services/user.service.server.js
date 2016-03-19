@@ -43,8 +43,8 @@ module.exports = function(app,userModel){
         userModel
             .findUserByCredentials(credentials)
             .then(
-                function (doc) {
-                    user = doc;
+                function (response) {
+                    user = response;
                     res.json(user);
 
                 },

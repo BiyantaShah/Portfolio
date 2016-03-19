@@ -4,12 +4,12 @@
 <br>
 <ul class="nav nav-tabs">
     <li role="presentation"><a href="#/forms">Forms</a></li>
-    <li role="presentation" class="active"><a href="#">Fields</a></li>
+    <li role="presentation" class="active"><a href="#/field">Fields</a></li>
 </ul>
 
-<form class="form-horizontal" >
-    <div class="container">
-        <div ng-show="model.fields">
+<form class="form-horizontal"  >
+    <div class="container" >
+        <div ng-show="model.fields" field-sortable field-axis="y">
             <div class="row form-group" ng-repeat="field in model.fields">
                 <br>
                 <div class="col-sm-4">
@@ -56,7 +56,7 @@
                         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                     <a class="btn btn-default" ng-click="model.deleteField(field._id);">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-                    <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+                    <a class="btn btn-default"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
                 </div>
             </div>
         </div>

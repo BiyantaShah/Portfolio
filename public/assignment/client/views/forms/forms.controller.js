@@ -96,7 +96,7 @@
 
         function goToFields(formId){
             FormService.setFormId(formId);
-            $location.path('/fields');
+            $location.path('/field');
         }
 
     }

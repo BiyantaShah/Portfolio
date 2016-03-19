@@ -22,8 +22,8 @@ module.exports = function(app, userModel, formModel){
         formModel
             .findAllFormsForUser(userId)
             .then(
-                function (doc) {
-                    forms = doc;
+                function (response) {
+                    forms = response;
                     res.json(forms);
                 },
                 // reject promise if error

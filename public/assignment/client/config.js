@@ -42,7 +42,7 @@
                 controllerAs: "model"
             })
 
-            .when("/fields", {
+            .when("/field", {
                 templateUrl: "views/forms/field.view.html",
                 controller: "FieldController",
                 controllerAs:"model"
