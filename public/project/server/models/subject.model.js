@@ -10,14 +10,14 @@ module.exports = function(app) {
         findSubjectByTitle: findSubjectByTitle,
         findAllSubjectsForUser: findAllSubjectsForUser,
         findSubjectById: findSubjectById,
-        updateSubjectById: updateSubjectById
+        updateSubjectById: updateSubjectById,
 
-        // for fields
-      /*  findAllFieldsForForm: findAllFieldsForForm,
-        findFieldByIdForForm: findFieldByIdForForm,
-        deleteFieldFromForm: deleteFieldFromForm,
-        createFieldForForm: createFieldForForm,
-        updateFieldByIdForForm: updateFieldByIdForForm*/
+        // for notebook
+        findAllNotebooksForSubject: findAllNotebooksForSubject,
+        findNotebookByIdForSubject: findNotebookByIdForSubject,
+        deleteNotebookFromSubject: deleteNotebookFromSubject,
+        createNotebookForSubject: createNotebookForSubject,
+        updateNotebookByIdForSubject: updateNotebookByIdForSubject
 
     };
     return api;
@@ -122,112 +122,112 @@ module.exports = function(app) {
 
     }
 
-    //functions for fields
-/*
-    function findAllFieldsForForm(formId){
-        var deferred = q.defer();
-        var form=null;
+    //functions for notebook
 
-        for(var i in mockForm){
-            if(mockForm[i]._id==formId) {
-                form = mockForm[i];
+    function findAllNotebooksForSubject(subjectId){
+        var deferred = q.defer();
+        var subject =null;
+
+        for(var i in subjects){
+            if(subjects[i]._id == subjectId) {
+                subject = subjects[i];
                 break;
             }
         }
-        deferred.resolve(form.fields);
+        deferred.resolve(subject.notebooks);
         return deferred.promise;
     }
 
-    function findFieldByIdForForm(formId,fieldId){
+    function findNotebookByIdForSubject(subjectId,notebookId){
         var deferred = q.defer();
-        var form = null;
+        var subject = null;
 
-        for(var i in forms){
-            if(mockForm[i]._id==formId) {
-                form = mockForm[i];
+        for(var i in subjects){
+            if(subjects[i]._id == subjectId) {
+                subject = subjects[i];
                 break;
             }
         }
 
-        var fieldSelect=null;
-        for(var i in form.fields){
-            if(form.fields[i]._id==fieldId){
-                fieldSelect=form.fields[i];
+        var bookSelect=null;
+        for(var i in subject.notebooks){
+            if(subject.notebooks[i]._id == notebookId){
+                bookSelect=subject.notebooks[i];
             }
         }
 
-        deferred.resolve(fieldSelect);
+        deferred.resolve(bookSelect);
         return deferred.promise;
     }
 
 
-    function deleteFieldFromForm(formId,fieldId){
+    function deleteNotebookFromSubject(subjectId,notebookId){
 
         var deferred = q.defer();
-        var form = null;
+        var subject = null;
 
-        for(var i in mockForm){
-            if(mockForm[i]._id == formId) {
-                form = mockForm[i];
+        for(var i in subjects){
+            if(subjects[i]._id == subjectId) {
+                subject = subjects[i];
                 break;
             }
         }
 
-        for(var i in form.fields){
-            if(form.fields[i]._id == fieldId){
-                form.fields.splice(i,1);
+        for(var i in subject.notebooks){
+            if(subject.notebooks[i]._id == notebookId){
+                subject.notebooks.splice(i,1);
             }
         }
 
-        deferred.resolve(form);
-        return deferred.promise;
-
-    }
-
-    function createFieldForForm(formId,field){
-
-        var deferred = q.defer();
-        var form = null;
-
-        for(var i in mockForm){
-            if(mockForm[i]._id == formId) {
-                form = mockForm[i];
-                break;
-            }
-        }
-
-        field._id=(new Date).getTime();
-
-        form.fields.push(field);
-
-        deferred.resolve(form);
+        deferred.resolve(subject);
         return deferred.promise;
 
     }
 
-    function updateFieldByIdForForm(formId,fieldId,field){
+    function createNotebookForSubject(subjectId,newBook){
 
         var deferred = q.defer();
-        var form = null;
+        var subject = null;
 
-        for(var i in mockForm){
-            if(mockForm[i]._id == formId) {
-                form = mockForm[i];
+        for(var i in subjects){
+            if(subjects[i]._id == subjectId) {
+                subject = subjects[i];
                 break;
             }
         }
 
-        for(var i in form.fields){
-            if(form.fields[i]._id == fieldId){
-                form.fields[i] = field;
+        newBook._id=(new Date).getTime();
+
+        subject.notebooks.push(newBook);
+
+        deferred.resolve(subject);
+        return deferred.promise;
+
+    }
+
+    function updateNotebookByIdForSubject(subjectId,notebookId,book){
+
+        var deferred = q.defer();
+        var subject = null;
+
+        for(var i in subjects){
+            if(subjects[i]._id == subjectId) {
+                subject = subjects[i];
                 break;
             }
         }
 
-        deferred.resolve(form);
+        for(var i in subject.notebooks){
+            if(subject.notebooks[i]._id == notebookId){
+                subject.notebooks[i] = book;
+                break;
+            }
+        }
+
+        deferred.resolve(subject);
         return deferred.promise
 
 
 
-    }*/
+    }
 };

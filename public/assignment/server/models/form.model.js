@@ -138,7 +138,7 @@ module.exports = function(app) {
         var deferred = q.defer();
         var form = null;
 
-        for(var i in forms){
+        for(var i in mockForm){
             if(mockForm[i]._id==formId) {
                 form = mockForm[i];
                 break;

@@ -5,4 +5,5 @@ module.exports = function(app) {
 
     var userService = require("./services/user.service.server.js")(app,userModel);
     var subjectService = require("./services/subject.service.server.js")(app,userModel, subjectModel);
+    var notebookService = require("./services/notebook.service.server.js")(app,subjectModel);
 };

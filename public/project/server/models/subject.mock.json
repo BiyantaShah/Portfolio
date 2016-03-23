@@ -1,6 +1,6 @@
 [
   {"_id": "000", "title": "Science", "userId": 123,
-    "notebook": [
+    "notebooks": [
       {"_id": "111", "label": "Physics",
       "note": [
         {"_id": "001", "noteTitle":"Thermodynamics"},
@@ -19,7 +19,7 @@
     ]},
 
   {"_id": "010", "title": "Commerce", "useerId": 234,
-    "notebook": [
+    "notebooks": [
       {"_id": "777", "label": "Economics",
         "note": [
           {"_id": "010", "noteTitle":"Demand & Supply"},
