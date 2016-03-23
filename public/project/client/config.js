@@ -50,6 +50,18 @@
                 controllerAs:"model"
             })
 
+            .when("/notebook",{
+                templateUrl: "views/subject/notebook.view.html",
+                controller: "NotebookController",
+                controllerAs: "model"
+            })
+
+            .when("/note",{
+                templateUrl: "views/subject/note.view.html",
+                controller: "NoteController",
+                controllerAs: "model"
+            })
+
             // only for CRUD
 
             .when("/users",{
@@ -57,10 +69,7 @@
                 controller: "UserController"
             })
 
-            .when("/notes",{
-                templateUrl: "views/crud/notes.view.html",
-                controller: "NoteController"
-            })
+
 
             .when("/groups",{
                 templateUrl: "views/crud/groups.view.html",
@@ -68,10 +77,7 @@
             })
 
 
-            .when("/notebooks",{
-                templateUrl: "views/crud/notebooks.view.html",
-                controller: "NotebookController"
-            })
+
 
             .when("/subjects",{
                 templateUrl: "views/crud/subjects.view.html",

@@ -5,7 +5,7 @@
         .module("NoteTakerWebsite")
         .factory("NotebookService", NotebookService);
 
-    function NotebookService($http){
+    function NotebookService($http,$rootScope){
 
         //initializing array of notes with JSON data
 
@@ -15,7 +15,9 @@
             getAllNotebooksForSubject: getAllNotebooksForSubject,
             getNotebookForSubject: getNotebookForSubject,
             deleteNotebookFromSubject: deleteNotebookFromSubject,
-            updateNotebook:updateNotebook
+            updateNotebook:updateNotebook,
+            getNotebookId: getNotebookId,
+            setNotebookId: setNotebookId
         }
 
         return api;
@@ -45,6 +47,14 @@
         function updateNotebook(subjectId, notebookId, book){
             return $http.put("/api/project/subject/"+ subjectId + "/notebook/" + notebookId, book);
 
+        }
+
+        function getNotebookId(){
+            return $rootScope.notebookId;
+        }
+
+        function setNotebookId(notebookId){
+            $rootScope.notebookId = notebookId;
         }
 
 

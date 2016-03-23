@@ -21,8 +21,8 @@
 
         return api;
 
-        function createSubjectForUser(subject) {
-            return $http.post ("/api/assignment/user/" + userId+ "/subject" ,subject);
+        function createSubjectForUser(userId, subject) {
+            return $http.post ("/api/project/user/" + userId+ "/subject" ,subject);
 
         }
 
@@ -33,7 +33,7 @@
         }
 
         function getSubjectId(){
-            return $rootScope.formId;
+            return $rootScope.subjectId;
         }
 
         function  setSubjectId(subjectId){
