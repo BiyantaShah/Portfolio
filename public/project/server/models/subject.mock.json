@@ -1,0 +1,35 @@
+[
+  {"_id": "000", "title": "Science", "userId": 123,
+    "notebook": [
+      {"_id": "111", "label": "Physics",
+      "note": [
+        {"_id": "001", "noteTitle":"Thermodynamics"},
+        {"_id": "002", "noteTitle": "Force"}
+      ]},
+      {"_id": "222", "label": "Chemistry",
+      "note": [
+        {"_id":"101","noteTitle":"Organic Chemistry" },
+        {"_id":"102","noteTitle":" Periodic Table" }
+      ]},
+      {"_id": "333", "label": "Biology",
+        "note": [
+          {"_id":"110","noteTitle":"Reproductive Organs" },
+          {"_id":"111","noteTitle":"Multicellular Organisms" }
+        ]}
+    ]},
+
+  {"_id": "010", "title": "Commerce", "useerId": 234,
+    "notebook": [
+      {"_id": "777", "label": "Economics",
+        "note": [
+          {"_id": "010", "noteTitle":"Demand & Supply"},
+          {"_id": "011", "noteTitle": "Capital Markets"}
+        ]},
+      {"_id": "888", "label": "BA",
+        "note": [
+          {"_id":"111","noteTitle":"Human Resource Development" },
+          {"_id":"222","noteTitle":" Financial Management" }
+        ]}
+    ]
+  }
+]

@@ -46,7 +46,7 @@
 
             if (formName == null) {
                 $scope.message = "Give a title to the form";
-                return
+                return $scope.message;
             }
 
             else{

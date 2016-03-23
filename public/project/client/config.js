@@ -44,9 +44,10 @@
                 templateUrl:"views/search/groupList.view.html"
             })
 
-            .when("/noteList",{
-                templateUrl:"views/search/noteList.view.html",
-                controller: "NoteListController"
+            .when("/subject",{
+                templateUrl:"views/subject/subject.view.html",
+                controller: "SubjectController",
+                controllerAs:"model"
             })
 
             // only for CRUD
