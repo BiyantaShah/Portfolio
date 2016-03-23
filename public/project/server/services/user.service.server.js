@@ -1,11 +1,11 @@
 module.exports = function(app,userModel){
-    app.delete("/api/assignment/user/:userId", deleteUserById);
-    app.get("/api/assignment/user?username=username&password=password",findUserByCredentials);
-    app.get("/api/assignment/user?username=username",findUserByUsername);
-    app.get("/api/assignment/user/:userId",findUserById);
-    app.post("/api/assignment/user", createUser);
-    app.get("/api/assignment/user", findAllUsers);
-    app.put("/api/assignment/user/:userId",updateUser);
+    app.delete("/api/project/user/:userId", deleteUserById);
+    app.get("/api/project/user?username=username&password=password",findUserByCredentials);
+    app.get("/api/project/user?username=username",findUserByUsername);
+    app.get("/api/project/user/:userId",findUserById);
+    app.post("/api/project/user", createUser);
+    app.get("/api/project/user", findAllUsers);
+    app.put("/api/project/user/:userId",updateUser);
 
 
     function createUser(req,res){
@@ -35,7 +35,6 @@ module.exports = function(app,userModel){
     function findUserByCredentials(req,res){
         var username = req.query.username;
         var password = req.query.password;
-
         var user = null;
 
         var credentials = {"username" : username,

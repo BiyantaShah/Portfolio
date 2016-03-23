@@ -39,6 +39,7 @@ module.exports = function(app) {
             if( users[i].username == credentials.username &&
                 users[i].password == credentials.password) {
                 user = users[i];
+
                 break;
             }
         }

@@ -33,6 +33,7 @@
                 })
                 .then(function (response) {
                     if(response.data != null){
+
                         UserService.setCurrentUser(response.data);
                         $location.path('/profile');
                     }
