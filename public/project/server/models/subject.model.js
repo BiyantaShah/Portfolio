@@ -24,7 +24,8 @@ module.exports = function(app) {
         findNoteByIdForBook:findNoteByIdForBook,
         deleteNoteFromBook:deleteNoteFromBook,
         createNoteForBook: createNoteForBook,
-        updateNoteByIdForBook:updateNoteByIdForBook
+        updateNoteByIdForBook:updateNoteByIdForBook,
+        getContent: getContent
 
     };
     return api;
@@ -385,6 +386,39 @@ module.exports = function(app) {
         }
 
         deferred.resolve(notebook);
+        return deferred.promise
+    }
+
+    function getContent(subjectId, notebookId,noteId ){
+
+        var deferred = q.defer();
+        var subject = null;
+        var notebook = null;
+        var note = null;
+
+        for (var i in subjects){
+            if(subjects[i]._id == subjectId){
+                subject = subjects[i];
+                break;
+            }
+        }
+
+        for(var i in subject.notebooks){
+            if(subject.notebooks[i]._id == notebookId) {
+                notebook = subject.notebooks[i];
+                break;
+            }
+        }
+
+        for(var i in notebook.notes){
+            if(notebook.notes[i]._id == noteId){
+                 note = notebook.notes[i];
+                break;
+            }
+        }
+
+       ;
+        deferred.resolve(note);
         return deferred.promise
     }
 };

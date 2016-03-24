@@ -3,18 +3,18 @@
     "notebooks": [
       {"_id": "111", "label": "Physics",
       "notes": [
-        {"_id": "001", "noteTitle":"Thermodynamics"},
-        {"_id": "002", "noteTitle": "Force"}
+        {"_id": "001", "noteTitle":"Thermodynamics", "content":"This is a note for Thermodynamics"},
+        {"_id": "002", "noteTitle": "Force", "content":"This is a note for Laws of Motion"}
       ]},
       {"_id": "222", "label": "Chemistry",
       "notes": [
-        {"_id":"101","noteTitle":"Organic Chemistry" },
-        {"_id":"102","noteTitle":" Periodic Table" }
+        {"_id":"101","noteTitle":"Organic Chemistry" , "content":"This is a note for organic compounds"},
+        {"_id":"102","noteTitle":" Periodic Table", "content":"This is a note for the perioidc table elements" }
       ]},
       {"_id": "333", "label": "Biology",
         "notes": [
-          {"_id":"110","noteTitle":"Reproductive Organs" },
-          {"_id":"111","noteTitle":"Multicellular Organisms" }
+          {"_id":"110","noteTitle":"Reproductive Organs", "content":"This is a note for Reporudtcive organs in a human body" },
+          {"_id":"111","noteTitle":"Multicellular Organisms" , "content":"This is a note for types of organisms"}
         ]}
     ]},
 
@@ -22,13 +22,13 @@
     "notebooks": [
       {"_id": "777", "label": "Economics",
         "notes": [
-          {"_id": "010", "noteTitle":"Demand & Supply"},
-          {"_id": "011", "noteTitle": "Capital Markets"}
+          {"_id": "010", "noteTitle":"Demand & Supply", "content":"This is a note for basic concepts of demand and supply"},
+          {"_id": "011", "noteTitle": "Capital Markets", "content":"This is a note for types of markets in the economy"}
         ]},
       {"_id": "888", "label": "BA",
         "notes": [
-          {"_id":"111","noteTitle":"Human Resource Development" },
-          {"_id":"222","noteTitle":" Financial Management" }
+          {"_id":"111","noteTitle":"Human Resource Development", "content":"This is a note for HRD" },
+          {"_id":"222","noteTitle":" Financial Management", "content":"This is a note for Financial Management" }
         ]}
     ]
   }

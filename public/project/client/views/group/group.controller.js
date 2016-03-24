@@ -56,7 +56,6 @@
 
                 GroupService.createGroupForUser(UserService.getCurrentUser()._id, newGroup)
                     .then(function(response){
-                        console.log(response.data);
 
                         init();
                         vm.group.groupName = null;

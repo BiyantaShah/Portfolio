@@ -15,6 +15,7 @@
             getNoteForBook: getNoteForBook,
             deleteNoteFromBook: deleteNoteFromBook,
             updateNote:updateNote,
+            getContent: getContent,
             getNoteId: getNoteId,
             setNoteId: setNoteId
         }
@@ -22,7 +23,6 @@
         return api;
 
         function createNoteForBook(subjectId,notebookId, newNote) {
-
             return $http.post ("/api/project/subject/"+ subjectId +"/notebook/" + notebookId+ "/note" ,newNote);
 
 
@@ -46,6 +46,10 @@
         function updateNote(subjectId, notebookId,noteId,  note){
             return $http.put("/api/project/subject/"+ subjectId +"/notebook/"+ notebookId + "/note/" + noteId, note);
 
+        }
+
+        function getContent(subjectId,notebookId, noteId){
+            return $http.get("/api/project/subject/" + subjectId +"/notebook/" + notebookId + "/note/" + noteId + '/content');
         }
 
         function getNoteId(){

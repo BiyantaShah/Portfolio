@@ -4,6 +4,9 @@ module.exports = function(app, subjectModel){
     app.delete("/api/project/subject/:subjectId/notebook/:notebookId/note/:noteId", deleteNoteFromBook);
     app.post("/api/project/subject/:subjectId/notebook/:notebookId/note", createNoteForBook);
     app.put("/api/project/subject/:subjectId/notebook/:notebookId/note/:noteId", updateNoteByIdForBook);
+    app.get("/api/project/subject/:subjectId/notebook/:notebookId/note/:noteId/content", getContent);
+
+
 
 
 
@@ -103,6 +106,27 @@ module.exports = function(app, subjectModel){
                     res.status(400).send(err);
                 }
             );
+
+    }
+
+    function getContent (req,res){
+
+        var subjectId = req.params.subjectId;
+        var notebookId = req.params.notebookId;
+        var noteId = req.params.noteId;
+
+
+        subjectModel
+            .getContent(subjectId,notebookId,noteId)
+            .then(
+                function(response){
+                    res.json(response)
+                },
+                function (err){
+                    res.status(400).send(err);
+                }
+            );
+
 
     }
 };

@@ -15,34 +15,27 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div id="navbar" class="navbar-collapse collapse" >
             <ul class="nav navbar-nav navbar-right">
-                <li ng-show="showHome()">
+                <li ng-hide = "currentUser">
                     <a href="#/home">Home</a>
                 </li>
 
-
-                <!--<li ng-show="showNotesCrud()"><a href="#/notes">Notes Crud after logging in</a></li> -->
-
-
-
-                <li ng-show="showProposal()">
+                <li ng-hide = "currentUser">
                     <a href="Projectproposal.pdf">Documentation</a>
                 </li>
 
-                <li ng-show="showLogin()">
+                <li ng-hide = "currentUser">
                     <a href="#/login">Login</a>
                 </li>
-                <li ng-show="showRegister()">
+                <li ng-hide = "currentUser">
                     <a href="#/register">Register</a>
                 </li>
-                <li ng-show="showName()">
-                    <a href="#/profile">{{username}}</a>
+                <li ng-show ="currentUser">
+                    <a href="#/profile">Welcome, {{currentUser.username}}!</a>
                 </li>
-                <li ng-show="showSearch()">
+                <li ng-show ="currentUser">
                     <a href="#/search">Search</a>
                 </li>
-                <li ng-show="showLogout()" ng-click="loggingOut()">
-                    <a href="#/home">Logout</a>
-                </li>
+                <li ng-show = "currentUser" ><a href="#/home" ng-click = "logout()">Logout</a></li>
 
             </ul>
         </div>

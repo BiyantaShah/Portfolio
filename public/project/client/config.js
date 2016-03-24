@@ -37,7 +37,7 @@
             })
 
             .when("/newNote",{
-                templateUrl:"views/search/newNote.view.html"
+                templateUrl:"views/search/noteText.view.html"
             })
 
             .when("/groupList",{
@@ -65,6 +65,12 @@
             .when("/group",{
                 templateUrl: "views/group/group.view.html",
                 controller: "GroupController",
+                controllerAs: "model"
+            })
+
+            .when("/noteText",{
+                templateUrl: "views/search/noteText.view.html",
+                controller: "NoteTextController",
                 controllerAs: "model"
             })
 

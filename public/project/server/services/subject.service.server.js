@@ -9,6 +9,8 @@ module.exports = function(app, userModel, subjectModel){
 
     function deleteSubjectById(req,res){
 
+
+
         var subjectId = req.params.subjectId;
 
         subjectModel.deleteSubjectById(subjectId);

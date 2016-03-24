@@ -8,59 +8,23 @@
 
     function HeaderController($scope, UserService){
 
-        UserService.setCurrentUser(null);
+     //  var vm =this;
 
         //event declarations
-        $scope.loggingOut = loggingOut;
-        $scope.showHome = showHome;
-        $scope.showLogin = showLogin;
-        $scope.showLogout = showLogout;
-        $scope.showName = showName;
-        $scope.showNotesCrud = showNotesCrud;
-        $scope.showProposal = showProposal;
-        $scope.showRegister = showRegister;
-        $scope.showSearch = showSearch;
+        $scope.logout = logout;
 
+        function init(){
+
+        }
+        init();
 
         //event implementation
-        function loggingOut(){
+        function logout() {
             UserService.setCurrentUser(null);
+
         }
 
-        function showHome(){
-            return true;
-        }
 
-        function showLogin(){
-            return UserService.getCurrentUser() == null;
-        }
-
-        function showLogout(){
-            return UserService.getCurrentUser() != null;
-        }
-
-        function showName() {
-            if (UserService.getCurrentUser() != null) {
-                $scope.username = UserService.getCurrentUser().username;
-                return true;
-            }
-        }
-
-        function showNotesCrud(){
-            return UserService.getCurrentUser() != null;
-        }
-
-        function showProposal(){
-            return UserService.getCurrentUser() == null;
-        }
-
-        function showRegister(){
-            return (UserService.getCurrentUser() == null);
-        }
-
-        function showSearch(){
-            return UserService.getCurrentUser() != null;
-        }
 
 
     }
