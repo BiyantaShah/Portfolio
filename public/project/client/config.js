@@ -41,7 +41,7 @@
             })
 
             .when("/groupList",{
-                templateUrl:"views/search/groupList.view.html"
+                templateUrl:"views/group/group.view.html"
             })
 
             .when("/subject",{
@@ -62,6 +62,12 @@
                 controllerAs: "model"
             })
 
+            .when("/group",{
+                templateUrl: "views/group/group.view.html",
+                controller: "GroupController",
+                controllerAs: "model"
+            })
+
             // only for CRUD
 
             .when("/users",{
@@ -71,10 +77,7 @@
 
 
 
-            .when("/groups",{
-                templateUrl: "views/crud/groups.view.html",
-                controller: "GroupController"
-            })
+
 
 
 

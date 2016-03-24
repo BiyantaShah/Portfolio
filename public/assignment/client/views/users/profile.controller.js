@@ -27,7 +27,7 @@
 
             var userDetails = {
                 "_id":currentUser._id,
-                "username":user.username,
+                "username":currentUser.username,
                 "password": user.password,
                 "firstName": user.firstName,
                 "lastName":user.lastName,
