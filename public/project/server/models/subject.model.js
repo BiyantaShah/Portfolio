@@ -1,7 +1,7 @@
 var q = require("q");
 
 
-module.exports = function(app) {
+module.exports = function(app, SubjectService) {
     var subjects = require("./subject.mock.json");
     var api = {
         //for subject
@@ -25,7 +25,8 @@ module.exports = function(app) {
         deleteNoteFromBook:deleteNoteFromBook,
         createNoteForBook: createNoteForBook,
         updateNoteByIdForBook:updateNoteByIdForBook,
-        getContent: getContent
+        getContent: getContent,
+        findNoteByTitle:findNoteByTitle
 
     };
     return api;
@@ -417,8 +418,50 @@ module.exports = function(app) {
             }
         }
 
-       ;
+
         deferred.resolve(note);
+        return deferred.promise
+    }
+
+    function findNoteByTitle(userId, title){
+        var deferred = q.defer();
+
+        var finalNote = null;
+        var subject = [];
+        var Id1,Id2;
+
+        for(var a in subjects){
+            if(subjects[a].userId == userId){
+                subject.push(subjects[a]);
+            }
+        }
+
+
+        for(var i in subject) {
+
+            var notebooks = subject[i].notebooks;
+           // console.log(notebooks);
+
+            for (var j in notebooks) {
+                var notes = notebooks[j].notes;
+
+                for (var k in notes) {
+                    var name = notes[k].noteTitle;
+
+                    if (name == title) {
+                        Id1=subject[i]._id;
+                        Id2=notebooks[j]._id;
+                        finalNote = notes[k];
+                        break;
+                    }
+
+                }
+            }
+
+         }
+
+        var abcd = {"note" :finalNote, "subjectId": Id1, "notebookId": Id2 };
+        deferred.resolve(abcd);
         return deferred.promise
     }
 };

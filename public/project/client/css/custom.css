@@ -86,3 +86,7 @@
 .bg-color{
     background-color: lemonchiffon;
 }
+
+.style{
+    white-space: nowrap;
+}

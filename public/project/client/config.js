@@ -32,17 +32,6 @@
 
             })
 
-            .when("/search",{
-                templateUrl:"views/search/search.view.html"
-            })
-
-            .when("/newNote",{
-                templateUrl:"views/search/noteText.view.html"
-            })
-
-            .when("/groupList",{
-                templateUrl:"views/group/group.view.html"
-            })
 
             .when("/subject",{
                 templateUrl:"views/subject/subject.view.html",
@@ -71,6 +60,12 @@
             .when("/noteText",{
                 templateUrl: "views/search/noteText.view.html",
                 controller: "NoteTextController",
+                controllerAs: "model"
+            })
+
+            .when("/search",{
+                templateUrl:"views/search/search.view.html",
+                controller: "SearchController",
                 controllerAs: "model"
             })
 

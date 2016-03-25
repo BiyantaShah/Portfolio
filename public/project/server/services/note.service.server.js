@@ -5,6 +5,8 @@ module.exports = function(app, subjectModel){
     app.post("/api/project/subject/:subjectId/notebook/:notebookId/note", createNoteForBook);
     app.put("/api/project/subject/:subjectId/notebook/:notebookId/note/:noteId", updateNoteByIdForBook);
     app.get("/api/project/subject/:subjectId/notebook/:notebookId/note/:noteId/content", getContent);
+    app.get("/api/project/user/:userId/title/:title", findNoteByTitle);
+
 
 
 
@@ -128,5 +130,23 @@ module.exports = function(app, subjectModel){
             );
 
 
+    }
+
+    function findNoteByTitle(req,res){
+
+        var userId = req.params.userId;
+        var title = req.params.title;
+
+
+        subjectModel
+            .findNoteByTitle(userId, title)
+            .then(
+                function(response){
+                    res.json(response)
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 };

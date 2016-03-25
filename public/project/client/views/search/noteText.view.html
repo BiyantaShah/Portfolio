@@ -1,27 +1,33 @@
-<div class="container">
+<div>
 
-    <div class="col-lg-12 col-md-12 col-sm-12 main">
-                <form>
-                    <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
-                    <div ng-controller="NoteTextController">
-                        <h2 class="pull-left">{{model.note.noteTitle}}</h2>
-                            <hr class="hr-break">
-                        <div class="pull-left">
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-default" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-star-empty center" aria-hidden="true"></span>
-                            </button>
-                            &nbsp;&nbsp;
-                            <button type="button" class="btn btn-default" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                            </button>
-                        </div>
+    <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 main">
 
-
-                        <br> <br> <br>
-                        <textarea rows="20%" cols="100%" ng-model = "model.note.content" placeholder="Click here to create your note or doodle!"></textarea>
-
-                    </div>
-                </form>
+        <form class="form-horizontal style"> 
+            <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+            <div ng-controller="NoteTextController">
+            <h3 class="pull-left">{{model.note.noteTitle}}</h3>
+           <br>
+            <div class="pull-left">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-star-empty center" aria-hidden="true"></span>
+                </button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
             </div>
+
+            <br> <br> <br>
+            <textarea  class = "form-control" rows="20" ng-model = "model.note.content"
+                      placeholder="Click here to create your note or doodle!"></textarea>
+
             </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+

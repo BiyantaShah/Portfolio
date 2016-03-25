@@ -14,6 +14,7 @@
             getAllNotesForBook: getAllNotesForBook,
             getNoteForBook: getNoteForBook,
             deleteNoteFromBook: deleteNoteFromBook,
+            findNoteByTitle: findNoteByTitle,
             updateNote:updateNote,
             getContent: getContent,
             getNoteId: getNoteId,
@@ -41,6 +42,11 @@
         function deleteNoteFromBook( subjectId,notebookId, noteId){
 
             return $http.delete("/api/project/subject/" + subjectId+"/notebook/" + notebookId + "/note/" + noteId);
+        }
+
+        function findNoteByTitle(userId, title){
+
+            return $http.get("/api/project/user/" + userId + "/title/" + title);
         }
 
         function updateNote(subjectId, notebookId,noteId,  note){
