@@ -21,7 +21,7 @@
             updateUser:updateUser,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
-           // getEmail:getEmail
+            getEmail:getEmail
             //logout: logout,
             //loggedin: loggedin
         }
@@ -79,7 +79,10 @@
             return $http.put("/api/project/user/"+ userId, user);
         }
 
-
+        function getEmail(emailId){
+            console.log(emailId);
+            return $http.get("/send",emailId);
+        }
 
     }
 

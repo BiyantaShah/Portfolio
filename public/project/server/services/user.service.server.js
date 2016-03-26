@@ -6,6 +6,7 @@ module.exports = function(app,userModel){
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", findAllUsers);
     app.put("/api/project/user/:userId",updateUser);
+    app.get("/send",getEmail);
 
 
     function createUser(req,res){
@@ -136,5 +137,20 @@ module.exports = function(app,userModel){
         var updatedUser = req.body;
 
         userModel.updateUser(userId,updatedUser);
+    }
+
+    function getEmail(req,res){
+
+
+        var email = req.body;
+
+        console.log(email);
+        smtpTransport.sendMail(email)
+            .then(function(response){
+                res.json(response);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
     }
 };

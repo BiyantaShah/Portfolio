@@ -12,7 +12,8 @@ module.exports = function(app) {
         findUserByUsername: findUserByUsername,
         findAllUsers: findAllUsers,
         findUserById: findUserById,
-        updateUser: updateUser
+        updateUser: updateUser,
+
 
     };
     return api;
@@ -101,5 +102,7 @@ module.exports = function(app) {
             }
         }
     }
+
+
 };
 

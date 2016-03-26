@@ -76,10 +76,6 @@
             return $scope.message;
 
 
-
-
-
-
         }
     }
 
