@@ -11,6 +11,7 @@
 
         //Event handler declaration
         vm.register = register;
+        vm.sendEmail = sendEmail;
 
         function init() {
 
@@ -67,6 +68,18 @@
                     UserService.setCurrentUser(newUser);
                     $location.path('/profile');
                 });
+        }
+
+        function sendEmail(emailId){
+
+            $scope.message = "An email has been sent to "+ emailId + ". Please check your inbox!";
+            return $scope.message;
+
+
+
+
+
+
         }
     }
 

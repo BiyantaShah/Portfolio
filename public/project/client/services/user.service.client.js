@@ -20,7 +20,8 @@
             deleteUserById: deleteUserById,
             updateUser:updateUser,
             setCurrentUser: setCurrentUser,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+           // getEmail:getEmail
             //logout: logout,
             //loggedin: loggedin
         }

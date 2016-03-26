@@ -6,6 +6,7 @@
         <br>
         <h1 align="center">Register</h1> 
         <form class="form-horizontal"> 
+            <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
             <div class="form-group">
                 <h4 class="col-sm-2">*First Name:</h4>
                 <div class="col-sm-10">
@@ -49,7 +50,7 @@
                 <div class="col-6">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="modal" data-target="#myModal">
                             Student
                         </label>
                         <div class="radio">
@@ -88,6 +89,39 @@
             </div>
         </form> 
      </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirmation for Student User </h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Enter your EmailID </label>
+                            <input type="text" ng-model="model.user.mail" class="form-control" placeholder="Enter your university emailID">
+                        </div>
+                        <!--<div class="form-group">
+                            <label>Subject</label>
+                            <textarea rows="1" cols="20" class="form-control"> Confirmation from Eco-Note </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea rows="1" cols="40" class="form-control">
+                                Click on this link for confirming you are a student registering at Eco-Note </textarea>
+                        </div> -->
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a type="button"  data-dismiss="modal" class="btn btn-primary" ng-click="model.sendEmail(model.user.mail);">Send Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 
 
