@@ -3,7 +3,7 @@
 
     <div class="col-sm-12 col-lg-12 col-md-12 main">
     <br>
-    <h1 >Profile</h1>
+    <h1 align="center">Profile</h1>
     <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#/profile">Edit Profile</a></li>
         <li role="presentation"><a href="#/subject"> Subjects </a></li>
@@ -12,39 +12,40 @@
 
         <form class="form-horizontal"> 
             <div class="form-group">
-                <textarea rows="5" cols="15" class="pull-left">Profile Picture</textarea>
+                <div class="col-sm-2">
+                <img src="http://gurucul.com/wp-content/uploads/2015/01/default-user-icon-profile.png" height="150" width="150"> </div>
                 <div class="col-sm-10">
-                    <a class="btn btn-default btn-md">
+                    <a class="btn btn-default extreme-left margins">
                         Edit Profile Picture (Optional)</a>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputFname" class="col-sm-2">First Name:</label>
+                <h4 class="col-sm-2">First Name:</h4>
                 <div class="col-sm-10">
                     <input type="text" ng-model="model.user.firstName" class="form-control" id="inputFname" placeholder="First Name">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputFname" class="col-sm-2">Last Name:</label>
+                <h4  class="col-sm-2">Last Name:</h4>
                 <div class="col-sm-10">
                     <input type="text" ng-model="model.user.lastName" class="form-control" id="inputLname" placeholder="Last Name">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputemail" class="col-sm-2">Email ID:</label>
+                <h4  class="col-sm-2">Email ID:</h4>
                 <div class="col-sm-10">
                     <input type="text" ng-model="model.user.email" class="form-control" id="inputemail" placeholder="Email ID">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputusername" class="col-sm-2">Username:</label>
+                <h4  class="col-sm-2">Username:</h4>
                 <div class="col-sm-10">
                     <input type="text" ng-model="model.user.username" class="form-control" id="inputusername" placeholder="Username" readonly>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputpassword" class="col-sm-2">Password:</label>
+                <h4 class="col-sm-2">Password:</h4>
                 <div class="col-sm-10">
                     <input type="password" ng-model="model.user.password" class="form-control" id="inputpassword" placeholder="Password">
                 </div>

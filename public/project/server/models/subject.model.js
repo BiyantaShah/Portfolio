@@ -37,7 +37,8 @@ module.exports = function(app, SubjectService) {
         var newSubject = {
             "_id": (new Date()).getTime(),
             "title": subject.title,
-            "userId": userId
+            "userId": userId,
+            "notebooks": subject.notebooks
         };
 
         subjects.push(newSubject);
@@ -452,7 +453,7 @@ module.exports = function(app, SubjectService) {
                         Id1=subject[i]._id;
                         Id2=notebooks[j]._id;
                         finalNote = notes[k];
-                        break;
+
                     }
 
                 }

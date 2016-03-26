@@ -16,7 +16,7 @@
 
         function init(){
             if (NoteService.getNoteId() == null) {
-                $location.path("/profile");
+                $location.path("/home");
             }
             else{
 

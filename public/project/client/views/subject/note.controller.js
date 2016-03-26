@@ -19,7 +19,7 @@
 
         function init() {
             if (NotebookService.getNotebookId() == null) {
-                $location.path("/profile");
+                $location.path("/home");
             }
             else{
                 currentSubject = SubjectService.getSubjectId();

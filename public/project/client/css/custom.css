@@ -14,7 +14,7 @@
     }
 
     .navbar-fixed-top {
-        padding: 15px 0;
+        padding: 20px 0;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
@@ -26,7 +26,7 @@
         -webkit-transition: all .3s;
         -moz-transition: all .3s;
         transition: all .3s;
-        color:lightgray;
+        color:black;
 
     }
 
@@ -51,13 +51,7 @@
     width:0px;
 }
 
-.body-home{
-    background-image: url("../misc/wallpaper.jpeg") ;
-    background-repeat: no-repeat;
-    background-size: cover;
 
-
-}
 
 
 
@@ -83,10 +77,32 @@
     border: 0;
 }
 
-.bg-color{
-    background-color: lemonchiffon;
-}
+
 
 .style{
     white-space: nowrap;
 }
+
+.extreme-left{
+    margin-left: 80px;
+}
+
+.container-fluid{
+    padding-left:25px;
+}
+
+.margins-top{
+    margin-top:45px;
+}
+.margins-bottom{
+    margin-top:5px;
+}
+
+.small-font{
+    font-size:17px;
+}
+
+
+
+
+

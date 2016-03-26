@@ -11,6 +11,10 @@
                 templateUrl: "views/home/home.view.html"
             })
 
+            .when("/Projectproposal",{
+                templateUrl:"misc/Projectproposal.pdf"
+        })
+
             .when("/login", {
                 templateUrl: "views/users/login.view.html",
                 controller:"LoginController",

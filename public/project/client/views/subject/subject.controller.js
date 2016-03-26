@@ -54,7 +54,8 @@
                 var nsubject = {
                     "._id":null,
                     "title":subjectName,
-                    "userId": null
+                    "userId": null,
+                    "notebooks":[]
                 };
                 SubjectService.createSubjectForUser(UserService.getCurrentUser()._id, nsubject)
                     .then(function(response){

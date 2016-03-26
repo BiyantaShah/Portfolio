@@ -5,8 +5,9 @@
         <form class="form-horizontal style"> 
             <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
             <div ng-controller="NoteTextController">
-            <h3 class="pull-left">{{model.note.noteTitle}}</h3>
-           <br>
+                <div>
+            <h3 class="pull-left margins-bottom">{{model.note.noteTitle}}</h3>
+
             <div class="pull-left">
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="button" class="btn btn-default" aria-label="Left Align">
@@ -17,6 +18,7 @@
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                 </button>
             </div>
+                    </div>
 
             <br> <br> <br>
             <textarea  class = "form-control" rows="20" ng-model = "model.note.content"
