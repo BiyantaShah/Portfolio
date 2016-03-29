@@ -1,8 +1,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var cookieParser  = require('cookie-parser');
-var multer = require('multer');
+var request = require('request');
+
 var nodemailer = require("nodemailer");
+
+// maintaining session
+var cookieParser  = require('cookie-parser');
+var session = require('express-session');
+
+var multer = require('multer');
+var passport = require('passport');
 var app = express();
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
@@ -16,7 +23,9 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(multer());
+
+app.use(session({secret: 'biyanta'}));
+//app.use(multer());
 app.use(cookieParser());
 require("./public/assignment/server/app.js")(app);
 require("./public/project/server/app.js")(app);

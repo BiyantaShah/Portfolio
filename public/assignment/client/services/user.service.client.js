@@ -20,9 +20,8 @@
             deleteUserById: deleteUserById,
             updateUser:updateUser,
             setCurrentUser: setCurrentUser,
-            getCurrentUser: getCurrentUser
-            //logout: logout,
-            //loggedin: loggedin
+            getCurrentUser: getCurrentUser,
+            logout: logout
         }
 
         return model;
@@ -33,7 +32,8 @@
         }
 
         function getCurrentUser () {
-            return $rootScope.currentUser;
+           var currentUser = $http.get("/api/assignment/loggedin");
+            return currentUser;
         }
 
         function createUser(user) {
@@ -60,13 +60,10 @@
             return $http.get("/api/assignment/user");
         }
 
-       /* function logout(){
+        function logout(){
             return $http.post("/api/assignment/logout");
         }
 
-        function loggedin(){
-            return $http.get("/api/assignment/loggedin")
-        }*/
 
 
 

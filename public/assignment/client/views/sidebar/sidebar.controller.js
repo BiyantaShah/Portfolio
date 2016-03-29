@@ -18,7 +18,7 @@
         }
         init();
 
-        $scope.$location = $location;
+        vm.$location = $location;
 
 
 

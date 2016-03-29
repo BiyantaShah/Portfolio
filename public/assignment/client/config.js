@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .config(Configure);
 
-    function Configure($routeProvider){
+    function Configure($routeProvider) {
         $routeProvider
 
             .when("/home", {
@@ -19,16 +19,16 @@
 
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
-                controller:"ProfileController",
-                controllerAs: "model"
-                /*resolve: {
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
                     checkLoggedIn: checkLoggedIn
-                }*/
+                }
             })
 
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
-                controller:"RegisterController",
+                controller: "RegisterController",
                 controllerAs: "model"
             })
 
@@ -38,23 +38,29 @@
 
             .when("/forms", {
                 templateUrl: "views/forms/forms.view.html",
-                controller:"FormController",
-                controllerAs: "model"
+                controller: "FormController",
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
 
-            .when("/field", {
+            .when("/forms/:formId/field", {
                 templateUrl: "views/forms/field.view.html",
                 controller: "FieldController",
-                controllerAs:"model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
-
 
 
             .otherwise({
-                redirectTo:"/home"
-            })
+                redirectTo: "/home"
+            });
+    }
 
-        /*function checkLoggedIn(UserService, $q, $location) {
+        function checkLoggedIn(UserService, $q, $location) {
 
             var deferred = $q.defer();
 
@@ -72,9 +78,9 @@
                 });
 
             return deferred.promise;
-        }*/
+        }
 
 
-    }
+
 
 })();

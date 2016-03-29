@@ -17,24 +17,36 @@
         vm.updateForm = updateForm;
         vm.goToFields = goToFields;
 
+        vm.index = -1;
+        var currentUser;
+        var currentAllUserForms= []; //Forms of the current user
+
         function init() {
-            if (UserService.getCurrentUser() == null) {
-                $location.path("/home");
-            }
-            else{
-                currentUser =UserService.getCurrentUser();
-                FormService.findAllFormsForUser(currentUser._id)
-                    .then(function(response){
-                        vm.forms = response.data;
-                        currentAllUserForms = response.data;
-                    });
-            }
+            currentUser = null;
+
+            UserService.getCurrentUser()
+                .then(function(response){
+                    currentUser = response.data;
+
+                    if(currentUser == null)
+                    {
+                        $location.path("/home");
+                    }
+
+                    else{
+                        FormService.findAllFormsForUser(currentUser._id)
+                            .then(function(response){
+                                console.log(currentUser);
+                                vm.forms = response.data;
+                            });
+                    }
+                });
 
         }
         init();
 
-        var currentAllUserForms= []; //Forms of the current user
-        var currentUser = null; //Current user is stored
+
+
 
 
 
@@ -95,8 +107,8 @@
         }
 
         function goToFields(formId){
-            FormService.setFormId(formId);
-            $location.path('/field');
+           // FormService.setFormId(formId);
+            $location.path('/forms/' +formId+ '/field');
         }
 
     }

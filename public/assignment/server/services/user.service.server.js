@@ -6,6 +6,8 @@ module.exports = function(app,userModel){
     app.post("/api/assignment/user", createUser);
     app.get("/api/assignment/user", findAllUsers);
     app.put("/api/assignment/user/:userId",updateUser);
+    app.post("/api/assignment/logout", logout);
+    app.get("/api/assignment/loggedin", loggedin);
 
 
     function createUser(req,res){
@@ -45,6 +47,7 @@ module.exports = function(app,userModel){
             .then(
                 function (response) {
                     user = response;
+                    req.session.currentUser = user;
                     res.json(user);
 
                 },
@@ -62,8 +65,8 @@ module.exports = function(app,userModel){
             userModel
                 .findAllUsers()
                 .then(
-                    function (doc) {
-                        users = doc;
+                    function (response) {
+                        users = response;
                         res.json(users);
                     },
                     // reject promise if error
@@ -90,9 +93,9 @@ module.exports = function(app,userModel){
 
         userModel.findUserById(userId)
             .then(
-                function (doc) {
-                    user = doc;
-                    res.json(doc);
+                function (response) {
+                    user = response;
+                    res.json(response);
                 },
                 // reject promise if error
                 function (err) {
@@ -111,9 +114,9 @@ module.exports = function(app,userModel){
         userModel
             .findUserByUsername(username)
             .then(
-                function (doc) {
-                    user = doc;
-                    res.json(doc);
+                function (response) {
+                    user = response;
+                    res.json(response);
                 },
                 // reject promise if error
                 function (err) {
@@ -122,14 +125,21 @@ module.exports = function(app,userModel){
             );
     }
 
-    /*function loggedin(req,res){
-        res.json(req.session.currentUser);
+    function loggedin(req,res){
+        if(req.session.currentUser != null){
+            res.json(req.session.currentUser);
+        }
+
+        else {
+            res.json(null);
+        }
+
     }
 
     function logout(req,res){
         req.session.destroy();
         res.send(200);
-    }*/
+    }
 
 
     function updateUser(req,res){
