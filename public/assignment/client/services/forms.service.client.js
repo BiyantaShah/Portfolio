@@ -48,8 +48,6 @@
         }
 
         function findFormById(formId){
-            console.log("findformById");
-            console.log(formId);
             return $http.get("/api/assignment/form/"+formId);
         }
 

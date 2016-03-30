@@ -89,7 +89,7 @@
 
             }
 
-            FieldService.createFieldForForm(FormService.getFormId(), newField)
+            FieldService.createFieldForForm($routeParams.formId, newField)
                         .then(function(response){
                             if (response.data){
                                 init();
@@ -100,7 +100,7 @@
         }
 
         function cloneField(newField){
-            FieldService.createFieldForForm(FormService.getFormId(), newField)
+            FieldService.createFieldForForm($routeParams.formId, newField)
                 .then(function(response){
                     if (response.data){
                         init();
@@ -110,7 +110,7 @@
         }
 
         function deleteField(fieldId){
-            FieldService.deleteFieldFromForm( FormService.getFormId(), fieldId)
+            FieldService.deleteFieldFromForm( $routeParams.formId, fieldId)
                 .then(function(response){
                     if(response.data){
                         init();

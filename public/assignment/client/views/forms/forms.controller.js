@@ -36,7 +36,6 @@
                     else{
                         FormService.findAllFormsForUser(currentUser._id)
                             .then(function(response){
-                                console.log(currentUser);
                                 vm.forms = response.data;
                             });
                     }
@@ -68,7 +67,7 @@
                     "title":formName,
                     "userId": null
                 };
-                FormService.createFormForUser(UserService.getCurrentUser()._id, nform)
+                FormService.createFormForUser(currentUser._id, nform)
                     .then(function(response){
 
                             vm.form.formName = null;
