@@ -15,6 +15,28 @@
         vm.deleteField = deleteField;
         vm.selectField = selectField;
         vm.editField = editField;
+        $scope.updateForm = updateForm;
+
+        function updateForm(start,end){
+            alert(start + " " + end);
+            var newFields = [];
+
+            for(var i in vm.fields){
+                newFields[i] = vm.fields[i];
+            }
+
+            var temp = newFields[start];
+            newFields[start] = newFields[end];
+            newFields[end] = temp;
+
+            FormService.findFormById($routeParams.formId)
+                .then(function(response){
+                    var form = response.data;
+                    form.fields = newFields;
+                   // console.log(form._id);
+                    FormService.updateFormById(form._id,form);
+                });
+        }
 
         function init(){
 
@@ -27,6 +49,8 @@
 
         }
         init();
+
+
 
         function addField(fieldType){
             var newField = null;

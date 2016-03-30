@@ -63,7 +63,7 @@ module.exports = function(app) {
         for(var f in mockForm){
             if(mockForm[f]._id == formId) {
 
-                form = mockForm[i];
+                form = mockForm[f];
                 break;
             }
         }
@@ -105,16 +105,19 @@ module.exports = function(app) {
 
     function updateFormById(formId, form) {
 
+        var deferred = q.defer();
+
         for(var f in mockForm) {
             if(mockForm[f]._id == formId) {
 
-                mockForm[f].title = form.title;
-                mockForm[f].userId = form.userId;
+                mockForm[f] = form;
                 break;
 
             }
         }
-        return mockForm[i];
+
+        deferred.resolve(mockForm[f]);
+        return deferred.promise;
 
     }
 
