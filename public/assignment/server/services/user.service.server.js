@@ -12,14 +12,14 @@ module.exports = function(app,userModel){
 
     function createUser(req,res){
         var newUser = req.body;
-        var users = [];
+        //var users = [];
 
         userModel
             .createUser(newUser)
             .then(
-                function (doc) {
-                    users = doc;
-                    res.json(doc);
+                function (response) {
+                    req.session.currentUser = response;
+                    res.json(response);
                 },
                 // reject promise if error
                 function (err) {
@@ -143,9 +143,17 @@ module.exports = function(app,userModel){
 
 
     function updateUser(req,res){
-        var userId = req.params.id;
+        var userId = req.params.userId;
         var updatedUser = req.body;
 
-        userModel.updateUser(userId,updatedUser);
+
+        userModel.updateUser(userId,updatedUser)
+            .then(function(response){
+                res.json(response);
+            },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 };

@@ -33,7 +33,9 @@
 
                     })
                     .then(function (response) {
+                        console.log(response.data);
                         if(response.data != null){
+
                             UserService.setCurrentUser(response.data);
                             $location.path('/profile');
                         }

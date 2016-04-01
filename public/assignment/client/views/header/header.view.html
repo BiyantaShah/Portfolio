@@ -1,4 +1,4 @@
-<div ng-controller="HeaderController">
+<div ng-controller="HeaderController as model">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -15,7 +15,7 @@
 
                     <li ng-hide = "currentUser"><a href = "#/register">Register</a></li>
                     <li ng-hide = "currentUser"><a href = "#/login">Login</a></li>
-                    <li ng-show = "currentUser" ><a href="#/home" ng-click = "logout()">Logout</a></li>
+                    <li ng-show = "currentUser" ng-click = "model.logout()"><a href="#/home">Logout</a></li>
                     <li ng-show = "currentUser"><a href = "#/profile">{{currentUser.username}}</a></li>
                     <li ng-show = "currentUser.roles.indexOf('admin') >= 0"><a href = "#/admin">Admin</a></li>
                 </ul>

@@ -31,16 +31,25 @@
            // var currentUser = UserService.getCurrentUser();
 
             var userDetails = {
-                "_id":vm.user._id,
-                "username":vm.user.username,
+                "username": vm.user.username,
                 "password": user.password,
                 "firstName": user.firstName,
                 "lastName":user.lastName,
-                "email":user.email,
-                "roles": vm.user.roles
+                "email":user.email
             };
-            UserService.updateUser(currentUser._id,userDetails);
-            UserService.setCurrentUser(userDetails);
+
+            UserService.updateUser(vm.user._id,userDetails)
+                .then(function(response){
+                    console.log(response.data);
+                    return UserService.findUserByCredentials(user.username,user.password);
+                })
+                .then(function(response){
+                    if (response.data){
+                        UserService.setCurrentUser(response.data);
+                        UserService.getCurrentUser();
+                    }
+                });
+
         }
     }
 })();

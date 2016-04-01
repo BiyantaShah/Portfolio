@@ -47,11 +47,12 @@
             if (user.password == user.password2){
 
                 var newUser = {
-                    "._id": (new Date).getTime(),
+                    //"._id": (new Date).getTime(),
                     "firstName": null,
-                    "lastname":null,
+                    "lastName":null,
                     "username":user.username,
                     "password":user.password,
+                    "email":user.email,
                     "roles": []
                 };
             }
@@ -59,7 +60,7 @@
             UserService.createUser(newUser)
                 .then(function(response){
 
-                    UserService.setCurrentUser(newUser);
+                    UserService.setCurrentUser(response.data);
                     $location.path('/profile');
                 });
         }

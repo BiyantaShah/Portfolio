@@ -22,7 +22,7 @@
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
             logout: logout
-        }
+        };
 
         return model;
 
@@ -73,6 +73,7 @@
 
         function updateUser(userId, user)
         {
+            console.log( userId);
             return $http.put("/api/assignment/user/"+ userId, user);
         }
 
