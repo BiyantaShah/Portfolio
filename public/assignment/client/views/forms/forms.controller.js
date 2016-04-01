@@ -53,21 +53,21 @@
 
         //event implementations
 
-        function addForm(formName) {
+        function addForm(form) {
 
-            if (formName == null) {
+            if (form.formName == null) {
                 $scope.message = "Give a title to the form";
                 return $scope.message;
             }
 
             else{
 
-                var nform = {
-                    "._id":null,
-                    "title":formName,
-                    "userId": null
+                var newform = {
+                    "title":form.formName,
+                    "userId": currentUser._id,
+                    "fields": []
                 };
-                FormService.createFormForUser(currentUser._id, nform)
+                FormService.createFormForUser(currentUser._id, newform)
                     .then(function(response){
 
                             vm.form.formName = null;
@@ -80,8 +80,12 @@
 
         function deleteForm(index) {
 
-            FormService.deleteFormById(vm.forms[index]._id);
-            init();
+            FormService.deleteFormById(vm.forms[index]._id)
+            .then(function(response){
+                if(response.data){
+                    init();
+                }
+            });
         }
 
 
@@ -93,15 +97,29 @@
         }
 
 
-        function updateForm(formName) {
-            if(vm.index != -1 && formName != null){
+        function updateForm(form) {
+            if(vm.index != -1 && form.formName != null){
 
                 var selectedForm = vm.forms[vm.index];
-                selectedForm.title = formName;
-                FormService.updateFormById(selectedForm._id, selectedForm);
-                init();
-                vm.index = -1;
-                vm.form.formName = null;
+                var updatedForm = {
+                    "_id": selectedForm._id,
+                    "userId": currentUser._id,
+                    "title": form.formName,
+                    "fields": selectedForm.fields,
+                    "created": selectedForm.fields
+                };
+                FormService.updateFormById(selectedForm._id, updatedForm)
+                    .then(function(response){
+                        if(response.data){
+                            //console.log(response.data);
+                            vm.forms[vm.index] = response.data;
+                            vm.form.formName = null;
+                            vm.index = -1;
+
+                            init();
+                        }
+                    });
+
             }
         }
 

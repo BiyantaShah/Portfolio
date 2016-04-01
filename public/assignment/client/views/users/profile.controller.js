@@ -40,7 +40,7 @@
 
             UserService.updateUser(vm.user._id,userDetails)
                 .then(function(response){
-                    console.log(response.data);
+                    //console.log(response.data);
                     return UserService.findUserByCredentials(user.username,user.password);
                 })
                 .then(function(response){

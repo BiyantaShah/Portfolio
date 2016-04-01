@@ -18,7 +18,7 @@
         $scope.updateForm = updateForm;
 
         function updateForm(start,end){
-            alert(start + " " + end);
+            //alert(start + " " + end);
             var newFields = [];
 
             for(var i in vm.fields){

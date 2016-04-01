@@ -1,5 +1,7 @@
 [
-  {"_id": "000", "title": "Contacts", "userId": 123,
+  { "userId": "56fe0c4f97ba675bdd7395a6","title": "Contacts",
+    "updated":"2016-04-03",
+    "created":"2016-04-03",
     "fields": [
       {"_id": "111", "label": "First Name", "type": "TEXT", "placeholder": "First Name"},
       {"_id": "222", "label": "Last Name", "type": "TEXT", "placeholder": "Last Name"},
@@ -12,7 +14,9 @@
         {"_id": "666", "label": "Email", "type": "EMAIL", "placeholder": "Email"}
       ]
       },
-      {"_id": "010", "title": "ToDo", "userId": 234,
+      { "userId": "56fe0c4f97ba675bdd7395a8","title": "ToDo",
+        "updated":"2016-04-03",
+        "created":"2016-04-03",
         "fields": [
           {"_id": "777", "label": "Title", "type": "TEXT", "placeholder": "Title"},
           {"_id": "888", "label": "Description", "type": "TEXTAREA", "placeholder": "Title"},

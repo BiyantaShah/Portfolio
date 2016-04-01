@@ -11,7 +11,15 @@ module.exports = function(app, userModel, formModel){
 
         var formId = req.params.formId;
 
-        formModel.deleteFormById(formId);
+        formModel.deleteFormById(formId)
+            .then(function(response){
+                    res.json(response);
+                },
+                // send error if promise rejected
+                function(err ){
+                    res.status(400).send(err);
+                }
+            );
     }
 
 
@@ -40,8 +48,8 @@ module.exports = function(app, userModel, formModel){
         formModel
             .findFormById(formId)
             .then(
-                function (doc) {
-                    form = doc;
+                function (response) {
+                    form = response;
                     res.json(form);
                 },
                 // reject promise if error
@@ -55,8 +63,18 @@ module.exports = function(app, userModel, formModel){
 
     function findFormByTitle(req,res){
         var title = req.body;
-        var form = formModel.findFormByTitle(title);
-        res.json(form);
+        formModel.findFormByTitle(title)
+            .then(
+                function (response) {
+                    res.json(response);
+                },
+                // reject promise if error
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
+
     }
 
 
@@ -67,8 +85,8 @@ module.exports = function(app, userModel, formModel){
         formModel
             .createFormForUser(userId,newForm)
             .then(
-                function (doc) {
-                    res.json(doc);
+                function (response) {
+                    res.json(response);
                 },
                 // reject promise if error
                 function (err) {
@@ -82,7 +100,15 @@ module.exports = function(app, userModel, formModel){
         var formId = req.params.formId;
         var updatedForm = req.body;
 
-
-        res.json(formModel.updateFormById(formId,updatedForm));
+        formModel.updateFormById(formId,updatedForm)
+            .then(
+                function(response){
+                    res.json(response);
+                },
+                // send error if promise rejected
+                function(err ){
+                    res.status(400).send(err);
+                }
+            );
     }
 };
