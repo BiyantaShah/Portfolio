@@ -150,6 +150,7 @@
                 for (var i in opts) {
                     var pair = opts[i].split(":");
                     var edited = {"label": pair[0], "value": pair[1]};
+                    if(edited.label != "")
                     update.push(edited);
                 }
 
@@ -163,7 +164,7 @@
             vm.updatedField.label = vm.label;
 
             FieldService
-                .updateField(FormService.getFormId(),vm.updatedField._id,vm.updatedField)
+                .updateField($routeParams.formId,vm.updatedField._id,vm.updatedField)
                 .then(
                     function(response){
                         init();

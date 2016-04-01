@@ -147,7 +147,12 @@ module.exports = function(db,mongoose) {
        //console.log("In updateUser" + userId);
         UserModel.update(
             { _id : userId},
-            { $set: user},
+            { $set: {
+                "password": user.password,
+                "firstName": user.firstName,
+                "lastName": user.lastName,
+                "email": user.email
+            }},
             function (err, doc) {
                 if (err) {
                     deferred.reject(err);
