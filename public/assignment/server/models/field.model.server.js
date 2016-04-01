@@ -100,7 +100,9 @@ module.exports = function(FormModel){
                 form.fields.push(field);
                 FormModel.update(
                     { _id : formId},
-                    { $set: form
+                    { $set: {
+                        "fields": form.fields
+                    }
                     }, function (err, doc) {
                         if (err) {
                             deferred.reject(err);

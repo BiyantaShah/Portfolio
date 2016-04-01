@@ -27,6 +27,7 @@ module.exports = function(app, userModel, formModel){
         var forms = [];
         var userId = req.params.userId;
 
+        console.log(userId);
         formModel
             .findAllFormsForUser(userId)
             .then(

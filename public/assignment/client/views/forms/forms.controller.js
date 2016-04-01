@@ -34,6 +34,7 @@
                     }
 
                     else{
+
                         FormService.findAllFormsForUser(currentUser._id)
                             .then(function(response){
                                 vm.forms = response.data;

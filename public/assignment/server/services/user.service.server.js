@@ -149,7 +149,9 @@ module.exports = function(app,userModel){
 
         userModel.updateUser(userId,updatedUser)
             .then(function(response){
-                res.json(response);
+                req.session.currentUser = updatedUser;
+                //console.log(updatedUser);
+                res.json(updatedUser);
             },
                 function(err){
                     res.status(400).send(err);

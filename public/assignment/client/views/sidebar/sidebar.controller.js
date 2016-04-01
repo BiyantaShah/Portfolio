@@ -8,8 +8,6 @@
 
     function SidebarController($scope, $location){
 
-
-
         var vm = this;
 
 
