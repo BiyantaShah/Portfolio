@@ -1,6 +1,6 @@
 var q = require("q");
 
-module.exports = function(FormModel){
+module.exports = function(app,FormModel){
 
 
 
