@@ -1,6 +1,6 @@
 var q = require("q");
 
-module.exports = function(app,FormModel){
+module.exports = function(FormModel){
 
 
 
@@ -70,7 +70,9 @@ module.exports = function(app,FormModel){
                         form.fields.splice(i,1);
                         FormModel.update(
                             { _id : formId},
-                            { $set: form
+                            { $set: {
+                                "fields": form.fields
+                            }
                             }, function (err, response) {
                                 if (err) {
                                     deferred.reject(err);
@@ -132,7 +134,9 @@ module.exports = function(app,FormModel){
                         form.fields[i] = field;
                         FormModel.update(
                             { _id : formId},
-                            { $set: form
+                            { $set:{
+                                "fields": form.fields
+                            }
                             }, function (err, doc) {
                                 if (err) {
                                     deferred.reject(err);
