@@ -26,7 +26,7 @@
                         </div>
                         <div ng-switch-when="OPTIONS">
                             <select class="form-control">
-                                <option ng-repeat="option in field.options">{{option.label}}</option>
+                                <option ng-repeat="option in field.options"> {{option.label}} </option>
                             </select>
                         </div>
                         <div ng-switch-when="TEXTAREA">
@@ -35,14 +35,14 @@
                         <div ng-switch-when="CHECKBOXES">
                             <div ng-repeat="option in field.options">
                                 <label>
-                                    <input type="checkbox" value={{option.value}}>{{option.label}}
+                                    <input type="checkbox" value={{option.value}}> {{option.label}}
                                 </label>
                             </div>
                         </div>
                         <div ng-switch-when="RADIOS">
                             <div ng-repeat="option in field.options">
                                 <label>
-                                    <input type="radio" name={{option.label}} value={{option.value}}>{{option.label}}
+                                    <input type="radio" name={{option.label}} value={{option.value}}> {{option.label}}
                                 </label>
                             </div>
                         </div>
