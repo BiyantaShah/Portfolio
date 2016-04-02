@@ -63,6 +63,8 @@ module.exports = function(app,formModel) {
         var formId = req.params.formId;
         var newField = req.body;
 
+        //newField._id = (new Date()).getTime();
+
         formModel
             .createFieldForForm(formId,newField)
             .then(

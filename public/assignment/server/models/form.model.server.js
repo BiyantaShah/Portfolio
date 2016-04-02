@@ -124,17 +124,15 @@ module.exports = function(app,db, mongoose) {
 
         var deferred = q.defer();
 
-        var updatedForm = {
-            "_id" : form._id,
-            "userId": form.userId,
-            "title": form.title,
-            "fields": form.fields,
-            "updated": new Date()
-        };
+
 
         FormModel.update(
             { _id : formId},
-            { $set: updatedForm
+            { $set:  {
+            "title": form.title,
+            "fields": form.fields,
+            "updated": new Date()}
+
             }, function (err, doc) {
                 if (err) {
                     deferred.reject(err);

@@ -18,22 +18,19 @@
         $scope.updateForm = updateForm;
 
         function updateForm(start,end){
-            //alert(start + " " + end);
+
             var newFields = [];
 
             for(var i in vm.fields){
                 newFields[i] = vm.fields[i];
             }
 
-            var temp = newFields[start];
-            newFields[start] = newFields[end];
-            newFields[end] = temp;
+            newFields.splice(end, 0, newFields.splice(start, 1)[0]);
 
             FormService.findFormById($routeParams.formId)
                 .then(function(response){
                     var form = response.data;
                     form.fields = newFields;
-                   // console.log(form._id);
                     FormService.updateFormById(form._id,form);
                 });
         }
@@ -101,6 +98,7 @@
         }
 
         function cloneField(newField){
+            delete newField._id;
             FieldService.createFieldForForm($routeParams.formId, newField)
                 .then(function(response){
                     if (response.data){

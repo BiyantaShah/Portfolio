@@ -27,7 +27,6 @@ module.exports = function(app, userModel, formModel){
         var forms = [];
         var userId = req.params.userId;
 
-        console.log(userId);
         formModel
             .findAllFormsForUser(userId)
             .then(
@@ -100,6 +99,8 @@ module.exports = function(app, userModel, formModel){
     function updateFormById(req,res){
         var formId = req.params.formId;
         var updatedForm = req.body;
+       // console.log("Form Service");
+       // console.log(updatedForm);
 
         formModel.updateFormById(formId,updatedForm)
             .then(

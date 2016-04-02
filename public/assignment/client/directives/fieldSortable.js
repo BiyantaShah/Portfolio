@@ -26,7 +26,6 @@
                 stop: function (event, ui) {
 
                     end = ui.item.index();
-
                     scope.$apply(function(){
                         scope.updateForm(start,end);
                     });
