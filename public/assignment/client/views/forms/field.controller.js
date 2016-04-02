@@ -15,7 +15,8 @@
         vm.deleteField = deleteField;
         vm.selectField = selectField;
         vm.editField = editField;
-        $scope.updateForm = updateForm;
+        vm.sortField  = sortField;
+       /* $scope.updateForm = updateForm;
 
         function updateForm(start,end){
 
@@ -33,7 +34,7 @@
                     form.fields = newFields;
                     FormService.updateFormById(form._id,form);
                 });
-        }
+        } */
 
         function init(){
 
@@ -167,6 +168,19 @@
                 .then(
                     function(response){
                         init();
+                    }
+                );
+        }
+
+        function sortField(start, end) {
+            FieldService
+                .sortField($routeParams.formId, start, end)
+                .then(
+                    function (response) {
+                        vm.fields = response.data;
+                    },
+                    function (err) {
+                        vm.error = err;
                     }
                 );
         }
