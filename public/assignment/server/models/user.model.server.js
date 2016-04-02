@@ -151,7 +151,7 @@ module.exports = function(db,mongoose) {
                 "password": user.password,
                 "firstName": user.firstName,
                 "lastName": user.lastName,
-                "emails": user.email
+                "emails": user.emails
             }},
             function (err, doc) {
                 if (err) {
