@@ -4,23 +4,23 @@
     "lastName": "Wonderland",
     "username": "alice",
     "password": "alice",
-    "email":"alice@gmail.com",
-    "roles": []},
+    "email":["alice@gmail.com"],
+    "roles": ["student"]},
 
   {
     "firstName": "Bob",
     "lastName": "Hope",
     "username": "bob",
     "password": "bob",
-    "email":"bob@gmail.com",
-    "roles": []},
+    "email":["bob@gmail.com"],
+    "roles": ["faculty", "admin"]},
 
   {
     "firstName": "Charlie",
     "lastName": "Brown",
     "username": "charlie",
     "password": "charlie",
-    "email":"charlie@gmail.com",
+    "email":["charlie@gmail.com"],
     "roles": []},
 
   {
@@ -28,14 +28,14 @@
     "lastName": "Craig",
     "username": "dan",
     "password": "dan",
-    "email":"dan@gmail.com",
-    "roles": []},
+    "email":["dan@gmail.com"],
+    "roles": ["faculty"]},
 
   {
     "firstName": "Edward",
     "lastName": "Norton",
     "username": "ed",
     "password": "ed",
-    "email":"edward@gmail.com",
-    "roles": []}
+    "email":["edward@gmail.com"],
+    "roles": ["student"]}
     ]

@@ -39,7 +39,7 @@
                 return;
             }
 
-            if (user.email === null) {
+            if (user.emails === null) {
                 $scope.message = "Please Enter your Email-ID";
                 return;
             }
@@ -50,9 +50,9 @@
                     //"._id": (new Date).getTime(),
                     "firstName": null,
                     "lastName":null,
-                    "username":user.username,
-                    "password":user.password,
-                    "email":user.email,
+                    "username":vm.user.username,
+                    "password":vm.user.password,
+                    "emails":vm.user.emails.split(","),
                     "roles": []
                 };
             }

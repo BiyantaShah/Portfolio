@@ -16,6 +16,7 @@
                 .then(
                 function(response){
                     vm.user = response.data;
+                    vm.user.emails = response.data.emails.join(",");
                 }
                 );
         }
@@ -30,7 +31,7 @@
                 "password": user.password,
                 "firstName": user.firstName,
                 "lastName":user.lastName,
-                "email":user.email
+                "emails":user.emails.split(",")
             };
 
             UserService.updateUser(vm.user._id,userDetails)
