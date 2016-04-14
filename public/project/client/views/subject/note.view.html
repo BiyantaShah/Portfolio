@@ -9,7 +9,6 @@
             <li role="presentation"><a href="#/subject"> Subjects </a></li>
             <li role="presentation"><a href="#/subject/:subjectId/notebook"> Notebooks </a></li>
             <li role="presentation" class="active"><a href="#/subject/:subjectId/notebook/:notebookId/note"> Notes </a></li>
-            <li role="presentation"><a href="#/checklist">To-Do-Lists/Notes</a></li>
             <li role="presentation"><a href="#/group">Groups</a></li>
         </ul>
         <form>
@@ -17,7 +16,7 @@
             <div class="table-responsive" ng-controller="NoteController">
                 <div>
                     <hr class="hr-break">
-                    <h3 align="center">Notes created by{{currentUser.firstName}}</h3>
+                    <h3 align="center">Notes created by {{currentUser.firstName}}</h3>
                     <h4 align="center">Add, delete or edit your notes here</h4>
                     <br>
                 </div>
@@ -48,7 +47,7 @@
                     </tr>
 
                     <tr ng-repeat="note in model.notes">
-                        <td><a ng-click = "model.goToNoteText(note._id);" class="small-font">{{note.noteTitle}}</a></td>
+                        <td><a ng-click = "model.goToNoteText(note._id);" class="small-font">{{note.title}}</a></td>
                         <td>
                             <a ng-click="model.deleteNote($index);" class="btn btn-default">
                                 <span class="glyphicon glyphicon-remove right-place " aria-hidden="true"></span>

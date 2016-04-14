@@ -1,0 +1,16 @@
+[
+  {"_id": "111", "label": "Physics", "userId": 123 , "subjectId": "000"},
+  {"_id": "112", "label": "Chemistry", "userId": 123 , "subjectId": "000"},
+  {"_id": "113", "label": "Biology", "userId": 123 , "subjectId": "000"},
+
+  {"_id": "221", "label": "Eco", "userId": 123 , "subjectId": "001"},
+  {"_id": "222", "label": "Children/Teenagers", "userId": 123 , "subjectId": "001"},
+
+  {"_id": "331", "label": "Algebra", "userId": 234 , "subjectId": "002"},
+  {"_id": "332", "label": "Differentiation", "userId": 234 , "subjectId": "002"},
+  {"_id": "333", "label": "Integration", "userId": 234 , "subjectId": "002"},
+
+  {"_id": "441", "label": "Demand & Supply", "userId": 234 , "subjectId": "003"},
+  {"_id": "442", "label": "Capitalism", "userId": 234 , "subjectId": "003"},
+  {"_id": "441", "label": "Economics", "userId": 234 , "subjectId": "003"}
+]

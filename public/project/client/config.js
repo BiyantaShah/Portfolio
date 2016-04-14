@@ -14,9 +14,6 @@
                 }
             })
 
-            .when("/Projectproposal",{
-                templateUrl:"misc/Projectproposal.pdf"
-        })
 
             .when("/login", {
                 templateUrl: "views/users/login.view.html",
@@ -103,6 +100,15 @@
                 controllerAs: "model",
                 resolve:{
                     checkLoggedIn : checkLoggedIn
+                }
+            })
+
+            .when("/checkList/:checklistId/contentList",{
+                templateUrl: "views/checklist/listContent.view.html",
+                controller: "ListContentController",
+                controllerAs: "model",
+                resolve:{
+                    checkLoggedIn: checkLoggedIn
                 }
             })
 

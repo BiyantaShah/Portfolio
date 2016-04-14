@@ -11,11 +11,11 @@
         function init(){
 
 
-                NoteService.getContent($routeParams.subjectId, $routeParams.notebookId, $routeParams.noteId)
+                NoteService.getContent($routeParams.noteId)
                     .then(function(response){
                         if(response.data){
                             vm.note = response.data;
-                            vm.note.noteTitle = response.data.noteTitle;
+                            vm.note.noteTitle = response.data.title;
                             vm.note.content = response.data.content;
                         }
 

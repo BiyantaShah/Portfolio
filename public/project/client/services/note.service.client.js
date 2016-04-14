@@ -23,25 +23,25 @@
 
         return api;
 
-        function createNoteForBook(subjectId,notebookId, newNote) {
-            return $http.post ("/api/project/subject/"+ subjectId +"/notebook/" + notebookId+ "/note" ,newNote);
+        function createNoteForBook(notebookId, newNote) {
+            return $http.post ("/api/project/notebook/" + notebookId+ "/note" ,newNote);
 
 
         }
 
-        function getAllNotesForBook( notebookId,subjectId){
-            return $http.get("/api/project/subject/"+ subjectId +"/notebook/"+ notebookId + "/note");
+        function getAllNotesForBook( notebookId){
+            return $http.get("/api/project/notebook/"+ notebookId + "/note");
         }
 
-        function getNoteForBook(subjectId,notebookId, noteId) {
-            return $http.get("/api/project/subject/"+subjectId+"/notebook/"+ notebookId +"/note/" + noteId);
+        function getNoteForBook( noteId) {
+            return $http.get("/api/project/note/" + noteId);
         }
 
 
 
-        function deleteNoteFromBook( subjectId,notebookId, noteId){
+        function deleteNoteFromBook(  noteId){
 
-            return $http.delete("/api/project/subject/" + subjectId+"/notebook/" + notebookId + "/note/" + noteId);
+            return $http.delete("/api/project/note/" + noteId);
         }
 
         function findNoteByTitle(userId, title){
@@ -49,13 +49,13 @@
             return $http.get("/api/project/user/" + userId + "/title/" + title);
         }
 
-        function updateNote(subjectId, notebookId,noteId,  note){
-            return $http.put("/api/project/subject/"+ subjectId +"/notebook/"+ notebookId + "/note/" + noteId, note);
+        function updateNote(noteId,  note){
+            return $http.put("/api/project/note/" + noteId, note);
 
         }
 
-        function getContent(subjectId,notebookId, noteId){
-            return $http.get("/api/project/subject/" + subjectId +"/notebook/" + notebookId + "/note/" + noteId + '/content');
+        function getContent(noteId){
+            return $http.get("/api/project/note/" + noteId + '/content');
         }
 
         function getNoteId(){

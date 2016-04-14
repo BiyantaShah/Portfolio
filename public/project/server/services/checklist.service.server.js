@@ -5,6 +5,7 @@ module.exports = function(app, userModel, checklistModel){
     app.post("/api/project/user/:userId/checklist", createCheckListForUser);
     app.get("/api/project/user/:userId/checklist", findAllCheckListsForUser);
     app.put("/api/project/checklist/:checklistId",updateCheckListById);
+    app.get("/api/project/checklist/:checklistId/content", getContent);
 
 
     function deleteCheckListById(req,res){
@@ -92,6 +93,26 @@ module.exports = function(app, userModel, checklistModel){
         var updatedList = req.body;
 
         res.json(checklistModel.updateCheckListById(checklistId,updatedList));
+
+    }
+
+    function getContent (req,res){
+
+
+        var checklistId = req.params.checklistId;
+
+
+        checklistModel
+            .getContent(checklistId)
+            .then(
+                function(response){
+                    res.json(response)
+                },
+                function (err){
+                    res.status(400).send(err);
+                }
+            );
+
 
     }
 };

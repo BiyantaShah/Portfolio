@@ -37,7 +37,6 @@
         function searchNote(noteName) {
 
             var userId;
-
             UserService.getCurrentUser()
                 .then(
                     function(response){

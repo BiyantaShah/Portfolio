@@ -16,7 +16,8 @@
             findCheckListByTitle: findCheckListByTitle,
             findCheckListById: findCheckListById,
             findAllCheckListsForUser: findAllCheckListsForUser,
-            updateCheckListById:updateCheckListById
+            updateCheckListById:updateCheckListById,
+            getContent: getContent
         }
 
         return api;
@@ -55,8 +56,12 @@
 
         function updateCheckListById(checklistId, newChecklist){
 
-            return $http.put("/api/project/checklist/"+ checklistId, newChecklist)
+            return $http.put("/api/project/checklist/"+ checklistId, newChecklist);
 
+        }
+
+        function getContent(checklistId){
+            return $http.get("/api/project/checklist/"+ checklistId + "/content");
         }
 
 

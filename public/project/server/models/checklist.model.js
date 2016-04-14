@@ -10,7 +10,8 @@ module.exports = function(app, CheckListService) {
         findCheckListByTitle: findCheckListByTitle,
         findAllCheckListsForUser: findAllCheckListsForUser,
         findCheckListById: findCheckListById,
-        updateCheckListById: updateCheckListById
+        updateCheckListById: updateCheckListById,
+        getContent : getContent
 
 
     };
@@ -109,6 +110,22 @@ module.exports = function(app, CheckListService) {
         }
 
         return checklists[i];
+    }
+
+    function getContent(checklistId){
+
+        var deferred = q.defer();
+        var checklist  = null;
+
+        for (var i in checklists){
+            if(checklists[i]._id = checklistId){
+                checklist = checklists[i];
+                break;
+            }
+        }
+
+        deferred.resolve(checklist);
+        return deferred.promise
     }
 
 };

@@ -13,7 +13,7 @@
         var api={
             createNotebookForSubject:createNotebookForSubject,
             getAllNotebooksForSubject: getAllNotebooksForSubject,
-            getNotebookForSubject: getNotebookForSubject,
+            getNotebookById: getNotebookById,
             deleteNotebookFromSubject: deleteNotebookFromSubject,
             updateNotebook:updateNotebook,
             getNotebookId: getNotebookId,
@@ -33,19 +33,19 @@
             return $http.get("/api/project/subject/"+ subjectId + "/notebook");
         }
 
-        function getNotebookForSubject(subjectId, notebookId) {
-            return $http.get("/api/project/subject/"+ subjectId +"/notebook/" + notebookId);
+        function getNotebookById(notebookId) {
+            return $http.get("/api/project/notebook/" + notebookId);
         }
 
 
 
-        function deleteNotebookFromSubject(subjectId, notebookId){
+        function deleteNotebookFromSubject(notebookId){
 
-            return $http.delete("/api/project/subject/" + subjectId + "/notebook/" + notebookId);
+            return $http.delete("/api/project/notebook/" + notebookId);
         }
 
-        function updateNotebook(subjectId, notebookId, book){
-            return $http.put("/api/project/subject/"+ subjectId + "/notebook/" + notebookId, book);
+        function updateNotebook(notebookId, book){
+            return $http.put("/api/project/notebook/" + notebookId, book);
 
         }
 

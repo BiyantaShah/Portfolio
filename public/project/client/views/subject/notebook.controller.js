@@ -6,7 +6,7 @@
         .module("NoteTakerWebsite")
         .controller("NotebookController",NotebookController);
 
-    function NotebookController($scope, NotebookService ,$location, SubjectService, $routeParams) {
+    function NotebookController($scope, NotebookService ,$location, $routeParams) {
 
         var vm = this;
 
@@ -48,7 +48,7 @@
                 var newBook = {
                     "._id":null,
                     "label":notebookName,
-                    "notes": []
+                    "subjectId": $routeParams.subjectId
 
                 };
                 NotebookService.createNotebookForSubject($routeParams.subjectId, newBook)
@@ -64,7 +64,7 @@
 
         function deleteNotebook(index) {
 
-            NotebookService.deleteNotebookFromSubject($routeParams.subjectId,vm.notebooks[index]._id);
+            NotebookService.deleteNotebookFromSubject(vm.notebooks[index]._id);
             init();
         }
 
@@ -82,7 +82,7 @@
 
                 var selectedBook = vm.notebooks[vm.index];
                 selectedBook.label = notebookName;
-                NotebookService.updateNotebook($routeParams.subjectId,selectedBook._id, selectedBook);
+                NotebookService.updateNotebook(selectedBook._id, selectedBook);
                 init();
                 vm.index = -1;
                 vm.notebook.notebookName = null;

@@ -1,9 +1,9 @@
-module.exports = function(app, subjectModel){
+module.exports = function(app, notebookModel){
     app.get("/api/project/subject/:subjectId/notebook", findAllNotebooksForSubject);
-    app.get("/api/project/subject/:subjectId/notebook/:notebookId", findNotebookByIdForSubject);
-    app.delete("/api/project/subject/:subjectId/notebook/:notebookId", deleteNotebookFromSubject);
+    app.get("/api/project/notebook/:notebookId", findNotebookById);
+    app.delete("/api/project/notebook/:notebookId", deleteNotebookFromSubject);
     app.post("/api/project/subject/:subjectId/notebook", createNotebookForSubject);
-    app.put("/api/project/subject/:subjectId/notebook/:notebookId", updateNotebookByIdForSubject);
+    app.put("/api/project/notebook/:notebookId", updateNotebookByIdForSubject);
 
 
 
@@ -12,7 +12,7 @@ module.exports = function(app, subjectModel){
 
         var subjectId = req.params.subjectId;
 
-        subjectModel
+        notebookModel
             .findAllNotebooksForSubject(subjectId)
             .then(
                 function(response){
@@ -26,11 +26,12 @@ module.exports = function(app, subjectModel){
             );
     }
 
-    function findNotebookByIdForSubject(req,res){
-        var subjectId = req.params.subjectId;
+    function findNotebookById(req,res){
+
         var notebookId = req.params.notebookId;
-        subjectModel
-            .findNotebookByIdForSubject(subjectId,notebookId)
+
+        notebookModel
+            .findNotebookById(notebookId)
             .then(
                 function(response){
                     res.json(response)
@@ -45,10 +46,10 @@ module.exports = function(app, subjectModel){
     }
 
     function deleteNotebookFromSubject(req,res){
-        var subjectId = req.params.subjectId;
+
         var notebookId = req.params.notebookId;
-        subjectModel
-            .deleteNotebookFromSubject(subjectId,notebookId)
+        notebookModel
+            .deleteNotebookFromSubject(notebookId)
             .then(
                 function(response){
                     res.json(response)
@@ -66,7 +67,7 @@ module.exports = function(app, subjectModel){
         var subjectId = req.params.subjectId;
         var newBook = req.body;
 
-        subjectModel
+        notebookModel
             .createNotebookForSubject(subjectId,newBook)
             .then(
                 function(response){
@@ -81,12 +82,12 @@ module.exports = function(app, subjectModel){
     }
 
     function updateNotebookByIdForSubject(req,res){
-        var subjectId = req.params.subjectId;
+
         var notebookId = req.params.notebookId;
         var updatedBook = req.body;
 
-        subjectModel
-            .updateNotebookByIdForSubject(subjectId,notebookId,updatedBook)
+        notebookModel
+            .updateNotebookByIdForSubject(notebookId,updatedBook)
             .then(
                 function(response){
                     res.json(response)

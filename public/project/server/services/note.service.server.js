@@ -1,10 +1,10 @@
-module.exports = function(app, subjectModel){
-    app.get("/api/project/subject/:subjectId/notebook/:notebookId/note", findAllNotesForBooks);
-    app.get("/api/project/subject/:subjectId/notebook/:notebookId/note/:noteId", findNoteByIdForBook);
-    app.delete("/api/project/subject/:subjectId/notebook/:notebookId/note/:noteId", deleteNoteFromBook);
-    app.post("/api/project/subject/:subjectId/notebook/:notebookId/note", createNoteForBook);
-    app.put("/api/project/subject/:subjectId/notebook/:notebookId/note/:noteId", updateNoteByIdForBook);
-    app.get("/api/project/subject/:subjectId/notebook/:notebookId/note/:noteId/content", getContent);
+module.exports = function(app, noteModel){
+    app.get("/api/project/notebook/:notebookId/note", findAllNotesForBooks);
+    app.get("/api/project/note/:noteId", findNoteById);
+    app.delete("/api/project/note/:noteId", deleteNoteFromBook);
+    app.post("/api/project/notebook/:notebookId/note", createNoteForBook);
+    app.put("/api/project/note/:noteId", updateNoteByIdForBook);
+    app.get("/api/project/note/:noteId/content", getContent);
     app.get("/api/project/user/:userId/title/:title", findNoteByTitle);
 
 
@@ -15,9 +15,9 @@ module.exports = function(app, subjectModel){
     function findAllNotesForBooks(req,res){
 
         var notebookId = req.params.notebookId;
-        var subjectId = req.params.subjectId;
-        subjectModel
-            .findAllNotesForBooks(notebookId, subjectId)
+
+        noteModel
+            .findAllNotesForBooks(notebookId)
             .then(
                 function(response){
 
@@ -30,13 +30,12 @@ module.exports = function(app, subjectModel){
             );
     }
 
-    function findNoteByIdForBook(req,res){
+    function findNoteById(req,res){
 
-        var subjectId = req.params.subjectId;
-        var notebookId = req.params.notebookId;
+
         var noteId = req.params.noteId;
-        subjectModel
-            .findNoteByIdForBook(subjectId, notebookId, noteId)
+        noteModel
+            .findNoteById(noteId)
             .then(
                 function(response){
                     res.json(response)
@@ -52,12 +51,11 @@ module.exports = function(app, subjectModel){
 
     function deleteNoteFromBook(req,res){
 
-        var subjectId = req.params.subjectId;
-        var notebookId = req.params.notebookId;
+
         var noteId = req.params.noteId;
 
-        subjectModel
-            .deleteNoteFromBook(subjectId,notebookId, noteId)
+        noteModel
+            .deleteNoteFromBook(noteId)
             .then(
                 function(response){
                     res.json(response)
@@ -72,12 +70,12 @@ module.exports = function(app, subjectModel){
 
     function createNoteForBook(req,res){
 
-        var subjectId = req.params.subjectId;
+
         var notebookId = req.params.notebookId;
         var newNote = req.body;
 
-        subjectModel
-            .createNoteForBook(subjectId,notebookId,newNote)
+        noteModel
+            .createNoteForBook(notebookId,newNote)
             .then(
                 function(response){
                     res.json(response)
@@ -92,13 +90,12 @@ module.exports = function(app, subjectModel){
 
     function updateNoteByIdForBook(req,res){
 
-        var subjectId = req.params.subjectId;
+
         var noteId = req.params.noteId;
-        var notebookId = req.params.notebookId;
         var updatedNote = req.body;
 
-        subjectModel
-            .updateNoteByIdForBook(subjectId,notebookId,noteId,updatedNote)
+        noteModel
+            .updateNoteByIdForBook(noteId,updatedNote)
             .then(
                 function(response){
                     res.json(response)
@@ -113,13 +110,12 @@ module.exports = function(app, subjectModel){
 
     function getContent (req,res){
 
-        var subjectId = req.params.subjectId;
-        var notebookId = req.params.notebookId;
+
         var noteId = req.params.noteId;
 
 
-        subjectModel
-            .getContent(subjectId,notebookId,noteId)
+        noteModel
+            .getContent(noteId)
             .then(
                 function(response){
                     res.json(response)
@@ -138,7 +134,7 @@ module.exports = function(app, subjectModel){
         var title = req.params.title;
 
 
-        subjectModel
+        noteModel
             .findNoteByTitle(userId, title)
             .then(
                 function(response){

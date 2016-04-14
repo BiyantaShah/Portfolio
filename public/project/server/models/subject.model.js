@@ -12,12 +12,7 @@ module.exports = function(app, SubjectService) {
         findSubjectById: findSubjectById,
         updateSubjectById: updateSubjectById,
 
-        // for notebook
-        findAllNotebooksForSubject: findAllNotebooksForSubject,
-        findNotebookByIdForSubject: findNotebookByIdForSubject,
-        deleteNotebookFromSubject: deleteNotebookFromSubject,
-        createNotebookForSubject: createNotebookForSubject,
-        updateNotebookByIdForSubject: updateNotebookByIdForSubject,
+
 
         //for notes
         findAllNotesForBooks: findAllNotesForBooks,
@@ -134,116 +129,7 @@ module.exports = function(app, SubjectService) {
 
     }
 
-    //functions for notebook
 
-    function findAllNotebooksForSubject(subjectId){
-
-        var deferred = q.defer();
-        var subject =null;
-
-        for(var i in subjects){
-            if(subjects[i]._id == subjectId) {
-                subject = subjects[i];
-                break;
-            }
-        }
-
-        deferred.resolve(subject.notebooks);
-        return deferred.promise;
-    }
-
-    function findNotebookByIdForSubject(subjectId,notebookId){
-        var deferred = q.defer();
-        var subject = null;
-
-        for(var i in subjects){
-            if(subjects[i]._id == subjectId) {
-                subject = subjects[i];
-                break;
-            }
-        }
-
-        var bookSelect=null;
-        for(var i in subject.notebooks){
-            if(subject.notebooks[i]._id == notebookId){
-                bookSelect=subject.notebooks[i];
-            }
-        }
-
-        deferred.resolve(bookSelect);
-        return deferred.promise;
-    }
-
-
-    function deleteNotebookFromSubject(subjectId,notebookId){
-
-        var deferred = q.defer();
-        var subject = null;
-
-        for(var i in subjects){
-            if(subjects[i]._id == subjectId) {
-                subject = subjects[i];
-                break;
-            }
-        }
-
-        for(var i in subject.notebooks){
-            if(subject.notebooks[i]._id == notebookId){
-                subject.notebooks.splice(i,1);
-            }
-        }
-
-        deferred.resolve(subject);
-        return deferred.promise;
-
-    }
-
-    function createNotebookForSubject(subjectId,newBook){
-
-        var deferred = q.defer();
-        var subject = null;
-
-        for(var i in subjects){
-            if(subjects[i]._id == subjectId) {
-                subject = subjects[i];
-                break;
-            }
-        }
-
-        newBook._id=(new Date).getTime();
-
-        subject.notebooks.push(newBook);
-
-        deferred.resolve(subject);
-        return deferred.promise;
-
-    }
-
-    function updateNotebookByIdForSubject(subjectId,notebookId,book){
-
-        var deferred = q.defer();
-        var subject = null;
-
-        for(var i in subjects){
-            if(subjects[i]._id == subjectId) {
-                subject = subjects[i];
-                break;
-            }
-        }
-
-        for(var i in subject.notebooks){
-            if(subject.notebooks[i]._id == notebookId){
-                subject.notebooks[i] = book;
-                break;
-            }
-        }
-
-        deferred.resolve(subject);
-        return deferred.promise
-
-
-
-    }
 
     // note functions
 

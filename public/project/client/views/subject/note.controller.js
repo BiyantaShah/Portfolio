@@ -6,7 +6,7 @@
         .module("NoteTakerWebsite")
         .controller("NoteController",NoteController);
 
-    function NoteController($scope, NotebookService ,$location, NoteService, SubjectService, $routeParams) {
+    function NoteController($scope,$location, NoteService,$routeParams, UserService) {
 
         var vm = this;
 
@@ -19,7 +19,7 @@
 
         function init() {
 
-                NoteService.getAllNotesForBook($routeParams.notebookId, $routeParams.subjectId)
+                NoteService.getAllNotesForBook($routeParams.notebookId)
                     .then(function(response){
                         vm.notes = response.data;
                         currentAllNotes = response.data;
@@ -40,6 +40,7 @@
         //event implementations
 
         function addNote(noteName) {
+            var currentUser = null;
 
             if (noteName == null) {
                 $scope.message = "Give a title to the subject";
@@ -50,12 +51,12 @@
 
                 var newNote = {
                     "._id":null,
-                    "noteTitle":noteName
-
-
+                    "title":noteName,
+                    "content":null,
+                    "notebookId": $routeParams.notebookId,
+                    //"userId": currentUser._id
                 };
-                NoteService.createNoteForBook($routeParams.subjectId,
-                    $routeParams.notebookId, newNote)
+                NoteService.createNoteForBook($routeParams.notebookId, newNote)
                     .then(function(response){
 
                         vm.note.noteName = null;
@@ -68,8 +69,7 @@
 
         function deleteNote(index) {
 
-            NoteService.deleteNoteFromBook($routeParams.subjectId,
-                $routeParams.notebookId,vm.notes[index]._id);
+            NoteService.deleteNoteFromBook(vm.notes[index]._id);
             init();
         }
 
@@ -77,7 +77,7 @@
         function selectNote(index) {
             vm.index = index;
             vm.note = vm.notes[index];
-            vm.note.noteName = vm.notes[index].noteTitle;
+            vm.note.noteName = vm.notes[index].title;
 
         }
 
@@ -86,9 +86,8 @@
             if(vm.index != -1 && noteName != null){
 
                 var selectedNote = vm.notes[vm.index];
-                selectedNote.noteTitle = noteName;
-                NoteService.updateNote($routeParams.subjectId,
-                    $routeParams.notebookId,selectedNote._id, selectedNote);
+                selectedNote.title = noteName;
+                NoteService.updateNote(selectedNote._id, selectedNote);
                 init();
                 vm.index = -1;
                 vm.note.noteName = null;
