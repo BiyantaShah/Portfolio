@@ -19,12 +19,26 @@
 
         function init() {
 
+            if($routeParams.notebookId == ":notebookId"){
+                UserService.getCurrentUser()
+                    .then(function(response){
+                        vm.user = response.data;
+                        NoteService.getAllNotesForUser(vm.user._id)
+                            .then(function(response){
+                                vm.notes = response.data;
+                                currentAllNotes = response.data;
+                            });
+
+                    });
+            }
+            else{
                 NoteService.getAllNotesForBook($routeParams.notebookId)
                     .then(function(response){
                         vm.notes = response.data;
                         currentAllNotes = response.data;
                     });
 
+            }
 
         }
         init();
@@ -54,7 +68,7 @@
                     "title":noteName,
                     "content":null,
                     "notebookId": $routeParams.notebookId,
-                    //"userId": currentUser._id
+                    "userId": vm.user._id
                 };
                 NoteService.createNoteForBook($routeParams.notebookId, newNote)
                     .then(function(response){

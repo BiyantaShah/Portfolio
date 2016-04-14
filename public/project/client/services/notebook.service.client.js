@@ -14,6 +14,7 @@
             createNotebookForSubject:createNotebookForSubject,
             getAllNotebooksForSubject: getAllNotebooksForSubject,
             getNotebookById: getNotebookById,
+            getAllNotebooksForUser: getAllNotebooksForUser,
             deleteNotebookFromSubject: deleteNotebookFromSubject,
             updateNotebook:updateNotebook,
             getNotebookId: getNotebookId,
@@ -35,6 +36,10 @@
 
         function getNotebookById(notebookId) {
             return $http.get("/api/project/notebook/" + notebookId);
+        }
+
+        function getAllNotebooksForUser(userId){
+            return $http.get("/api/project/user/"+ userId + "/notebook");
         }
 
 

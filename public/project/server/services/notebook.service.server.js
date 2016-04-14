@@ -4,9 +4,26 @@ module.exports = function(app, notebookModel){
     app.delete("/api/project/notebook/:notebookId", deleteNotebookFromSubject);
     app.post("/api/project/subject/:subjectId/notebook", createNotebookForSubject);
     app.put("/api/project/notebook/:notebookId", updateNotebookByIdForSubject);
+    app.get("/api/project/user/:userId/notebook", findAllNotebooksForUser);
 
 
 
+    function findAllNotebooksForUser(req,res){
+        var userId = req.params.userId;
+
+        notebookModel
+            .findAllNotebooksForUser(userId)
+            .then(
+                function(response){
+
+                    res.json(response)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
 
     function findAllNotebooksForSubject(req,res){
 

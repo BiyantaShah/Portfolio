@@ -6,7 +6,7 @@ module.exports = function(app, noteModel){
     app.put("/api/project/note/:noteId", updateNoteByIdForBook);
     app.get("/api/project/note/:noteId/content", getContent);
     app.get("/api/project/user/:userId/title/:title", findNoteByTitle);
-
+    app.get("/api/project/user/:userId/note", findAllNotesForUsers);
 
 
 
@@ -144,5 +144,23 @@ module.exports = function(app, noteModel){
                     res.status(400).send(err);
                 }
             );
+    }
+
+    function findAllNotesForUsers(req,res){
+
+        var userId = req.params.userId;
+
+        noteModel
+            .findAllNotesForUsers(userId)
+            .then(
+                function(response){
+                    res.json(response)
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
+
+
     }
 };

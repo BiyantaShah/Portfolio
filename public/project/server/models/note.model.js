@@ -12,13 +12,27 @@ module.exports = function(app, NoteService) {
         createNoteForBook: createNoteForBook,
         updateNoteByIdForBook:updateNoteByIdForBook,
         getContent: getContent,
-        findNoteByTitle:findNoteByTitle
+        findNoteByTitle:findNoteByTitle,
+        findAllNotesForUsers: findAllNotesForUsers
 
     };
     return api;
 
 
     // note functions
+
+    function findAllNotesForUsers(userId){
+        var deferred = q.defer();
+        var note = [];
+
+        for(var i in notes){
+            if(notes[i].userId == userId){
+                note.push(notes[i]);
+            }
+        }
+        deferred.resolve(note);
+        return deferred.promise;
+    }
 
     function findAllNotesForBooks(notebookId){
 

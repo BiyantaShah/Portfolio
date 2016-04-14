@@ -13,6 +13,7 @@
             createNoteForBook:createNoteForBook,
             getAllNotesForBook: getAllNotesForBook,
             getNoteForBook: getNoteForBook,
+            getAllNotesForUser:getAllNotesForUser,
             deleteNoteFromBook: deleteNoteFromBook,
             findNoteByTitle: findNoteByTitle,
             updateNote:updateNote,
@@ -35,6 +36,10 @@
 
         function getNoteForBook( noteId) {
             return $http.get("/api/project/note/" + noteId);
+        }
+
+        function getAllNotesForUser(userId){
+            return $http.get("/api/project/user/"+ userId +"/note");
         }
 
 

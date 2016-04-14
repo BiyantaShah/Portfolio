@@ -7,6 +7,7 @@ module.exports = function(app, NotebookService) {
         // for notebook
         findAllNotebooksForSubject: findAllNotebooksForSubject,
         findNotebookById: findNotebookById,
+        findAllNotebooksForUser:findAllNotebooksForUser,
         deleteNotebookFromSubject: deleteNotebookFromSubject,
         createNotebookForSubject: createNotebookForSubject,
         updateNotebookByIdForSubject: updateNotebookByIdForSubject
@@ -46,6 +47,20 @@ module.exports = function(app, NotebookService) {
         }
 
         deferred.resolve(bookSelect);
+        return deferred.promise;
+    }
+
+    function findAllNotebooksForUser(userId){
+        var deferred = q.defer();
+        var notebook =[];
+
+        for(var i in notebooks){
+            if(notebooks[i].userId == userId) {
+                notebook.push(notebooks[i]);
+            }
+        }
+
+        deferred.resolve(notebook);
         return deferred.promise;
     }
 

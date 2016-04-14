@@ -6,7 +6,7 @@
         .module("NoteTakerWebsite")
         .controller("NotebookController",NotebookController);
 
-    function NotebookController($scope, NotebookService ,$location, $routeParams) {
+    function NotebookController($scope, NotebookService ,$location, $routeParams, UserService) {
 
         var vm = this;
 
@@ -18,11 +18,25 @@
         vm.goToNote = goToNote;
 
         function init() {
+            if($routeParams.subjectId == ":subjectId"){
+                UserService.getCurrentUser()
+                    .then(function(response){
+                        vm.user = response.data;
+                        NotebookService.getAllNotebooksForUser(vm.user._id)
+                            .then(function(response){
+                                vm.notebooks = response.data;
+                                currentAllNotebooks = response.data;
+                            })
+                    })
+            }
+            else{
                 NotebookService.getAllNotebooksForSubject($routeParams.subjectId)
                     .then(function(response){
                         vm.notebooks = response.data;
                         currentAllNotebooks = response.data;
                     });
+
+            }
 
         }
         init();
@@ -48,6 +62,7 @@
                 var newBook = {
                     "._id":null,
                     "label":notebookName,
+                    "userId": vm.user._id,
                     "subjectId": $routeParams.subjectId
 
                 };
