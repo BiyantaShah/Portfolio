@@ -20,21 +20,26 @@
         vm.selectGroup = selectGroup;
         vm.updateGroup = updateGroup;
 
-        function init(){
+        function init() {
+            currentUser = null;
 
-            if (UserService.getCurrentUser() == null) {
-                $location.path("/home");
-            }
-            else{
-                currentUser =UserService.getCurrentUser();
+            UserService.getCurrentUser()
+                .then(function (response) {
+                    currentUser = response.data;
 
-                GroupService.findAllGroupsForUser(currentUser._id)
-                    .then(function(response){
-                        vm.groups = response.data;
-                        currentAllUserGroups = response.data;
-                    });
-            }
+                    if (currentUser == null) {
+                        $location.path("/home");
+                    }
+                    else {
 
+                        GroupService.findAllGroupsForUser(currentUser._id)
+                            .then(function (response) {
+                                vm.groups = response.data;
+                                currentAllUserGroups = response.data;
+                            });
+                    }
+
+                });
         }
         init();
 

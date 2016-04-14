@@ -9,8 +9,6 @@ module.exports = function(app, userModel, subjectModel){
 
     function deleteSubjectById(req,res){
 
-
-
         var subjectId = req.params.subjectId;
 
         subjectModel.deleteSubjectById(subjectId);
@@ -57,8 +55,15 @@ module.exports = function(app, userModel, subjectModel){
 
     function findSubjectByTitle(req,res){
         var title = req.body;
-        var subject = subjectModel.findSubjectByTitle(title);
-        res.json(subject);
+         subjectModel.findSubjectByTitle(title)
+             .then(function(response){
+                 res.json(response);
+             },
+                 function(err){
+                     res.status(400).send(err);
+                 }
+             );
+
     }
 
 

@@ -5,6 +5,8 @@ module.exports = function(app,userModel){
     app.get("/api/project/user/:userId",findUserById);
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", findAllUsers);
+    app.post("/api/project/logout", logout);
+    app.get("/api/project/loggedin", loggedin);
     app.put("/api/project/user/:userId",updateUser);
     app.get("/send",getEmail);
 
@@ -17,6 +19,7 @@ module.exports = function(app,userModel){
             .createUser(newUser)
             .then(
                 function (response) {
+                    req.session.projectUser = response;
                     users = response;
                     res.json(response);
                 },
@@ -45,6 +48,7 @@ module.exports = function(app,userModel){
             .then(
                 function (response) {
                     user = response;
+                    req.session.projectUser = user;
                     res.json(user);
 
                 },
@@ -122,15 +126,21 @@ module.exports = function(app,userModel){
             );
     }
 
-    /*function loggedin(req,res){
-     res.json(req.session.currentUser);
-     }
+    function loggedin(req,res){
+        if(req.session.projectUser != null){
+            res.json(req.session.projectUser);
+        }
 
-     function logout(req,res){
-     req.session.destroy();
-     res.send(200);
-     }*/
+        else {
+            res.json(null);
+        }
 
+    }
+
+    function logout(req,res){
+        req.session.destroy();
+        res.send(200);
+    }
 
     function updateUser(req,res){
         var userId = req.params.id;

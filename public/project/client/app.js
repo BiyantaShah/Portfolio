@@ -2,7 +2,7 @@
 
 
     angular
-        .module("NoteTakerWebsite", ["ngRoute"])
+        .module("NoteTakerWebsite", ["ngRoute", "textAngular"]);
 
 
 })();

@@ -6,7 +6,7 @@
         .module("NoteTakerWebsite")
         .controller("NoteController",NoteController);
 
-    function NoteController($scope, NotebookService ,$location, NoteService, SubjectService) {
+    function NoteController($scope, NotebookService ,$location, NoteService, SubjectService, $routeParams) {
 
         var vm = this;
 
@@ -18,18 +18,13 @@
         vm.goToNoteText = goToNoteText;
 
         function init() {
-            if (NotebookService.getNotebookId() == null) {
-                $location.path("/home");
-            }
-            else{
-                currentSubject = SubjectService.getSubjectId();
-                currentNotebook = NotebookService.getNotebookId();
-                NoteService.getAllNotesForBook(currentNotebook, currentSubject)
+
+                NoteService.getAllNotesForBook($routeParams.notebookId, $routeParams.subjectId)
                     .then(function(response){
                         vm.notes = response.data;
                         currentAllNotes = response.data;
                     });
-            }
+
 
         }
         init();
@@ -59,8 +54,8 @@
 
 
                 };
-                NoteService.createNoteForBook(SubjectService.getSubjectId(),
-                    NotebookService.getNotebookId(), newNote)
+                NoteService.createNoteForBook($routeParams.subjectId,
+                    $routeParams.notebookId, newNote)
                     .then(function(response){
 
                         vm.note.noteName = null;
@@ -73,8 +68,8 @@
 
         function deleteNote(index) {
 
-            NoteService.deleteNoteFromBook(SubjectService.getSubjectId(),
-                NotebookService.getNotebookId(),vm.notes[index]._id);
+            NoteService.deleteNoteFromBook($routeParams.subjectId,
+                $routeParams.notebookId,vm.notes[index]._id);
             init();
         }
 
@@ -92,8 +87,8 @@
 
                 var selectedNote = vm.notes[vm.index];
                 selectedNote.noteTitle = noteName;
-                NoteService.updateNote(SubjectService.getSubjectId(),
-                    NotebookService.getNotebookId(),selectedNote._id, selectedNote);
+                NoteService.updateNote($routeParams.subjectId,
+                    $routeParams.notebookId,selectedNote._id, selectedNote);
                 init();
                 vm.index = -1;
                 vm.note.noteName = null;
@@ -101,8 +96,10 @@
         }
 
         function goToNoteText(noteId){
-            NoteService.setNoteId(noteId);
-            $location.path('/noteText');
+            //NoteService.setNoteId(noteId);
+            $location.path('/subject/' + $routeParams.subjectId
+                + '/notebook/' +$routeParams.notebookId + '/note/' + noteId +
+                '/noteText');
         }
 
     }

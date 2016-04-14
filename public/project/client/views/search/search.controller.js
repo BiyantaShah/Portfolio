@@ -17,11 +17,18 @@
         vm.goToGroup = goToGroup;
         vm.goToSubject = goToSubject;
 
+        var currentUser ;
 
         function init() {
-            if (UserService.getCurrentUser == null) {
-                $location.url("/home");
-            }
+            currentUser = null;
+            UserService.getCurrentUser()
+                .then(function (response) {
+                    currentUser = response.data;
+
+                    if (currentUser == null) {
+                        $location.path("/home");
+                    }
+                });
         }
 
         init();
@@ -29,27 +36,32 @@
 
         function searchNote(noteName) {
 
+            var userId;
 
-            var userId = UserService.getCurrentUser()._id;
+            UserService.getCurrentUser()
+                .then(
+                    function(response){
 
-                    //console.log(subj);
-                    NoteService.findNoteByTitle(userId, noteName)
-                        .then(function(response){
-                            if(response.data){
-                                vm.search = response.data.note;
-                                if(vm.search!=null){
-                                    SubjectService.setSubjectId(response.data.subjectId);
-                                    NotebookService.setNotebookId(response.data.notebookId);
-                                    vm.search.noteTitle = vm.search.noteTitle;
+                        vm.user = response.data;
+                        NoteService.findNoteByTitle(vm.user._id, noteName)
+                            .then(function(response){
+                                if(response.data){
+                                    vm.search = response.data.note;
+                                    if(vm.search!=null){
+                                        SubjectService.setSubjectId(response.data.subjectId);
+                                        NotebookService.setNotebookId(response.data.notebookId);
+                                        vm.search.noteTitle = vm.search.noteTitle;
 
+                                    }
+                                    else{
+                                        $scope.message = "Note not found. Check for spelling errors!";
+                                        return $scope.message;
+                                    }
                                 }
-                                else{
-                                    $scope.message = "Note not found. Check for spelling errors!";
-                                    return $scope.message;
-                                }
-                            }
-                        });
+                            });
 
+                    }
+                );
         }
 
         function showContent(noteId){

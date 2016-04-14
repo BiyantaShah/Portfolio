@@ -1,0 +1,15 @@
+[
+  {"_id": "001" , "title": "List to complete by April 10", "content": "List down things to do", "userId": 123},
+
+  {"_id": "002" , "title": "List to complete by April 14", "content": "List down things to do 1", "userId": 123},
+
+  {"_id": "003" , "title": "Note 1", "content": "First Independent Note for Alice", "userId": 123},
+
+  {"_id": "010", "title": "List to complete Bob","content": "Bob's List April 11", "userId": 234},
+
+  {"_id": "011", "title": "Note 2", "content": "Independent Bob Note " , "userId": 234},
+
+  {"id": "111", "title":"Note 3","content": "Independent Charlie  Note ", "userId":345},
+
+  {"id": "110", "title":"Charlie's April 12 work","content": "To do List for Charlie", "userId":345}
+]

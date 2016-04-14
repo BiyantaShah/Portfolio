@@ -6,7 +6,7 @@
         .module("NoteTakerWebsite")
         .controller("NotebookController",NotebookController);
 
-    function NotebookController($scope, NotebookService ,$location, SubjectService) {
+    function NotebookController($scope, NotebookService ,$location, SubjectService, $routeParams) {
 
         var vm = this;
 
@@ -18,18 +18,11 @@
         vm.goToNote = goToNote;
 
         function init() {
-            if (SubjectService.getSubjectId() == null) {
-                $location.path("/home");
-            }
-            else{
-                currentSubject = SubjectService.getSubjectId();
-
-                NotebookService.getAllNotebooksForSubject(currentSubject)
+                NotebookService.getAllNotebooksForSubject($routeParams.subjectId)
                     .then(function(response){
                         vm.notebooks = response.data;
                         currentAllNotebooks = response.data;
                     });
-            }
 
         }
         init();
@@ -58,7 +51,7 @@
                     "notes": []
 
                 };
-                NotebookService.createNotebookForSubject(SubjectService.getSubjectId(), newBook)
+                NotebookService.createNotebookForSubject($routeParams.subjectId, newBook)
                     .then(function(response){
 
                         vm.notebook.notebookName = null;
@@ -71,7 +64,7 @@
 
         function deleteNotebook(index) {
 
-            NotebookService.deleteNotebookFromSubject(SubjectService.getSubjectId(),vm.notebooks[index]._id);
+            NotebookService.deleteNotebookFromSubject($routeParams.subjectId,vm.notebooks[index]._id);
             init();
         }
 
@@ -89,7 +82,7 @@
 
                 var selectedBook = vm.notebooks[vm.index];
                 selectedBook.label = notebookName;
-                NotebookService.updateNotebook(SubjectService.getSubjectId(),selectedBook._id, selectedBook);
+                NotebookService.updateNotebook($routeParams.subjectId,selectedBook._id, selectedBook);
                 init();
                 vm.index = -1;
                 vm.notebook.notebookName = null;
@@ -97,8 +90,8 @@
         }
 
         function goToNote(notebookId){
-            NotebookService.setNotebookId(notebookId);
-            $location.path('/note');
+           // NotebookService.setNotebookId(notebookId);
+            $location.path('/subject/' + $routeParams.subjectId + '/notebook/' + notebookId + '/note');
         }
 
     }

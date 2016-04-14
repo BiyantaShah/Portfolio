@@ -6,12 +6,12 @@
         .module("NoteTakerWebsite")
         .controller("HeaderController",HeaderController);
 
-    function HeaderController($scope, UserService){
+    function HeaderController($scope, UserService, $location){
 
-     //  var vm =this;
+      var vm =this;
 
         //event declarations
-        $scope.logout = logout;
+        vm.logout = logout;
 
         function init(){
 
@@ -20,7 +20,12 @@
 
         //event implementation
         function logout() {
-            UserService.setCurrentUser(null);
+            UserService.logout()
+                .then(function(){
+                    UserService.setCurrentUser(null);
+                    $location.url('/home');
+                });
+
 
         }
 

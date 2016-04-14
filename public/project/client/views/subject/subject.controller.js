@@ -17,24 +17,34 @@
         vm.updateSubject = updateSubject;
         vm.goToNoteBook = goToNoteBook;
 
+        vm.index = -1;
+        var currentUser;
+        var currentAllUserSubjects= []; //Forms of the current user
+
         function init() {
-            if (UserService.getCurrentUser() == null) {
-                $location.path("/home");
-            }
-            else{
-                currentUser =UserService.getCurrentUser();
-                SubjectService.findAllSubjectsForUser(currentUser._id)
-                    .then(function(response){
-                        vm.subjects = response.data;
-                        currentAllUserSubjects = response.data;
-                    });
-            }
+            currentUser = null;
+
+            UserService.getCurrentUser()
+                .then(function(response) {
+                    currentUser = response.data;
+
+                    if (currentUser == null) {
+                        $location.path("/home");
+                    }
+                    else {
+                        SubjectService.findAllSubjectsForUser(currentUser._id)
+                            .then(function (response) {
+                                vm.subjects = response.data;
+                                currentAllUserSubjects = response.data;
+                            });
+                    }
+                });
 
         }
         init();
 
-        var currentAllUserSubjects= []; //Forms of the current user
-        var currentUser = null; //Current user is stored
+
+
 
 
 
@@ -57,13 +67,20 @@
                     "userId": null,
                     "notebooks":[]
                 };
-                SubjectService.createSubjectForUser(UserService.getCurrentUser()._id, nsubject)
+
+                UserService.getCurrentUser()
                     .then(function(response){
+                        vm.user = response.data;
+                        SubjectService.createSubjectForUser(vm.user._id, nsubject)
+                            .then(function(response){
 
-                        vm.subject.subjectName = null;
-                        init();
+                                vm.subject.subjectName = null;
+                                init();
 
+                            });
                     });
+
+
             }
 
         }
@@ -96,8 +113,8 @@
         }
 
         function goToNoteBook(subjectId){
-            SubjectService.setSubjectId(subjectId);
-            $location.path('/notebook');
+            //SubjectService.setSubjectId(subjectId);
+            $location.path('/subject/' + subjectId + '/notebook');
         }
 
     }

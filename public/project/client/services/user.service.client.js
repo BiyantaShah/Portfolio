@@ -21,9 +21,8 @@
             updateUser:updateUser,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
-            getEmail:getEmail
-            //logout: logout,
-            //loggedin: loggedin
+            getEmail:getEmail,
+            logout: logout
         }
 
         return model;
@@ -34,7 +33,8 @@
         }
 
         function getCurrentUser () {
-            return $rootScope.currentUser;
+            var projectUser = $http.get("/api/project/loggedin");
+            return projectUser;
         }
 
         function createUser(user) {
@@ -60,13 +60,6 @@
             return $http.get("/api/project/user");
         }
 
-        /* function logout(){
-         return $http.post("/api/assignment/logout");
-         }
-
-         function loggedin(){
-         return $http.get("/api/assignment/loggedin")
-         }*/
 
 
 
@@ -82,6 +75,10 @@
         function getEmail(emailId){
             console.log(emailId);
             return $http.get("/send",emailId);
+        }
+
+        function logout(){
+            return $http.post("/api/project/logout");
         }
 
     }

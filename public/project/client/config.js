@@ -8,7 +8,10 @@
         $routeProvider
 
             .when("/home", {
-                templateUrl: "views/home/home.view.html"
+                templateUrl: "views/home/home.view.html",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
             })
 
             .when("/Projectproposal",{
@@ -25,7 +28,10 @@
             .when("/profile", {
                 templateUrl: "views/users/profile.view.html",
                 controller:"ProfileController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
 
             })
 
@@ -40,74 +46,105 @@
             .when("/subject",{
                 templateUrl:"views/subject/subject.view.html",
                 controller: "SubjectController",
-                controllerAs:"model"
+                controllerAs:"model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
 
-            .when("/notebook",{
+            .when("/subject/:subjectId/notebook",{
                 templateUrl: "views/subject/notebook.view.html",
                 controller: "NotebookController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
 
-            .when("/note",{
+            .when("/subject/:subjectId/notebook/:notebookId/note",{
                 templateUrl: "views/subject/note.view.html",
                 controller: "NoteController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
 
             .when("/group",{
                 templateUrl: "views/group/group.view.html",
                 controller: "GroupController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
 
-            .when("/noteText",{
+            .when("/subject/:subjectId/notebook/:notebookId/note/:noteId/noteText",{
                 templateUrl: "views/search/noteText.view.html",
                 controller: "NoteTextController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
 
             .when("/search",{
                 templateUrl:"views/search/search.view.html",
                 controller: "SearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
 
-            // only for CRUD
-
-            .when("/users",{
-                templateUrl: "views/crud/users.view.html",
-                controller: "UserController"
-            })
-
-
-
-
-
-
-
-
-            .when("/subjects",{
-                templateUrl: "views/crud/subjects.view.html",
-                controller: "SubjectController"
+            .when("/checklist",{
+                templateUrl: "views/checklist/checklist.view.html",
+                controller: "CheckListController",
+                controllerAs: "model",
+                resolve:{
+                    checkLoggedIn : checkLoggedIn
+                }
             })
 
 
 
-            .when("/notetext",{
-                templateUrl: "views/crud/notesText.view.html",
-                controller: "TextController"
-            })
-
-
-
-
-
-        //
-
-           /* .otherwise({
+            .otherwise({
                 redirectTo:"/home"
-            })*/
+            })
+    }
+
+    function getLoggedIn(UserService, $q) {
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function(response){
+                var projectUser = response.data;
+                UserService.setCurrentUser(projectUser);
+                deferred.resolve();
+            });
+
+        return deferred.promise;
+    }
+
+    function checkLoggedIn(UserService, $q, $location) {
+
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function(response) {
+                var projectUser = response.data;
+                if(projectUser) {
+                    UserService.setCurrentUser(projectUser);
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $location.url("/home");
+                }
+            });
+
+        return deferred.promise;
     }
 
 })();

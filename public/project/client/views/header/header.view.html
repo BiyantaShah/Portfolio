@@ -1,4 +1,4 @@
-<div ng-controller="HeaderController">
+<div ng-controller="HeaderController as model">
 
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
@@ -37,7 +37,7 @@
                     <li ng-show ="currentUser">
                         <a href="#/search">Search</a>
                     </li>
-                    <li ng-show = "currentUser" ><a href="#/home" ng-click = "logout()">Logout</a></li>
+                    <li ng-show = "currentUser" ng-click = "model.logout()"><a href="#/home">Logout</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

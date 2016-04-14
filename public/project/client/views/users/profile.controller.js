@@ -12,21 +12,22 @@
         //Event handler declaration
         vm.update = update;
 
-        var currentUser = UserService.getCurrentUser();
-        vm.user = currentUser;
 
-        if(currentUser == null){
-            $location.path("/home");
-        }
+
 
         function init() {
-
+            UserService.getCurrentUser()
+                .then(
+                    function(response){
+                        vm.user = response.data;
+                    }
+                );
         }
         init();
 
         //Event handler implementation
         function update(user){
-            var currentUser = UserService.getCurrentUser();
+            //var currentUser = UserService.getCurrentUser();
 
             var userDetails = {
                 "_id":currentUser._id,
@@ -37,8 +38,15 @@
                 "lastName":user.lastName
 
             };
-            UserService.updateUser(currentUser._id,userDetails);
-            UserService.setCurrentUser(userDetails);
+            UserService.updateUser(vm.user._id,userDetails)
+                .then(function(response){
+
+                    if (response.data){
+                        UserService.setCurrentUser(response.data);
+                        // UserService.getCurrentUser();
+                    }
+                });
+
         }
     }
 

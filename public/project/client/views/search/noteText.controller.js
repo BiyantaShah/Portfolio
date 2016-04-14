@@ -5,26 +5,13 @@
         .module("NoteTakerWebsite")
         .controller("NoteTextController",NoteTextController);
 
-    function NoteTextController(NoteService, $location, NotebookService, SubjectService){
+    function NoteTextController(NoteService, $routeParams){
 
         var vm = this;
-
-        var currentNote = null;
-        var currentBook = null;
-        var currentSubject = null;
-
-
         function init(){
-            if (NoteService.getNoteId() == null) {
-                $location.path("/home");
-            }
-            else{
 
-                currentSubject = SubjectService.getSubjectId();
-                currentBook = NotebookService.getNotebookId();
-                currentNote = NoteService.getNoteId();
 
-                NoteService.getContent(currentSubject, currentBook, currentNote)
+                NoteService.getContent($routeParams.subjectId, $routeParams.notebookId, $routeParams.noteId)
                     .then(function(response){
                         if(response.data){
                             vm.note = response.data;
@@ -33,7 +20,7 @@
                         }
 
                     });
-            }
+
 
         }
         init();
