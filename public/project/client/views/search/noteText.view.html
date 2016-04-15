@@ -27,7 +27,10 @@
                 ['justifyLeft', 'justifyCenter', 'justifyRight'], ['indent', 'outdent'],
                 ['insertImage','insertLink'], ['wordcount', 'charcount']]" ng-model="model.note.content">
                 </div>
-
+                <br>
+                <div class="center">
+                <button type="button" class="btn btn-default" ng-click="model.saveContent(model.note)">Save Note</button>
+                </div>
 
             </div>
         </form>

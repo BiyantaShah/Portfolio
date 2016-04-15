@@ -1,6 +1,6 @@
 <div>
     <div class="col-sm-12 col-lg-12 col-md-12 main">
-        <h1> Profile </h1>
+        <h1 align="center"> Profile </h1>
         <br>
         <ul class="nav nav-tabs">
             <li role="presentation"><a href="#/profile">Edit Profile</a></li>
@@ -18,30 +18,28 @@
                 <h4 align="center">Add, delete or update your group members or title here</h4>
                 <br>
             </div>
-            <table class="table table-striped table-bordered">
+            <table border="0" class="table">
                 <thead>
                 <tr>
                     <th class="small-font"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
                         Group Name </th>
-                    <th class="small-font"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                        Members in the Group </th>
-                    <th class="small-font"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                        Action</th>
+                    <th class="small-font">Action</th>
 
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td><input type="text" ng-model="model.group.groupName" class="form-control small-font"  placeholder="Group Name"></td>
-                    <td><input type="text" ng-model="model.group.member" class="form-control small-font"  placeholder="Members"></td>
+
+                   <!-- <td><input type="text" ng-model="model.group.member" class="form-control small-font"  placeholder="Members"></td> -->
 
                     <td>
-                        <a ng-click="model.addGroup(model.group.groupName, model.group.member);"  class="btn btn-default">
+                        <a ng-click="model.addGroup(model.group.groupName);"  class="btn btn-default">
                          <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true">
                          </span>
                         </a>
 
-                        <a ng-click="model.updateGroup(model.group.groupName, model.group.member);" class="btn btn-default">
+                        <a ng-click="model.updateGroup(model.group.groupName);" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok pull-right" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -50,7 +48,7 @@
                 <tr ng-repeat="group in model.groups">
 
                     <td class="small-font" ng-click="model.groupDetails(group._id);"><a >{{group.title}}</a></td>
-                    <td class="small-font">{{group.members.toString()}}</td>
+
                     <td>
                         <a ng-click="model.deleteGroup($index);" class="btn btn-default">
                             <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
@@ -70,5 +68,36 @@
         </div>
     </form>
         </div>
+
+
+
+    <div class="modal fade" id="myNote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myNoteLabel">Share Notes with your group Members </h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label> Select Notes </label>
+                            <select class="form-control" ng-model = "model.note">
+                                <option ng-repeat="note in model.notes" >{{note.title}}</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a type="button"  data-dismiss="modal" class="btn btn-primary" ng-model="model.index" ng-click="model.shareNotes(model.note, model.index);">
+                        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"> </span>
+                    </a>
+                    <a type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>

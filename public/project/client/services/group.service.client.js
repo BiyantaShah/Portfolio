@@ -15,7 +15,9 @@
             findGroupByTitle: findGroupByTitle,
             findGroupById: findGroupById,
             findAllGroupsForUser: findAllGroupsForUser,
-            updateGroupById:updateGroupById
+            updateGroupById:updateGroupById,
+            updateMembers:updateMembers,
+            updateNotes:updateNotes
         }
 
         return api;
@@ -59,6 +61,13 @@
 
         }
 
+        function updateMembers(username, group){
+            return $http.put("/api/project/user/"+username +"/group", group);
+        }
+
+        function updateNotes(group){
+            return $http.put("/api/project/group", group)
+        }
 
 
     }

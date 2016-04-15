@@ -4,7 +4,8 @@ module.exports = function(mongoose) {
     var GroupSchema = mongoose.Schema({
         title: String,
         members: [String],
-        shared : [String]
+        shared : [String],
+        createdBy: String
     }, {collection: 'project_group'});
     return GroupSchema;
 };

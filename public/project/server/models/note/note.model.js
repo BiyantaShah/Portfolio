@@ -145,7 +145,8 @@ module.exports = function(app, NoteService, mongoose) {
         NoteModel.update(
             { _id : noteId},
             { $set:  {
-                "title": note.title
+                "title": note.title,
+                "content": note.content
             }
 
             }, function (err, doc) {

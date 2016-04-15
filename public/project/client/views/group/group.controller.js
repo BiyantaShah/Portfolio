@@ -21,6 +21,7 @@
         vm.updateGroup = updateGroup;
         vm.groupDetails =groupDetails;
 
+
         function init() {
 
 
@@ -32,12 +33,9 @@
                         $location.path("/home");
                     }
                     else {
-
                         GroupService.findAllGroupsForUser(vm.user._id)
                             .then(function (response) {
                                 vm.groups = response.data;
-                                vm.group = {};
-                                vm.group.member = vm.user.username;
                                 //currentAllUserGroups = response.data;
                             });
                     }
@@ -51,22 +49,23 @@
 
         //event implementations
 
-        function addGroup(groupName,member) {
+        function addGroup(groupName) {
 
 
-            if (groupName != null && member != []) {
+            if (groupName != null) {
                 var newGroup = {
                    // "_id": null,
                     "title": groupName,
-                    "members": member.split(",").push(vm.user.username) ,
-                    "shared":[]
+                    "members": [],
+                    "shared":[],
+                    "createdBy": vm.user._id
                 };
 
                 GroupService.createGroupForUser(vm.user._id, newGroup)
                     .then(function(response){
                         init();
                         vm.group.groupName = null;
-                        vm.group.member = vm.user.username;
+                        //vm.group.member = vm.user.username;
 
                     });
             }
@@ -93,15 +92,16 @@
         }
 
 
-        function updateGroup(groupName,member) {
-            if(vm.index != -1 && groupName != null && member != []){
+        function updateGroup(groupName) {
+            if(vm.index != -1 && groupName != null){
 
                 var selectedGroup = vm.groups[vm.index];
                 var updateGroup = {
                     "_id":selectedGroup._id,
                     "title": groupName,
-                    "members": member.split(","),
-                    "shared": selectedGroup.shared.split(",")
+                    "members": selectedGroup.members,
+                    "shared": selectedGroup.shared,
+                    "createdBy": vm.user._id
                 };
 
                 GroupService.updateGroupById(selectedGroup._id, updateGroup)
@@ -109,7 +109,7 @@
                         if(response.data){
                             vm.groups[vm.index] = response.data;
                             vm.group.groupName = null;
-                            vm.group.member = vm.user.username;
+                            //vm.group.member = vm.user.username;
                             vm.index = -1;
                             init();
                         }
@@ -125,6 +125,8 @@
             GroupService.setGroupId(groupId);
             $location.path("/group/" + groupId + "/details");
         }
+
+
 
 
 

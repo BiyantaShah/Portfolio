@@ -1,6 +1,6 @@
 <div>
     <div class="col-sm-12 col-lg-12 col-md-12 main">
-        <h1> Profile </h1>
+        <h1 align="center"> Profile </h1>
         <br>
         <ul class="nav nav-tabs">
             <li role="presentation"><a href="#/profile">Edit Profile</a></li>
@@ -11,37 +11,196 @@
         </ul>
         <form>
             <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
-            <div class="table-responsive" ng-controller="DetailsController">
+            <div class="table-responsive " ng-controller="DetailsController">
                 <div>
                     <hr class="hr-break">
                     <h3 align="center">{{model.group.title}}</h3>
                     <br>
                 </div>
-                <table class="table table-striped table-bordered">
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                <table border="0" class="table">
                     <thead>
                     <tr>
-                        <th class="small-font"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                            Members </th>
-                        <th class="small-font"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                            Notes Shared</th>
+                        <th class="small-font center">Members </th>
+                        <!-- <th class="small-font">Notes Shared</th> -->
 
                     </tr>
                     </thead>
                     <tbody>
 
-                    <tr>
+                    <tr ng-repeat="member in model.group.members">
 
-                        <td class="small-font">{{model.group.members.toString()}}</td>
-                        <td class="small-font" ng-click = "model.goToNoteText(model.group.shared)"><a>{{model.group.shared.toString()}}</a></td>
-
-
+                        <td class="small-font" align="center">{{member}}</td>
+                        <!-- <td class="small-font" ng-click = "model.goToNoteText(model.group.shared)"><a>{{model.group.shared.toString()}}</a></td> -->
                     </tr>
 
+                    <tr>
+                        <td><button type = "button" class = "btn btn-default form-control" data-toggle="modal" data-target="#myaddmem" ng-click="model.gro = model.group" ng-model="model.gro">
+                            Add members</button></td>
+                    </tr>
+
+                    <tr>
+                        <td><button type = "button" class = "btn btn-default form-control" data-toggle="modal" data-target="#mydeletemem" ng-click="model.gro = model.group" ng-model="model.gro">
+                            Delete members</button></td>
+                    </tr>
 
                     </tbody>
-                </table>
+                </table>  <!-- for member -->
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4"></div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <table border="0" class="table">
+                        <thead>
+                        <tr>
+                            <th class="small-font center">Notes Shared </th>
+                            <!-- <th class="small-font">Notes Shared</th> -->
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr ng-repeat = "shared in model.group.shared">
+                             <td class="small-font" ng-click = "model.goToNoteText(shared);">
+                                 <a>{{shared}}
+                                 </a>
+                             </td>
+
+                        </tr>
+
+                        <tr>
+                            <td><button type = "button" class = "btn btn-default form-control" data-toggle="modal" data-target="#myaddnote" ng-click="model.gro = model.group" ng-model="model.gro">
+                                Share Notes</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><button type = "button" class = "btn btn-default form-control" data-toggle="modal" data-target="#mydeletenote" ng-click="model.gro = model.group" ng-model="model.gro">
+                                Delete Notes</button></td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                </div> <!-- for notes -->
+
             </div>
         </form>
     </div>
+
+    <div class="modal fade" id="myaddmem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myaddmemLabel">Add Members for your group </h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label> Add Members </label>
+                            <select class="form-control" ng-model = "model.use">
+                                <option ng-repeat="user in model.users" >{{user.username}}</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a type="button"  data-dismiss="modal" class="btn btn-primary"  ng-click="model.addMembers(model.use, model.gro);">
+                        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"> </span>
+                    </a>
+                    <a type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="mydeletemem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="mydeletememLabel">Delete Members for your group </h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label> Delete Members </label>
+                            <select class="form-control" ng-model = "model.del" >
+                                <option ng-repeat="user in model.group.members" >{{user}}</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a type="button"  data-dismiss="modal" class="btn btn-primary"  ng-click="model.deleteMembers(model.del, model.gro);">
+                        <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"> </span>
+                    </a>
+                    <a type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myaddnote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myaddnoteLabel">Share your Notes in group </h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label> Choose Notes to Share </label>
+                            <select class="form-control" ng-model = "model.note">
+                                <option ng-repeat="note in model.notes" >{{note.title}}</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a type="button"  data-dismiss="modal" class="btn btn-primary"  ng-click="model.addNotes(model.note, model.gro);">
+                        <span class="glyphicon glyphicon-plus pull-right" aria-hidden="true"> </span>
+                    </a>
+                    <a type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="mydeletenote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="mydeletenoteLabel">Delete Notes for your group </h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label> Choose Notes to remove </label>
+                            <select class="form-control" ng-model = "model.del" >
+                                <option ng-repeat="note in model.group.shared" >{{note}}</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a type="button"  data-dismiss="modal" class="btn btn-primary"  ng-click="model.deleteNote(model.del, model.gro);">
+                        <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"> </span>
+                    </a>
+                    <a type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>

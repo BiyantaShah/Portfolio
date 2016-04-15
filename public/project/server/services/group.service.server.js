@@ -5,12 +5,13 @@ module.exports = function(app, groupModel){
     app.post("/api/project/user/:userId/group", createGroupForUser);
     app.get("/api/project/user/:userId/group", findAllGroupsForUser);
     app.put("/api/project/group/:groupId",updateGroupById);
+    app.put("/api/project/user/:username/group", updateMembers);
+   app.put("/api/project/group", updateNotes);
 
 
     function deleteGroupById(req,res){
 
         var groupId = req.params.groupId;
-
         groupModel
             .deleteGroupById(groupId)
             .then(
@@ -112,4 +113,38 @@ module.exports = function(app, groupModel){
                 }
             );
     }
+
+    function updateMembers(req,res){
+        var username = req.params.username;
+        var group = req.body;
+
+        groupModel
+            .updateMembers(username,group )
+            .then(
+                function(response){
+                    res.json(response)
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
+    }
+
+
+    function updateNotes(req,res){
+
+        var group = req.body;
+
+        groupModel
+            .updateNotes(group)
+            .then(
+                function(response){
+                    res.json(response)
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
+    }
+
 };

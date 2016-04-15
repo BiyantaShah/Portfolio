@@ -8,6 +8,8 @@
     function NoteTextController(NoteService, $routeParams){
 
         var vm = this;
+        vm.saveContent = saveContent;
+
         function init(){
 
 
@@ -24,6 +26,25 @@
 
         }
         init();
+
+        function saveContent(note){
+            vm.note = note;
+
+            var updateContent = {
+                "_id":vm.note._id,
+                "title": vm.note.title,
+                "content": vm.note.content,
+                "userId": vm.note.userId
+            };
+
+            console.log(updateContent);
+
+            NoteService.updateNote(vm.note._id, updateContent)
+                .then(function(response){
+                    init();
+                })
+
+        }
     }
 
 })();

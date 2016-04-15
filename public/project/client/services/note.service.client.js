@@ -19,7 +19,7 @@
             findNoteByTitle: findNoteByTitle,
             findNoteById: findNoteById,
             updateNote:updateNote,
-           // getContent: getContent,
+           // updateContent: updateContent,
             getNoteId: getNoteId,
             setNoteId: setNoteId
         }
@@ -63,14 +63,12 @@
         function findNoteById(noteId){
             return $http.get("/api/project/note/"+noteId);
         }
+
         function updateNote(noteId,  note){
             return $http.put("/api/project/note/" + noteId, note);
 
         }
 
-        /*function getContent(noteId){
-            return $http.get("/api/project/note/" + noteId + '/content');
-        }*/
 
         function getNoteId(){
             return $rootScope.noteId;

@@ -15,7 +15,9 @@ module.exports = function(app, GroupService, mongoose) {
         findGroupByTitle: findGroupByTitle,
         findAllGroupsForUser: findAllGroupsForUser,
         findGroupById: findGroupById,
-        updateGroupById: updateGroupById
+        updateGroupById: updateGroupById,
+        updateMembers: updateMembers,
+        updateNotes: updateNotes
 
     };
     return api;
@@ -29,7 +31,8 @@ module.exports = function(app, GroupService, mongoose) {
         var newGroup = {
             "title": group.title,
             "members": group.members,
-            "shared":[]
+            "shared":[],
+            "createdBy": userId
         };
 
         GroupModel.create(newGroup, function (err, doc){
@@ -51,18 +54,17 @@ module.exports = function(app, GroupService, mongoose) {
     function deleteGroupById(groupId){
         var deferred = q.defer();
 
+
+
         GroupModel.remove({_id: groupId},
             function (err, doc) {
-
                 if (err) {
-                    // reject promise if error
                     deferred.reject(err);
                 } else {
-                    // resolve promise
                     deferred.resolve(doc);
                 }
             });
-
+        return deferred.promise
 
     }
 
@@ -85,7 +87,7 @@ module.exports = function(app, GroupService, mongoose) {
 
         var deferred = q.defer();
 
-        GroupModel.find({userId: userId},
+        GroupModel.find({createdBy: userId},
             function (err, doc) {
                 if (err) {
                     deferred.reject(err);
@@ -139,6 +141,51 @@ module.exports = function(app, GroupService, mongoose) {
         return deferred.promise
 
     }
+
+    function updateMembers(username, group){
+
+        var deferred = q.defer();
+
+        GroupModel.update(
+            {_id : group._id},
+            {$set: {
+                "members": group.members
+            }
+            }, function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
+            });
+
+
+        return deferred.promise
+
+    }
+
+    function updateNotes(group){
+
+        var deferred = q.defer();
+
+        GroupModel.update(
+            {_id : group._id},
+            {$set: {
+                "shared": group.shared
+            }
+            }, function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
+            });
+
+
+        return deferred.promise
+
+    }
+
 
 
 };
