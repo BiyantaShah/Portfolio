@@ -143,10 +143,20 @@ module.exports = function(app,userModel){
     }
 
     function updateUser(req,res){
-        var userId = req.params.id;
+        var userId = req.params.userId;
         var updatedUser = req.body;
 
-        userModel.updateUser(userId,updatedUser);
+
+        userModel.updateUser(userId,updatedUser)
+            .then(function(response){
+                    req.session.projectUser = updatedUser;
+                    //console.log(updatedUser);
+                    res.json(updatedUser);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function getEmail(req,res){

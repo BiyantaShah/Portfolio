@@ -35,7 +35,7 @@
                         SubjectService.findAllSubjectsForUser(currentUser._id)
                             .then(function (response) {
                                 vm.subjects = response.data;
-                                currentAllUserSubjects = response.data;
+                                //currentAllUserSubjects = response.data;
                             });
                     }
                 });
@@ -52,9 +52,9 @@
 
         //event implementations
 
-        function addSubject(subjectName) {
+        function addSubject(subject) {
 
-            if (subjectName == null) {
+            if (subject.subjectName == null) {
                 $scope.message = "Give a title to the subject";
                 return $scope.message;
             }
@@ -62,23 +62,19 @@
             else{
 
                 var nsubject = {
-                    "._id":null,
-                    "title":subjectName,
-                    "userId": null,
-                    "notebooks":[]
+                    //"._id":null,
+                    "title":subject.subjectName,
+                    "userId": currentUser._id
                 };
 
-                UserService.getCurrentUser()
-                    .then(function(response){
-                        vm.user = response.data;
-                        SubjectService.createSubjectForUser(vm.user._id, nsubject)
+                        SubjectService.createSubjectForUser(currentUser._id, nsubject)
                             .then(function(response){
 
                                 vm.subject.subjectName = null;
                                 init();
 
                             });
-                    });
+
 
 
             }
@@ -87,8 +83,12 @@
 
         function deleteSubject(index) {
 
-            SubjectService.deleteSubjectById(vm.subjects[index]._id);
-            init();
+            SubjectService.deleteSubjectById(vm.subjects[index]._id)
+            .then(function(response){
+                if(response.data){
+                    init();
+                }
+            });
         }
 
 
@@ -100,15 +100,29 @@
         }
 
 
-        function updateSubject(subjectName) {
-            if(vm.index != -1 && subjectName != null){
+        function updateSubject(subject) {
+            if(vm.index != -1 && subject.subjectName != null){
 
                 var selectedSubject = vm.subjects[vm.index];
-                selectedSubject.title = subjectName;
-                SubjectService.updateSubjectById(selectedSubject._id, selectedSubject);
-                init();
-                vm.index = -1;
-                vm.subject.subjectName = null;
+                var updateSubject = {
+                    "_id":selectedSubject._id,
+                    "userId": currentUser._id,
+                    "title": subject.subjectName
+                };
+
+                SubjectService.updateSubjectById(selectedSubject._id, updateSubject)
+                    .then(function(response){
+                        if(response.data){
+                            vm.subjects[vm.index] = response.data;
+                            vm.subject.subjectName = null;
+                            vm.index = -1;
+
+                            init();
+                        }
+                    });
+
+
+
             }
         }
 

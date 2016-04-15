@@ -11,7 +11,7 @@
         function init(){
 
 
-                NoteService.getContent($routeParams.noteId)
+                NoteService.findNoteById($routeParams.noteId)
                     .then(function(response){
                         if(response.data){
                             vm.note = response.data;

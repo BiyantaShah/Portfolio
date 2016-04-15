@@ -15,7 +15,7 @@
         vm.searchNote = searchNote;
         vm.showContent = showContent;
         vm.goToGroup = goToGroup;
-        vm.goToSubject = goToSubject;
+        vm.goToNote = goToNote;
 
         var currentUser ;
 
@@ -45,11 +45,11 @@
                         NoteService.findNoteByTitle(vm.user._id, noteName)
                             .then(function(response){
                                 if(response.data){
-                                    vm.search = response.data.note;
+                                    vm.search = response.data;
                                     if(vm.search!=null){
-                                        SubjectService.setSubjectId(response.data.subjectId);
-                                        NotebookService.setNotebookId(response.data.notebookId);
-                                        vm.search.noteTitle = vm.search.noteTitle;
+                                        //SubjectService.setSubjectId(response.data.subjectId);
+                                      //  NotebookService.setNotebookId(response.data.notebookId);
+                                        vm.search.title = vm.search.title;
 
                                     }
                                     else{
@@ -65,14 +65,14 @@
 
         function showContent(noteId){
             NoteService.setNoteId(noteId);
-            $location.path('/noteText');
+            $location.path('/note/' + noteId + '/noteText');
         }
 
         function goToGroup(){
             $location.path('/group');
         }
 
-        function goToSubject(){
+        function goToNote(){
             $location.path('/subject');
         }
     }

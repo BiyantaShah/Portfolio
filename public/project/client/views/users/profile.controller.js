@@ -30,8 +30,8 @@
             //var currentUser = UserService.getCurrentUser();
 
             var userDetails = {
-                "_id":currentUser._id,
-                "username":currentUser.username,
+                "_id":vm.user._id,
+                "username":vm.user.username,
                 "email":user.email,
                 "password": user.password,
                 "firstName": user.firstName,

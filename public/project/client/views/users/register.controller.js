@@ -24,17 +24,17 @@
         function register(user) {
             $scope.message = null;
 
-            if (user === null) {
+            if (user == null) {
                 $scope.message = "The fields cannot be empty";
                 return;
             }
 
-            if (user.username === null) {
+            if (user.username == null) {
                 $scope.message = "Please Enter your Username";
                 return;
             }
 
-            if (user.password === null || user.password2 == null) {
+            if (user.password == null || user.password2 == null) {
                 $scope.message = "Please Enter your Password";
                 return;
             }
@@ -44,7 +44,7 @@
                 return;
             }
 
-            if (user.email === null) {
+            if (user.email == null) {
                 $scope.message = "Please Enter your Email-ID";
                 return;
             }
@@ -52,20 +52,19 @@
             if (user.password == user.password2) {
 
                 var newUser = {
-                    "._id": (new Date).getTime(),
-                    "firstName": user.firstName,
-                    "lastName": user.lastName,
-                    "username": user.username,
-                    "password": user.password,
-                    "email": user.email,
-                    "type": user.type
+                   // "._id": (new Date).getTime(),
+                    "firstName": vm.user.firstName,
+                    "lastName": vm.user.lastName,
+                    "username": vm.user.username,
+                    "password":vm.user.password,
+                    "email": vm.user.email,
+                    "type": vm.user.type
                 };
             }
 
             UserService.createUser(newUser)
                 .then(function (response) {
-
-                    UserService.setCurrentUser(newUser);
+                    UserService.setCurrentUser(response.data);
                     $location.path('/profile');
                 });
         }

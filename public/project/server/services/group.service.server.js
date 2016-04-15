@@ -11,20 +11,29 @@ module.exports = function(app, groupModel){
 
         var groupId = req.params.groupId;
 
-        groupModel.deleteGroupById(groupId);
+        groupModel
+            .deleteGroupById(groupId)
+            .then(
+                function(response){
+                    res.json(response)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
 
     function findAllGroupsForUser(req,res){
-        var group = [];
+
         var userId = req.params.userId;
 
         groupModel
             .findAllGroupsForUser(userId)
             .then(
                 function (response) {
-                    group = response;
-                    res.json(group);
+                    res.json(response);
                 },
                 // reject promise if error
                 function (err) {
@@ -55,8 +64,16 @@ module.exports = function(app, groupModel){
 
     function findGroupByTitle(req,res){
         var title = req.body;
-        var group = groupModel.findGroupByTitle(title);
-        res.json(group);
+        groupModel
+            .findGroupByTitle(title)
+            .then(
+                function(response){
+                    res.json(response)
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 
 
@@ -83,6 +100,16 @@ module.exports = function(app, groupModel){
         var groupId = req.params.groupId;
         var updatedGroup = req.body;
 
-        res.json(groupModel.updateGroupById(groupId,updatedGroup));
+        groupModel
+            .updateGroupById(groupId,updatedGroup)
+            .then(
+                function(response){
+                    res.json(response)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 };

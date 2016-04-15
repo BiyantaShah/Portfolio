@@ -76,7 +76,7 @@
                 }
             })
 
-            .when("/subject/:subjectId/notebook/:notebookId/note/:noteId/noteText",{
+            .when("/note/:noteId/noteText",{
                 templateUrl: "views/search/noteText.view.html",
                 controller: "NoteTextController",
                 controllerAs: "model",
@@ -94,24 +94,14 @@
                 }
             })
 
-            .when("/checklist",{
-                templateUrl: "views/checklist/checklist.view.html",
-                controller: "CheckListController",
+            .when("/group/:groupId/details",{
+                templateUrl:"views/group/groupDetails.view.html",
+                controller:"DetailsController",
                 controllerAs: "model",
-                resolve:{
-                    checkLoggedIn : checkLoggedIn
-                }
-            })
-
-            .when("/checkList/:checklistId/contentList",{
-                templateUrl: "views/checklist/listContent.view.html",
-                controller: "ListContentController",
-                controllerAs: "model",
-                resolve:{
+                resolve: {
                     checkLoggedIn: checkLoggedIn
                 }
             })
-
 
 
             .otherwise({

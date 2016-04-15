@@ -12,6 +12,7 @@
 
         var api={
             createNotebookForSubject:createNotebookForSubject,
+            createNotebookForUser:createNotebookForUser,
             getAllNotebooksForSubject: getAllNotebooksForSubject,
             getNotebookById: getNotebookById,
             getAllNotebooksForUser: getAllNotebooksForUser,
@@ -23,11 +24,13 @@
 
         return api;
 
-        function createNotebookForSubject(subjectId, newBook) {
+        function createNotebookForSubject(subjectId, newBook, userId) {
 
-            return $http.post ("/api/project/subject/" + subjectId+ "/notebook" ,newBook);
+            return $http.post ("/api/project/user/"+ userId +"/subject/" + subjectId+ "/notebook" ,newBook);
+        }
 
-
+        function createNotebookForUser(userId, newBook){
+            return $http.post ("/api/project/user/" + userId + "/notebook", newBook);
         }
 
         function getAllNotebooksForSubject(subjectId){

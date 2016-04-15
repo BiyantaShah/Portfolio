@@ -19,23 +19,26 @@
         vm.deleteGroup = deleteGroup;
         vm.selectGroup = selectGroup;
         vm.updateGroup = updateGroup;
+        vm.groupDetails =groupDetails;
 
         function init() {
-            currentUser = null;
+
 
             UserService.getCurrentUser()
                 .then(function (response) {
-                    currentUser = response.data;
+                    vm.user = response.data;
 
-                    if (currentUser == null) {
+                    if (vm.user == null) {
                         $location.path("/home");
                     }
                     else {
 
-                        GroupService.findAllGroupsForUser(currentUser._id)
+                        GroupService.findAllGroupsForUser(vm.user._id)
                             .then(function (response) {
                                 vm.groups = response.data;
-                                currentAllUserGroups = response.data;
+                                vm.group = {};
+                                vm.group.member = vm.user.username;
+                                //currentAllUserGroups = response.data;
                             });
                     }
 
@@ -53,26 +56,29 @@
 
             if (groupName != null && member != []) {
                 var newGroup = {
-                    "_id": null,
+                   // "_id": null,
                     "title": groupName,
-                    "users":[],
-                    "members": member.split(",")
+                    "members": member.split(",").push(vm.user.username) ,
+                    "shared":[]
                 };
 
-                GroupService.createGroupForUser(UserService.getCurrentUser()._id, newGroup)
+                GroupService.createGroupForUser(vm.user._id, newGroup)
                     .then(function(response){
-
                         init();
                         vm.group.groupName = null;
-                        vm.group.member = null;
+                        vm.group.member = vm.user.username;
 
                     });
             }
         }
 
         function deleteGroup(index) {
-            GroupService.deleteGroupById(vm.groups[index]._id);
-            init();
+            GroupService.deleteGroupById(vm.groups[index]._id)
+            .then(function(response){
+                if(response.data){
+                    init();
+                }
+            });
         }
 
 
@@ -91,15 +97,33 @@
             if(vm.index != -1 && groupName != null && member != []){
 
                 var selectedGroup = vm.groups[vm.index];
-                selectedGroup.title = groupName;
-                selectedGroup.members = member.split(",");
-                GroupService.updateGroupById(selectedGroup._id, selectedGroup);
-                init();
-                vm.index = -1;
-                vm.group.groupName = null;
-                vm.group.member = null;
+                var updateGroup = {
+                    "_id":selectedGroup._id,
+                    "title": groupName,
+                    "members": member.split(","),
+                    "shared": selectedGroup.shared.split(",")
+                };
+
+                GroupService.updateGroupById(selectedGroup._id, updateGroup)
+                    .then(function(response){
+                        if(response.data){
+                            vm.groups[vm.index] = response.data;
+                            vm.group.groupName = null;
+                            vm.group.member = vm.user.username;
+                            vm.index = -1;
+                            init();
+                        }
+                    });
+
+
+
             }
 
+        }
+
+        function groupDetails(groupId){
+            GroupService.setGroupId(groupId);
+            $location.path("/group/" + groupId + "/details");
         }
 
 

@@ -1,4 +1,4 @@
-module.exports = function(app, userModel, subjectModel){
+module.exports = function(app, subjectModel){
     app.delete("/api/project/subject/:subjectId", deleteSubjectById);
     app.get("api/project/subject/:title",findSubjectByTitle);
     app.get("/api/project/subject/:subjectId",findSubjectById);
@@ -11,7 +11,15 @@ module.exports = function(app, userModel, subjectModel){
 
         var subjectId = req.params.subjectId;
 
-        subjectModel.deleteSubjectById(subjectId);
+        subjectModel.deleteSubjectById(subjectId)
+            .then(function(response){
+                    res.json(response);
+                },
+                // send error if promise rejected
+                function(err ){
+                    res.status(400).send(err);
+                }
+            );
     }
 
 
@@ -86,9 +94,19 @@ module.exports = function(app, userModel, subjectModel){
     }
 
     function updateSubjectById(req,res){
+
         var subjectId = req.params.subjectId;
         var updatedSub = req.body;
 
-        res.json(subjectModel.updateSubjectById(subjectId,updatedSub));
+        subjectModel.updateSubjectById(subjectId,updatedSub)
+            .then(
+                function(response){
+                    res.json(response);
+                },
+                // send error if promise rejected
+                function(err ){
+                    res.status(400).send(err);
+                }
+            );
     }
 };

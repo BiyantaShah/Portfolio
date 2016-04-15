@@ -1,0 +1,11 @@
+[
+  {"_id": "000", "title": "Science Group", "users": [123, 234, 345],
+    "members": ["alice", "bob", "charlie"], "shared": ["101", "102", "202"]},
+
+  {"_id": "010", "title": "Social Science Group", "users": [234, 345, 456],
+    "members": ["bob", "charlie","dan"],  "shared": ["201", "203", "202"]},
+
+  {"_id": "011", "title": "Mathematics Group", "users": [123, 345],
+  "members":["alice", "charlie"],  "shared": ["101", "102", "103"]}
+
+]

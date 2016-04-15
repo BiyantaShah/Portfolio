@@ -44,5 +44,5 @@ app.use(session({secret: 'biyanta', resave: true, saveUninitialized: true}));
 //app.use(multer());
 app.use(cookieParser());
 require("./public/assignment/server/app.js")(app, db, mongoose);
-require("./public/project/server/app.js")(app);
+require("./public/project/server/app.js")(app,db,mongoose);
 app.listen(port, ipaddress);

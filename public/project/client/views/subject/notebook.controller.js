@@ -17,7 +17,11 @@
         vm.updateNotebook = updateNotebook;
         vm.goToNote = goToNote;
 
+
+
         function init() {
+
+
             if($routeParams.subjectId == ":subjectId"){
                 UserService.getCurrentUser()
                     .then(function(response){
@@ -30,11 +34,16 @@
                     })
             }
             else{
-                NotebookService.getAllNotebooksForSubject($routeParams.subjectId)
+                UserService.getCurrentUser()
                     .then(function(response){
-                        vm.notebooks = response.data;
-                        currentAllNotebooks = response.data;
+                        vm.user = response.data;
+                        NotebookService.getAllNotebooksForSubject($routeParams.subjectId)
+                            .then(function(response){
+                                vm.notebooks = response.data;
+                                currentAllNotebooks = response.data;
+                            });
                     });
+
 
             }
 
@@ -50,37 +59,56 @@
 
         //event implementations
 
-        function addNotebook(notebookName) {
+        function addNotebook(notebook) {
 
-            if (notebookName == null) {
+            if (notebook.notebookName == null) {
                 $scope.message = "Give a title to the subject";
                 return $scope.message;
             }
 
             else{
+                if($routeParams.subjectId == ":subjectId"){
+                    var newBook = {
+                        //"_id": null,
+                        "label": notebook.notebookName,
+                        "userId": vm.user._id
+                    };
 
-                var newBook = {
-                    "._id":null,
-                    "label":notebookName,
-                    "userId": vm.user._id,
-                    "subjectId": $routeParams.subjectId
+                    NotebookService.createNotebookForUser(vm.user._id, newBook)
+                        .then(function(response){
+                            vm.notebook.notebookName = null;
+                            init();
+                        });
+                }
+                else{
 
-                };
-                NotebookService.createNotebookForSubject($routeParams.subjectId, newBook)
-                    .then(function(response){
+                    var newBook = {
+                        "label":notebook.notebookName,
+                        "userId": vm.user._id,
+                        "subjectId": $routeParams.subjectId
 
-                        vm.notebook.notebookName = null;
-                        init();
+                    };
 
-                    });
+                    NotebookService.createNotebookForSubject($routeParams.subjectId, newBook, vm.user._id)
+                        .then(function(response){
+                            vm.notebook.notebookName = null;
+                            init();
+                        });
+                    }
+
             }
 
         }
 
         function deleteNotebook(index) {
 
-            NotebookService.deleteNotebookFromSubject(vm.notebooks[index]._id);
-            init();
+            NotebookService.deleteNotebookFromSubject(vm.notebooks[index]._id)
+                .then(function(response){
+                    if(response.data){
+                        init();
+                    }
+                });
+
         }
 
 
@@ -92,15 +120,22 @@
         }
 
 
-        function updateNotebook(notebookName) {
-            if(vm.index != -1 && notebookName != null){
+        function updateNotebook(notebook) {
+            if(vm.index != -1 && notebook.notebookName != null){
 
                 var selectedBook = vm.notebooks[vm.index];
-                selectedBook.label = notebookName;
-                NotebookService.updateNotebook(selectedBook._id, selectedBook);
-                init();
-                vm.index = -1;
-                vm.notebook.notebookName = null;
+                var updateBook = {
+                    "_id":selectedBook._id,
+                    "userId": vm.user._id,
+                    "label": notebook.notebookName
+                };
+                NotebookService.updateNotebook(selectedBook._id, updateBook)
+                    .then(function(response){
+                        vm.notebooks[vm.index] = response.data;
+                        vm.notebook.notebookName = null;
+                        vm.index = -1;
+                        init();
+                    });
             }
         }
 

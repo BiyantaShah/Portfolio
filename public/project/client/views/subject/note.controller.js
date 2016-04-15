@@ -32,11 +32,16 @@
                     });
             }
             else{
-                NoteService.getAllNotesForBook($routeParams.notebookId)
+                UserService.getCurrentUser()
                     .then(function(response){
-                        vm.notes = response.data;
-                        currentAllNotes = response.data;
+                        vm.user = response.data;
+                        NoteService.getAllNotesForBook($routeParams.notebookId)
+                            .then(function(response){
+                                vm.notes = response.data;
+                                currentAllNotes = response.data;
+                            });
                     });
+
 
             }
 
@@ -53,38 +58,57 @@
 
         //event implementations
 
-        function addNote(noteName) {
+        function addNote(note) {
             var currentUser = null;
 
-            if (noteName == null) {
-                $scope.message = "Give a title to the subject";
+            if (note.noteName == null) {
+                $scope.message = "Give a title to the note";
                 return $scope.message;
             }
 
             else{
+                if($routeParams.notebookId == ":notebookId"){
+                    var newNote = {
+                       //"_id": null,
+                        "title": note.noteName,
+                        "content": null,
+                        "userId": vm.user._id
+                    };
+                    NoteService.createNoteForUser(vm.user._id, newNote)
+                        .then(function(response){
+                            vm.note.noteName = null;
+                            init();
+                        })
+                }
+                else{
+                    var newNote = {
+                       // "_id":null,
+                        "title":note.noteName,
+                        "content":null,
+                        "notebookId": $routeParams.notebookId,
+                        "userId": vm.user._id
+                    };
+                    NoteService.createNoteForBook($routeParams.notebookId, newNote, vm.user._id)
+                        .then(function(response){
 
-                var newNote = {
-                    "._id":null,
-                    "title":noteName,
-                    "content":null,
-                    "notebookId": $routeParams.notebookId,
-                    "userId": vm.user._id
-                };
-                NoteService.createNoteForBook($routeParams.notebookId, newNote)
-                    .then(function(response){
+                            vm.note.noteName = null;
+                            init();
 
-                        vm.note.noteName = null;
-                        init();
+                        });
+                }
 
-                    });
             }
 
         }
 
         function deleteNote(index) {
 
-            NoteService.deleteNoteFromBook(vm.notes[index]._id);
-            init();
+            NoteService.deleteNoteFromBook(vm.notes[index]._id)
+                .then(function(response){
+                    if(response.data){
+                        init();
+                    }
+                });
         }
 
 
@@ -96,23 +120,31 @@
         }
 
 
-        function updateNote(noteName) {
-            if(vm.index != -1 && noteName != null){
+        function updateNote(note) {
+            if(vm.index != -1 && note.noteName != null){
 
                 var selectedNote = vm.notes[vm.index];
-                selectedNote.title = noteName;
-                NoteService.updateNote(selectedNote._id, selectedNote);
-                init();
-                vm.index = -1;
-                vm.note.noteName = null;
+                var updateNote = {
+                    "_id":selectedNote._id,
+                    "title": note.noteName,
+                    "content": selectedNote.content,
+                    "userId": vm.user._id
+                };
+
+                NoteService.updateNote(selectedNote._id, updateNote)
+                    .then(function(response){
+                        vm.notes[vm.index] = response.data;
+                        vm.note.noteName = null;
+                        vm.index = -1;
+                        init();
+                    });
+
             }
         }
 
         function goToNoteText(noteId){
             //NoteService.setNoteId(noteId);
-            $location.path('/subject/' + $routeParams.subjectId
-                + '/notebook/' +$routeParams.notebookId + '/note/' + noteId +
-                '/noteText');
+            $location.path( '/note/' + noteId + '/noteText');
         }
 
     }

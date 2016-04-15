@@ -11,23 +11,29 @@
 
         var api={
             createNoteForBook:createNoteForBook,
+            createNoteForUser:createNoteForUser,
             getAllNotesForBook: getAllNotesForBook,
             getNoteForBook: getNoteForBook,
             getAllNotesForUser:getAllNotesForUser,
             deleteNoteFromBook: deleteNoteFromBook,
             findNoteByTitle: findNoteByTitle,
+            findNoteById: findNoteById,
             updateNote:updateNote,
-            getContent: getContent,
+           // getContent: getContent,
             getNoteId: getNoteId,
             setNoteId: setNoteId
         }
 
         return api;
 
-        function createNoteForBook(notebookId, newNote) {
-            return $http.post ("/api/project/notebook/" + notebookId+ "/note" ,newNote);
+        function createNoteForBook(notebookId, newNote, userId) {
+            return $http.post ("/api/project/user/"+userId+"/notebook/" + notebookId+ "/note" ,newNote);
 
 
+        }
+
+        function createNoteForUser(userId, newNote){
+            return $http.post("/api/project/user/"+userId+ "/note", newNote);
         }
 
         function getAllNotesForBook( notebookId){
@@ -49,19 +55,22 @@
             return $http.delete("/api/project/note/" + noteId);
         }
 
-        function findNoteByTitle(userId, title){
+        function findNoteByTitle(title){
 
-            return $http.get("/api/project/user/" + userId + "/title/" + title);
+            return $http.get("/api/project/title/" + title);
         }
 
+        function findNoteById(noteId){
+            return $http.get("/api/project/note/"+noteId);
+        }
         function updateNote(noteId,  note){
             return $http.put("/api/project/note/" + noteId, note);
 
         }
 
-        function getContent(noteId){
+        /*function getContent(noteId){
             return $http.get("/api/project/note/" + noteId + '/content');
-        }
+        }*/
 
         function getNoteId(){
             return $rootScope.noteId;

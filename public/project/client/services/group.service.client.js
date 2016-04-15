@@ -32,6 +32,7 @@
             return $http.delete("/api/project/group/"+groupId);
         }
 
+
         function getGroupId(){
             return $rootScope.groupId;
         }

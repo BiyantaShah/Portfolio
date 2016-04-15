@@ -2,10 +2,11 @@ module.exports = function(app, noteModel){
     app.get("/api/project/notebook/:notebookId/note", findAllNotesForBooks);
     app.get("/api/project/note/:noteId", findNoteById);
     app.delete("/api/project/note/:noteId", deleteNoteFromBook);
-    app.post("/api/project/notebook/:notebookId/note", createNoteForBook);
+    app.post("/api/project/user/:userId/notebook/:notebookId/note", createNoteForBook);
+    app.post("/api/project/user/:userId/note", createNoteForUser);
     app.put("/api/project/note/:noteId", updateNoteByIdForBook);
-    app.get("/api/project/note/:noteId/content", getContent);
-    app.get("/api/project/user/:userId/title/:title", findNoteByTitle);
+    //app.get("/api/project/note/:noteId/content", getContent);
+    app.get("/api/project/title/:title", findNoteByTitle);
     app.get("/api/project/user/:userId/note", findAllNotesForUsers);
 
 
@@ -70,12 +71,12 @@ module.exports = function(app, noteModel){
 
     function createNoteForBook(req,res){
 
-
+        var userId = req.params.userId;
         var notebookId = req.params.notebookId;
         var newNote = req.body;
 
         noteModel
-            .createNoteForBook(notebookId,newNote)
+            .createNoteForBook(notebookId,newNote, userId)
             .then(
                 function(response){
                     res.json(response)
@@ -85,6 +86,24 @@ module.exports = function(app, noteModel){
                     res.status(400).send(err);
                 }
             );
+
+    }
+
+    function createNoteForUser(req,res){
+
+        var userId = req.params.userId;
+        var newNote = req.body;
+
+        noteModel
+            .createNoteForUser(userId, newNote)
+            .then(
+                (function(response){
+                    res.json(response)
+                }),
+                function(err){
+                    res.status(400).send(err);
+                }
+            )
 
     }
 
@@ -108,7 +127,7 @@ module.exports = function(app, noteModel){
 
     }
 
-    function getContent (req,res){
+   /* function getContent (req,res){
 
 
         var noteId = req.params.noteId;
@@ -126,16 +145,15 @@ module.exports = function(app, noteModel){
             );
 
 
-    }
+    }*/
 
     function findNoteByTitle(req,res){
 
-        var userId = req.params.userId;
         var title = req.params.title;
 
 
         noteModel
-            .findNoteByTitle(userId, title)
+            .findNoteByTitle(title)
             .then(
                 function(response){
                     res.json(response)

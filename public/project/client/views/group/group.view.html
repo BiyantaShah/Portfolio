@@ -49,7 +49,7 @@
                 </tr>
                 <tr ng-repeat="group in model.groups">
 
-                    <td class="small-font"><a >{{group.title}}</a></td>
+                    <td class="small-font" ng-click="model.groupDetails(group._id);"><a >{{group.title}}</a></td>
                     <td class="small-font">{{group.members.toString()}}</td>
                     <td>
                         <a ng-click="model.deleteGroup($index);" class="btn btn-default">
