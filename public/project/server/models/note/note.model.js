@@ -180,11 +180,11 @@ module.exports = function(app, NoteService, mongoose) {
         return deferred.promise
     }*/
 
-    function findNoteByTitle( title){
+    function findNoteByTitle( userId, title){
 
         var deferred = q.defer();
 
-        NoteModel.find({title: title}, function (err, doc) {
+        NoteModel.find({ $and: [{userId: userId},{title: title}]}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             } else {

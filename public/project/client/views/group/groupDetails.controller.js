@@ -57,7 +57,7 @@
         function goToNoteText(title){
             var curNote;
 
-            NoteService.findNoteByTitle(title)
+            NoteService.findNoteByTitle(vm.user._id,title)
                 .then(function(response){
                     curNote = response.data;
                     var noteId = curNote[0]._id;

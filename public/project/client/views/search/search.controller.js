@@ -28,39 +28,31 @@
                     if (currentUser == null) {
                         $location.path("/home");
                     }
+
                 });
         }
 
         init();
 
 
-        function searchNote(noteName) {
+        function searchNote(title) {
 
-            var userId;
-            UserService.getCurrentUser()
-                .then(
-                    function(response){
+            NoteService.findNoteByTitle(currentUser._id, title)
+                .then(function(response){
+                    if(response.data){
+                        vm.note = response.data;
+                        if(vm.note!=null){
 
-                        vm.user = response.data;
-                        NoteService.findNoteByTitle(vm.user._id, noteName)
-                            .then(function(response){
-                                if(response.data){
-                                    vm.search = response.data;
-                                    if(vm.search!=null){
-                                        //SubjectService.setSubjectId(response.data.subjectId);
-                                      //  NotebookService.setNotebookId(response.data.notebookId);
-                                        vm.search.title = vm.search.title;
-
-                                    }
-                                    else{
-                                        $scope.message = "Note not found. Check for spelling errors!";
-                                        return $scope.message;
-                                    }
-                                }
-                            });
-
+                            //SubjectService.setSubjectId(response.data.subjectId);
+                            //  NotebookService.setNotebookId(response.data.notebookId);
+                            vm.note.title = vm.note[0].title;
+                        }
+                        else{
+                            $scope.message = "Note not found. Check for spelling errors!";
+                            return $scope.message;
+                        }
                     }
-                );
+                });
         }
 
         function showContent(noteId){

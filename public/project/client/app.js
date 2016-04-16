@@ -2,7 +2,7 @@
 
 
     angular
-        .module("NoteTakerWebsite", ["ngRoute", "textAngular"]);
+        .module("NoteTakerWebsite", ["ngRoute", "textAngular", "angucomplete-alt"]);
 
 
 })();

@@ -7,9 +7,9 @@
         <form class="form-horizontal"> 
             <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
             <div ng-controller="SearchController">
-                <input type="search" class="form-control" ng-model = "model.note.searchName" placeholder="Search for your notes">
+                <input type="search" class="form-control" ng-model = "model.note.name" placeholder="Search for your notes">
 
-                <h5 align="center"><a ng-click = "model.searchNote(model.note.searchName);" class="btn btn-default">Search
+                <h5 align="center"><a ng-click = "model.searchNote(model.note.name);" class="btn btn-default">Search
                 </a> </h5>
 
                 <div align="center">
@@ -17,14 +17,6 @@
                     <a ng-click="model.goToNote();" class="btn btn-default" aria-label="Left Align">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </a>
-
-                     <!-- <button type="button" class="btn btn-default" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                    </button>
-
-                    <button type="button" class="btn btn-default" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    </button> -->
 
                     <a class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#myModal">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
@@ -39,13 +31,13 @@
         </form>
 
         <!--<section ng-show="model.note"> -->
-        <section ng-show="model.search">
+        <section ng-show="model.note">
             <br>
             <h4 align="center">Search Results</h4>
             <br>
             <ul>
                <h5 class="extreme-left">
-                <li> <a ng-click="model.showContent(model.search._id);"> {{model.search.title}} </a> </li>
+                <li> <a ng-click="model.showContent(model.note[0]._id);"> {{model.note.title}} </a> </li>
              </h5>
             </ul>
         </section>

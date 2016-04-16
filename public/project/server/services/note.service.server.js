@@ -6,7 +6,7 @@ module.exports = function(app, noteModel){
     app.post("/api/project/user/:userId/note", createNoteForUser);
     app.put("/api/project/note/:noteId", updateNoteByIdForBook);
     //app.get("/api/project/note/:noteId/content", getContent);
-    app.get("/api/project/title/:title", findNoteByTitle);
+    app.get("/api/project/user/:userId/title/:title", findNoteByTitle);
     app.get("/api/project/user/:userId/note", findAllNotesForUsers);
 
 
@@ -149,11 +149,12 @@ module.exports = function(app, noteModel){
 
     function findNoteByTitle(req,res){
 
+        var userId = req.params.userId;
         var title = req.params.title;
 
 
         noteModel
-            .findNoteByTitle(title)
+            .findNoteByTitle(userId,title)
             .then(
                 function(response){
                     res.json(response)

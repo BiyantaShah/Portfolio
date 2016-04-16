@@ -55,9 +55,9 @@
             return $http.delete("/api/project/note/" + noteId);
         }
 
-        function findNoteByTitle(title){
+        function findNoteByTitle(userId, title){
 
-            return $http.get("/api/project/title/" + title);
+            return $http.get("/api/project/user/" + userId +"/title/" + title);
         }
 
         function findNoteById(noteId){
