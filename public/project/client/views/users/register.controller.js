@@ -72,7 +72,7 @@
                 };
             }
 
-            UserService.createUser(newUser)
+            UserService.register(newUser)
                 .then(function (response) {
                     UserService.setCurrentUser(response.data);
                     $location.path('/profile');

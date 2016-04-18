@@ -8,9 +8,15 @@
         $routeProvider
 
             .when("/home", {
-                templateUrl: "views/home/home.view.html",
+                templateUrl: "views/home/home.view.html"
+            })
+
+            .when("/admin",{
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController",
+                controllerAs: "model",
                 resolve: {
-                    getLoggedIn: getLoggedIn
+                    checkLoggedInAdmin: checkLoggedInAdmin
                 }
             })
 
@@ -142,6 +148,27 @@
                 var projectUser = response.data;
                 if(projectUser) {
                     UserService.setCurrentUser(projectUser);
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $location.url("/home");
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkLoggedInAdmin(UserService, $q, $location) {
+
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function(response) {
+                var currentUser = response.data;
+                if(((currentUser != null) && (currentUser.type == "admin"))
+                    || ($location.url == '/home')) {
+                    UserService.setCurrentUser(currentUser);
                     deferred.resolve();
                 } else {
                     deferred.reject();

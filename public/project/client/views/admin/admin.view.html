@@ -1,0 +1,60 @@
+<div ng-controller="AdminController">
+    <div class="col-sm-1 col-lg-1 col-md-1"></div>
+    <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 main">
+    <h1>Admin</h1>
+    <h2>Users</h2>
+    <div class="table-responsive">
+        <table class="table  table-bordered">
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Type</th>
+                <th>Action</th>
+
+            </tr>
+            <tbody>
+            <tr>
+                <td><input type = "text" class = "form-control"  placeholder = "Username" ng-model="model.user.username"></td>
+                <td><input type = "text" class = "form-control"  placeholder = "Password" ng-model="model.user.password"></td>
+                <td><input type = "text" class = "form-control"  placeholder = "First Name" ng-model="model.user.firstName"></td>
+                <td><input type = "text" class = "form-control"  placeholder = "Last Name" ng-model="model.user.lastName"></td>
+                <td><input type = "text" class = "form-control"  placeholder = "Email ID" ng-model="model.user.email"></td>
+                <td><input type = "text" class = "form-control"  placeholder = "student, faculty, other" ng-model="model.user.type"></td>
+                <td class="style">
+                    <a ng-click="model.createUser(model.user)"  class="btn btn-default">
+                    <span class = "glyphicon glyphicon-plus" aria-hidden = "true" ></span>
+                        </a>
+                    <a ng-click="model.updateUser(model.user)" class="btn btn-default">
+                    <span class = "glyphicon glyphicon-ok" aria-hidden = "true"></span>
+                </a></td>
+                </a>
+
+            </tr>
+            <tr ng-repeat = "user in model.users">
+                <td>{{user.username}}</td>
+                <td></td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.type}}</td>
+                <td class="style">
+                    <a ng-click="model.deleteUser($index)" class="btn btn-default">
+                    <span class = "glyphicon glyphicon-remove" aria-hidden = "true" ></span>
+                    </a>
+                    <a ng-click="model.selectUser($index)" class="btn btn-default">
+                    <span class = "glyphicon glyphicon-pencil" aria-hidden = "true" ng-click="model.selectUser($index)"></span>
+                    </a>
+                </td>
+
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+        </div>
+    <div class="col-sm-1 col-lg-1 col-md-1"></div>
+</div>

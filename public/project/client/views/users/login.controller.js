@@ -19,6 +19,7 @@
 
         //event implementation
         function login(user) {
+
             if(!user){
                 $scope.message = "Enter your Login Details!";
                 return $scope.message;
@@ -26,12 +27,13 @@
 
 
             UserService
-                .findUserByCredentials({
+                .login({
                     username: user.username,
                     password: user.password
 
                 })
                 .then(function (response) {
+
                     if(response.data != null){
 
                         UserService.setCurrentUser(response.data);

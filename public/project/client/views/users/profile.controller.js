@@ -64,7 +64,7 @@
 
                     if (response.data){
                         UserService.setCurrentUser(response.data);
-                        // UserService.getCurrentUser();
+                        UserService.getCurrentUser();
                     }
                 });
 

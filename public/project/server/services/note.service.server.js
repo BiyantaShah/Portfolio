@@ -222,6 +222,7 @@ module.exports = function(app, noteModel){
     function searchNote(req,res){
         var title = req.params.title;
         var userId = req.session.projectUser._id;
+
                 noteModel
                     .searchNote(title,userId)
                     .then(

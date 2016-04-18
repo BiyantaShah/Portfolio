@@ -21,15 +21,20 @@
                     </li>
 
                     <li ng-hide = "currentUser">
-                        <a href= "https://docs.google.com/a/husky.neu.edu/document/d/1o9rEENlWrVArBPuoJCvcnyP7mj44SWqngAtYLa7mprI/edit?usp=sharing">
+                        <a href= " ../client/misc/Projectproposal.pdf">
                             Documentation</a>
                     </li>
 
                     <li ng-hide = "currentUser">
                         <a href="#/login">Login</a>
                     </li>
+
                     <li ng-hide = "currentUser">
                         <a href="#/register">Register</a>
+                    </li>
+
+                    <li ng-show = "currentUser.type == 'admin' ">
+                        <a href="#/admin">Admin </a>
                     </li>
                     <li ng-show ="currentUser">
                         <a href="#/profile">Welcome, {{currentUser.username}}!</a>

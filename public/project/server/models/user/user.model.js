@@ -11,10 +11,11 @@ module.exports = function(app, mongoose) {
 
     var api = {
         createUser: createUser,
-        deleteUserById: deleteUserById,
+        deleteUser: deleteUser,
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
         findAllUsers: findAllUsers,
+        findAllUsersAdmin: findAllUsersAdmin,
         findUserById: findUserById,
         updateUser: updateUser
 
@@ -51,6 +52,19 @@ module.exports = function(app, mongoose) {
             }
         });
 
+        return deferred.promise;
+    }
+
+    function findAllUsersAdmin(){
+        var deferred = q.defer();
+
+        UserModel.find(function(err, doc){
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
+            }
+        });
         return deferred.promise;
     }
 
@@ -116,7 +130,7 @@ module.exports = function(app, mongoose) {
         return deferred.promise;
     }
 
-    function deleteUserById(userId){
+    function deleteUser(userId){
 
         var deferred = q.defer();
 
@@ -143,7 +157,7 @@ module.exports = function(app, mongoose) {
                 "password": user.password,
                 "firstName": user.firstName,
                 "lastName": user.lastName,
-                "emails": user.emails
+                "email": user.email
             }},
             function (err, doc) {
                 if (err) {
