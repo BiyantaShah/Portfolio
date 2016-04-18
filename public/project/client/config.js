@@ -8,7 +8,10 @@
         $routeProvider
 
             .when("/home", {
-                templateUrl: "views/home/home.view.html"
+                templateUrl: "views/home/home.view.html",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
 
             .when("/admin",{
@@ -145,9 +148,9 @@
         UserService
             .getCurrentUser()
             .then(function(response) {
-                var projectUser = response.data;
-                if(projectUser) {
-                    UserService.setCurrentUser(projectUser);
+                var currentUser = response.data;
+                if((currentUser != null) || ($location.url == '/home')) {
+                    UserService.setCurrentUser(currentUser);
                     deferred.resolve();
                 } else {
                     deferred.reject();

@@ -1,5 +1,5 @@
 <div ng-controller="AdminController">
-    <br> <br> <br>
+    <br>
     <div class="col-sm-1 col-lg-1 col-md-1"></div>
     <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 main bg">
     <h1>Admin</h1>
@@ -19,11 +19,15 @@
             <tbody>
             <tr>
                 <td><input type = "text" class = "form-control"  placeholder = "Username" ng-model="model.user.username"></td>
-                <td><input type = "text" class = "form-control"  placeholder = "Password" ng-model="model.user.password"></td>
+                <td><input type = "password" class = "form-control"  placeholder = "Password" ng-model="model.user.password"></td>
                 <td><input type = "text" class = "form-control"  placeholder = "First Name" ng-model="model.user.firstName"></td>
                 <td><input type = "text" class = "form-control"  placeholder = "Last Name" ng-model="model.user.lastName"></td>
                 <td><input type = "text" class = "form-control"  placeholder = "Email ID" ng-model="model.user.email"></td>
-                <td><input type = "text" class = "form-control"  placeholder = "student, faculty, other" ng-model="model.user.type"></td>
+                <td><select  class = "form-control"  ng-model="model.user.type">
+                    <option value="student">student</option>
+                    <option value="faculty">faculty</option>
+                    <option value="others">others</option>
+                </select></td>
                 <td class="style">
                     <a ng-click="model.createUser(model.user)"  class="btn btn-default">
                     <span class = "glyphicon glyphicon-plus" aria-hidden = "true" ></span>

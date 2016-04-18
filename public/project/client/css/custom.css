@@ -116,9 +116,25 @@
 }
 
 .bg{
-background-image: url('../misc/image1.jpeg');
-    background-repeat: no-repeat;
+    background: url('../views/home/wall1-blur.png') no-repeat center center;
+    background-attachment: fixed;
     background-size: cover;
+    display: table;
+    height: calc(100vh - 72px);
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    overflow-x: hidden;
+
 }
 
+.back{
+    background-image: url('../views/home/wall11.jpg');
+}
+
+.pull-top{
+    float: left;
+    padding-left: 0px;
+    padding-top: 0px;
+}
 
