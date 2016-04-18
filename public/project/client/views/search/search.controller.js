@@ -5,7 +5,7 @@
         .module("NoteTakerWebsite")
         .controller("SearchController",SearchController);
 
-    function SearchController(NoteService, UserService, $location, SubjectService, NotebookService, $scope) {
+    function SearchController(NoteService, UserService, $location, $scope) {
 
         var vm = this;
 

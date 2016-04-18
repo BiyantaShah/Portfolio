@@ -12,6 +12,7 @@ module.exports = function(app, NoteService, mongoose) {
 
         //for notes
         addItem:addItem,
+        delItem:delItem,
         findAllNotesForBooks: findAllNotesForBooks,
         findNoteById:findNoteById,
         findByTitle: findByTitle,
@@ -34,10 +35,38 @@ module.exports = function(app, NoteService, mongoose) {
         var deferred = q.defer();
 
 
+
+            NoteModel.update(
+                { _id : noteId},
+                { $set:  {
+                    "content": newField
+                }
+
+                }, function (err, doc) {
+                    if (err) {
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(doc);
+                    }
+                });
+
+
+        return deferred.promise;
+
+
+    }
+
+
+    function delItem(noteId){
+
+        var deferred = q.defer();
+
+
+
         NoteModel.update(
             { _id : noteId},
             { $set:  {
-                "content": newField
+                "content": ""
             }
 
             }, function (err, doc) {
@@ -48,10 +77,14 @@ module.exports = function(app, NoteService, mongoose) {
                 }
             });
 
+
         return deferred.promise;
 
 
     }
+
+
+
 
     function findAllNotesForUsers(userId){
         var deferred = q.defer();
@@ -227,8 +260,10 @@ module.exports = function(app, NoteService, mongoose) {
 
     function searchNote(title,userId){
 
-        return NoteModel.find({$or: [{$and: [{'content': {$regex: title, $options: 'i'}},{userId: userId}]},
-        { $and: [{'title': {$regex: title, $options: 'i'}},{userId: userId}]}]});
+        return NoteModel.find({$or: [{'title': {$regex: title, $options: 'i'}}, {'content': {$regex: title, $options: 'i'}}]});
+
+        //return NoteModel.find({$or: [{$and: [{'content': {$regex: title, $options: 'i'}},{userId: userId}]},
+        //{ $and: [{'title': {$regex: title, $options: 'i'}},{userId: userId}]}]});
     }
 };
 

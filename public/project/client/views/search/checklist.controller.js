@@ -95,10 +95,13 @@
 
             var contentString = vm.contentArray.toString();
 
+
             NoteService.addItem($routeParams.noteId, contentString)
                 .then(function(response){
                     init();
                 })
+
+
         }
 
         function saveReminder(note, reminder){

@@ -7,11 +7,30 @@ module.exports = function(app, noteModel){
     app.post("/api/project/user/:userId/note", createNoteForUser);
     app.put("/api/project/note/:noteId", updateNoteByIdForBook);
     app.put("/api/project/note/:noteId/content/:newField", addItem);
+    app.put("/api/project/note/:noteId/content", delItem);
     app.get("/api/project/user/:userId/title/:title", findNoteByTitle);
     app.get("/api/project/user/:userId/note", findAllNotesForUsers);
     app.get("/api/project/search/:title", searchNote);
 
 
+
+    function delItem(req,res){
+
+        var noteId = req.params.noteId;
+
+        noteModel
+            .delItem(noteId)
+            .then(
+                function(response){
+                    res.json(response);
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+
+    }
 
 
     function addItem(req,res){
@@ -221,10 +240,11 @@ module.exports = function(app, noteModel){
 
     function searchNote(req,res){
         var title = req.params.title;
-        var userId = req.session.projectUser._id;
+       // var userId = req.body;
+      //  console.log(userId);
 
                 noteModel
-                    .searchNote(title,userId)
+                    .searchNote(title)
                     .then(
                            function(response)
                            {

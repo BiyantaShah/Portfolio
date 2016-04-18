@@ -30,14 +30,20 @@
         return api;
 
         function addItem(noteId, newField){
-            return $http.put("/api/project/note/"+ noteId + "/content/" + newField);
+            if(newField == ""){
+                return $http.put("/api/project/note/"+ noteId + "/content");
+
+            }
+            else{
+                return $http.put("/api/project/note/"+ noteId + "/content/" + newField);
+            }
         }
 
         function createNoteForBook(notebookId, newNote, userId) {
             return $http.post ("/api/project/user/"+userId+"/notebook/" + notebookId+ "/note" ,newNote);
 
-
         }
+
 
         function createNoteForUser(userId, newNote){
 

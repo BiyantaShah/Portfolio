@@ -110,9 +110,15 @@
     display:inline-block;
     width:40px;
 }
+.post{
+    font-size:40px;
+    font-weight:700;
+}
 
-
-
-
+.bg{
+background-image: url('../misc/image1.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 
