@@ -83,16 +83,17 @@ module.exports = function(app, GroupService, mongoose) {
         return deferred.promise
     }
 
-    function findAllGroupsForUser(userId){
+    function findAllGroupsForUser(username){
 
         var deferred = q.defer();
 
-        GroupModel.find({createdBy: userId},
+        GroupModel.find({ members : username },
             function (err, doc) {
                 if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(doc);
+
                 }
             });
 

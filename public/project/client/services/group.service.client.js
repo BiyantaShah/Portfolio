@@ -51,8 +51,8 @@
             return $http.get("/api/project/group/"+groupId);
         }
 
-        function findAllGroupsForUser(userId){
-            return $http.get("/api/project/user/"+ userId +"/group");
+        function findAllGroupsForUser(username){
+            return $http.get("/api/project/user/"+ username +"/group");
         }
 
         function updateGroupById(groupId, newGroup){

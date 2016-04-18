@@ -49,6 +49,16 @@
                 return;
             }
 
+            if(user.type == null){
+                $scope.message = "Select type of user ";
+                return;
+            }
+
+            if(user.check == null){
+                $scope.message = "Accept the Terms and Conditions to Register";
+                return;
+            }
+
             if (user.password == user.password2) {
 
                 var newUser = {

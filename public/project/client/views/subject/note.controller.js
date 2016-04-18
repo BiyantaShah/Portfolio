@@ -61,8 +61,18 @@
         function addNote(note) {
             var currentUser = null;
 
+            if(note == null){
+                $scope.message = "Fill in you details for your note";
+                return $scope.message;
+            }
+
             if (note.noteName == null) {
                 $scope.message = "Give a title to the note";
+                return $scope.message;
+            }
+
+            if(note.typeN == null){
+                $scope.message = "A type for the note is required";
                 return $scope.message;
             }
 
@@ -71,27 +81,34 @@
                     var newNote = {
                        //"_id": null,
                         "title": note.noteName,
-                        "content": null,
-                        "userId": vm.user._id
+                        "content": [],
+                        "userId": vm.user._id,
+                        "type": note.typeN,
+                        "reminder": null
                     };
                     NoteService.createNoteForUser(vm.user._id, newNote)
                         .then(function(response){
                             vm.note.noteName = null;
+                            vm.note.typeN = null;
                             init();
+
                         })
                 }
                 else{
                     var newNote = {
                        // "_id":null,
                         "title":note.noteName,
-                        "content":null,
+                        "content":[],
                         "notebookId": $routeParams.notebookId,
-                        "userId": vm.user._id
+                        "userId": vm.user._id,
+                        "type": note.typeN,
+                        "reminder": null
                     };
+
                     NoteService.createNoteForBook($routeParams.notebookId, newNote, vm.user._id)
                         .then(function(response){
-
                             vm.note.noteName = null;
+                            vm.note.typeN =null;
                             init();
 
                         });
@@ -116,11 +133,18 @@
             vm.index = index;
             vm.note = vm.notes[index];
             vm.note.noteName = vm.notes[index].title;
+            vm.note.typeN = vm.notes[index].type;
 
         }
 
 
         function updateNote(note) {
+            if (note.noteName == "") {
+                $scope.message = "Give a title to the note";
+                return $scope.message;
+            }
+
+
             if(vm.index != -1 && note.noteName != null){
 
                 var selectedNote = vm.notes[vm.index];
@@ -128,13 +152,16 @@
                     "_id":selectedNote._id,
                     "title": note.noteName,
                     "content": selectedNote.content,
-                    "userId": vm.user._id
+                    "userId": vm.user._id,
+                    "type": selectedNote.typeN,
+                    "reminder": note.reminder
                 };
 
                 NoteService.updateNote(selectedNote._id, updateNote)
                     .then(function(response){
                         vm.notes[vm.index] = response.data;
                         vm.note.noteName = null;
+                        vm.note.typeN = null;
                         vm.index = -1;
                         init();
                     });
@@ -142,9 +169,17 @@
             }
         }
 
-        function goToNoteText(noteId){
-            //NoteService.setNoteId(noteId);
-            $location.path( '/note/' + noteId + '/noteText');
+        function goToNoteText(note){
+            vm.note = note;
+            if(note.type == "Text"){
+                var noteId = vm.note._id;
+                $location.path( '/note/' + noteId + '/noteText');
+            }
+            else if (note.type == "CheckList"){
+                var noteId = vm.note._id;
+                $location.path('/note/' + noteId + '/checklist');
+            }
+
         }
 
     }

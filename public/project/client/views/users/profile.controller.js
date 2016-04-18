@@ -28,6 +28,26 @@
         //Event handler implementation
         function update(user){
             //var currentUser = UserService.getCurrentUser();
+            $scope.message = null;
+
+            if (user.firstName == "") {
+                $scope.message = "First Name cannot remain empty";
+                return;
+            }
+            if (user.lastName == "") {
+                $scope.message = "Last Name cannot remain empty";
+                return;
+            }
+
+            if (user.email == "") {
+                $scope.message = "Email Name cannot remain empty";
+                return;
+            }
+
+            if (user.password == "") {
+                $scope.message = "Password cannot remain empty";
+                return;
+            }
 
             var userDetails = {
                 "_id":vm.user._id,
@@ -35,7 +55,8 @@
                 "email":user.email,
                 "password": user.password,
                 "firstName": user.firstName,
-                "lastName":user.lastName
+                "lastName":user.lastName,
+                "type": vm.user.type
 
             };
             UserService.updateUser(vm.user._id,userDetails)

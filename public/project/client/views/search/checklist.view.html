@@ -1,0 +1,134 @@
+<div>
+
+    <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12 main">
+
+        <form class="form-horizontal style"> 
+            <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+            <div ng-controller="CheckListController">
+
+                <div>
+                    <h3 class="pull-left margins-bottom">{{model.note.noteTitle}}</h3>
+
+                    <div class="pull-left">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-default" aria-label="Left Align"
+                                ng-click="model.reminder = model.note" ng-model="model.reminder" data-toggle="modal" data-target="#myModal">
+                            <span class="glyphicon glyphicon-calendar center" aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                </div>
+
+                <br> <br> <br>
+
+                <table border="0" class="table">
+                    <thead>
+                    <tr>
+                        <th class="small-font"> Add Items</th>
+                        <th class="small-font"></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input type="text" ng-model="model.note.list" class="form-control small-font"  placeholder="name"></td>
+                        <td>
+                            <a ng-click="model.addItem(model.note);"  class="btn btn-default">
+                         <span class="glyphicon glyphicon-plus right-place " aria-hidden="true">
+                         </span>
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+
+                    <tr ng-repeat = "content in model.array track by $index">
+                        <td>{{content}}</a></td>
+                        <td>
+                            <a ng-click="model.deleteField($index, model.array);" class="btn btn-default" ng-model="model.index">
+                                <span class="glyphicon glyphicon-remove right-place " aria-hidden="true"></span>
+                            </a>
+
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!--  <div ng-show="model.note.list">
+                    <div class="row form-group">
+                         <br>
+                         <div class="col-sm-4">
+                             <h4>{{model.note.list}}</h4>
+                         </div>
+
+                         <div class="col-sm-4 col-sm-offset-2 whitespace-no-wrap">
+                             <br/>
+                             <a class="btn btn-default" ng-click="model.selectField(field);" data-toggle="modal" data-target="#myModal">
+                                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                             <a class="btn btn-default" ng-click="model.deleteField(field._id);">
+                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+
+                         </div>
+                    </div>
+
+                </div> <!-- model.note.content show -->
+
+                <!-- <hr>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <h5> Add Item: </h5>
+                        <input type="text" class="form-control" ng-model = "model.note.content">
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-2 whitespace-no-wrap">
+                        <br/>
+                        <span class="empty"></span>
+                        <a ng-click="model.addField(model.note)" class="btn btn-default">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div> -->
+
+
+                <br>
+                <!--<div class="center">
+                    <button type="button" class="btn btn-default" ng-click="model.saveContent(model.note)">Save Note</button>
+                </div> -->
+
+            </div>
+        </form>
+
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Set a Reminder </h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Title for the Reminder </label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Set a Date</label>
+                            <input type="date" class="form-control" ng-model="model.dateset">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a type="button"  data-dismiss="modal" ng-click="model.saveReminder(model.note, model.dateset);" class="btn btn-primary">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

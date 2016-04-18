@@ -33,7 +33,7 @@
                         $location.path("/home");
                     }
                     else {
-                        GroupService.findAllGroupsForUser(vm.user._id)
+                        GroupService.findAllGroupsForUser(vm.user.username)
                             .then(function (response) {
                                 vm.groups = response.data;
                                 //currentAllUserGroups = response.data;
@@ -51,12 +51,18 @@
 
         function addGroup(groupName) {
 
+            $scope.message = null;
+
+            if(groupName == null){
+                $scope.message = "Group Name cannot be empty";
+                return $scope.message;
+            }
 
             if (groupName != null) {
                 var newGroup = {
                    // "_id": null,
                     "title": groupName,
-                    "members": [],
+                    "members": vm.user.username,
                     "shared":[],
                     "createdBy": vm.user._id
                 };
@@ -93,6 +99,15 @@
 
 
         function updateGroup(groupName) {
+
+            $scope.message = null;
+
+            if(groupName == ""){
+                $scope.message = "Group Name cannot be empty";
+                return;
+            }
+
+
             if(vm.index != -1 && groupName != null){
 
                 var selectedGroup = vm.groups[vm.index];

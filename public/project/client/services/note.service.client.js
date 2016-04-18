@@ -10,6 +10,7 @@
 
 
         var api={
+            addItem: addItem,
             createNoteForBook:createNoteForBook,
             createNoteForUser:createNoteForUser,
             getAllNotesForBook: getAllNotesForBook,
@@ -17,14 +18,20 @@
             getAllNotesForUser:getAllNotesForUser,
             deleteNoteFromBook: deleteNoteFromBook,
             findNoteByTitle: findNoteByTitle,
+            findByTitle:findByTitle,
             findNoteById: findNoteById,
             updateNote:updateNote,
-           // updateContent: updateContent,
+            searchNote: searchNote,
             getNoteId: getNoteId,
             setNoteId: setNoteId
+
         }
 
         return api;
+
+        function addItem(noteId, newField){
+            return $http.put("/api/project/note/"+ noteId + "/content/" + newField);
+        }
 
         function createNoteForBook(notebookId, newNote, userId) {
             return $http.post ("/api/project/user/"+userId+"/notebook/" + notebookId+ "/note" ,newNote);
@@ -33,6 +40,7 @@
         }
 
         function createNoteForUser(userId, newNote){
+
             return $http.post("/api/project/user/"+userId+ "/note", newNote);
         }
 
@@ -67,6 +75,14 @@
         function updateNote(noteId,  note){
             return $http.put("/api/project/note/" + noteId, note);
 
+        }
+
+        function findByTitle(title){
+            return $http.get("/api/project/title/" +title);
+        }
+
+        function searchNote(title){
+            return $http.get("/api/project/search/" + title)
         }
 
 

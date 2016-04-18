@@ -14,8 +14,7 @@
 
         vm.searchNote = searchNote;
         vm.showContent = showContent;
-        vm.goToGroup = goToGroup;
-        vm.goToNote = goToNote;
+
 
         var currentUser ;
 
@@ -35,17 +34,26 @@
         init();
 
 
-        function searchNote(title) {
+        function searchNote(note) {
 
-            NoteService.findNoteByTitle(currentUser._id, title)
+           if(note == null){
+               $scope.message = "Enter a title or the first two letters to find a Note";
+               return;
+           }
+
+            var title = note.title;
+            NoteService.searchNote(note)
                 .then(function(response){
                     if(response.data){
                         vm.note = response.data;
                         if(vm.note!=null){
-
-                            //SubjectService.setSubjectId(response.data.subjectId);
-                            //  NotebookService.setNotebookId(response.data.notebookId);
-                            vm.note.title = vm.note[0].title;
+                            for(var i in vm.note){
+                                if(vm.note[i].title == title){
+                                    vm.note1 = vm.note[i];
+                                    vm.note.title = vm.note[i].title;
+                                    break;
+                                }
+                            }
                         }
                         else{
                             $scope.message = "Note not found. Check for spelling errors!";
@@ -55,18 +63,20 @@
                 });
         }
 
-        function showContent(noteId){
-            NoteService.setNoteId(noteId);
-            $location.path('/note/' + noteId + '/noteText');
+        function showContent(note){
+            vm.note = note;
+            if(note.type == "Text"){
+                var noteId = vm.note._id;
+                $location.path( '/note/' + noteId + '/noteText');
+            }
+            else if (note.type == "CheckList"){
+                var noteId = vm.note._id;
+                $location.path('/note/' + noteId + '/checklist');
+            }
+
         }
 
-        function goToGroup(){
-            $location.path('/group');
-        }
 
-        function goToNote(){
-            $location.path('/subject');
-        }
     }
 
 })();

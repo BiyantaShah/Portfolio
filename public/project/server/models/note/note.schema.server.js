@@ -5,7 +5,9 @@ module.exports = function(mongoose) {
         title: String,
         content: String,
         notebookId : String,
-        userId:String
+        userId:String,
+        type: String,
+        reminder: Date
     }, {collection: 'project_note'});
     return NoteSchema;
 };

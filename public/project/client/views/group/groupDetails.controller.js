@@ -57,16 +57,18 @@
         function goToNoteText(title){
             var curNote;
 
-            NoteService.findNoteByTitle(vm.user._id,title)
+            NoteService.findByTitle(title)
                 .then(function(response){
                     curNote = response.data;
-                    var noteId = curNote[0]._id;
-                    $location.path('/note/' + noteId + '/noteText');
+                    vm.note = curNote[0];
+                    var noteId = vm.note._id;
+                    if(vm.note.type == "Text"){
+                        $location.path( '/note/' + noteId + '/noteText');
+                    }
+                    else if (vm.note.type == "CheckList"){
+                        $location.path('/note/' + noteId + '/checklist');
+                    }
                 });
-
-
-
-
 
         }
 

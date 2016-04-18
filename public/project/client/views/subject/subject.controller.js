@@ -54,7 +54,7 @@
 
         function addSubject(subject) {
 
-            if (subject.subjectName == null) {
+            if (subject == null || subject.subjectName == "") {
                 $scope.message = "Give a title to the subject";
                 return $scope.message;
             }
@@ -101,6 +101,13 @@
 
 
         function updateSubject(subject) {
+
+            if (subject.subjectName == "") {
+                $scope.message = "Give a title to the subject";
+                return $scope.message;
+            }
+
+
             if(vm.index != -1 && subject.subjectName != null){
 
                 var selectedSubject = vm.subjects[vm.index];

@@ -11,21 +11,47 @@ module.exports = function(app, NoteService, mongoose) {
     var api = {
 
         //for notes
+        addItem:addItem,
         findAllNotesForBooks: findAllNotesForBooks,
         findNoteById:findNoteById,
+        findByTitle: findByTitle,
         deleteNoteFromBook:deleteNoteFromBook,
         createNoteForBook: createNoteForBook,
         createNoteForUser: createNoteForUser,
         updateNoteByIdForBook:updateNoteByIdForBook,
-        //getContent: getContent,
         findNoteByTitle:findNoteByTitle,
-        findAllNotesForUsers: findAllNotesForUsers
+        findAllNotesForUsers: findAllNotesForUsers,
+        searchNote : searchNote
 
     };
     return api;
 
 
     // note functions
+
+    function addItem(noteId, newField){
+
+        var deferred = q.defer();
+
+
+        NoteModel.update(
+            { _id : noteId},
+            { $set:  {
+                "content": newField
+            }
+
+            }, function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
+            });
+
+        return deferred.promise;
+
+
+    }
 
     function findAllNotesForUsers(userId){
         var deferred = q.defer();
@@ -72,6 +98,23 @@ module.exports = function(app, NoteService, mongoose) {
         return deferred.promise;
     }
 
+    function findByTitle(title){
+
+        var deferred = q.defer();
+
+        NoteModel.find({title: title}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise
+
+    }
+
+
     function deleteNoteFromBook(noteId){
 
         var deferred = q.defer();
@@ -93,9 +136,11 @@ module.exports = function(app, NoteService, mongoose) {
         var deferred = q.defer();
         var newNote = {
             "title": note.title,
-            "content": null,
+            "content": "",
             "notebookId": notebookId,
-            "userId": userId
+            "userId": userId,
+            "type":note.type,
+            "reminder": null
         };
 
         NoteModel.create(newNote, function (err, doc){
@@ -119,8 +164,10 @@ module.exports = function(app, NoteService, mongoose) {
 
         var newNote = {
             "title": note.title,
-            "content": null,
-            "userId": userId
+            "content": "",
+            "userId": userId,
+            "type":note.type,
+            "reminder": null
         };
 
         NoteModel.create(newNote, function (err, doc){
@@ -146,7 +193,8 @@ module.exports = function(app, NoteService, mongoose) {
             { _id : noteId},
             { $set:  {
                 "title": note.title,
-                "content": note.content
+                "content": note.content,
+                "reminder": note.reminder
             }
 
             }, function (err, doc) {
@@ -161,24 +209,6 @@ module.exports = function(app, NoteService, mongoose) {
         return deferred.promise
     }
 
-   /* function getContent(noteId){
-
-        var deferred = q.defer();
-
-        var note = null;
-
-
-        for(var i in notes){
-            if(notes[i]._id == noteId){
-                note = notes[i];
-                break;
-            }
-        }
-
-
-        deferred.resolve(note);
-        return deferred.promise
-    }*/
 
     function findNoteByTitle( userId, title){
 
@@ -193,6 +223,12 @@ module.exports = function(app, NoteService, mongoose) {
         });
 
         return deferred.promise
+    }
+
+    function searchNote(title,userId){
+
+        return NoteModel.find({$or: [{$and: [{'content': {$regex: title, $options: 'i'}},{userId: userId}]},
+        { $and: [{'title': {$regex: title, $options: 'i'}},{userId: userId}]}]});
     }
 };
 

@@ -7,37 +7,44 @@
         <form class="form-horizontal"> 
             <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
             <div ng-controller="SearchController">
-                <input type="search" class="form-control" ng-model = "model.note.name" placeholder="Search for your notes">
+                <!-- <input type="text" class="form-control" ng-model = "model.note.name" placeholder="Search for your notes"> -->
+                <td><div class="input-group">
 
-                <h5 align="center"><a ng-click = "model.searchNote(model.note.name);" class="btn btn-default">Search
-                </a> </h5>
+                    <div angucomplete-alt
+                         placeholder="Search for your notes"
+                         pause="500"
+                         selected-object="note"
+                         remote-url="/api/project/search/"
+                         title-field="title"
+                         minlength="2"
+                         input-class="form-control form-control-small"
+                         match-class="highlight">
+                    </div>
 
-                <div align="center">
-                   <br>
-                    <a ng-click="model.goToNote();" class="btn btn-default" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                    </a>
-
-                    <a class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#myModal">
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    </a>
-
-                    <a ng-click="model.goToGroup();" class="btn btn-default" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    </a>
+                    <span class="input-group-btn">
+                    <button ng-click="model.searchNote(note.originalObject);"
+                            class="btn btn-primary"
+                                 type="button">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                    </span>
                 </div>
+                </td>
+
+
+
 
             </div>
         </form>
 
         <!--<section ng-show="model.note"> -->
-        <section ng-show="model.note">
+        <section ng-show="model.note1">
             <br>
             <h4 align="center">Search Results</h4>
             <br>
             <ul>
                <h5 class="extreme-left">
-                <li> <a ng-click="model.showContent(model.note[0]._id);"> {{model.note.title}} </a> </li>
+                <li> <a ng-click="model.showContent(model.note1);"> {{model.note1.title}} </a> </li>
              </h5>
             </ul>
         </section>
@@ -45,36 +52,7 @@
 
     </div>
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Set a Reminder </h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Title for the Reminder </label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Set a Date</label>
-                            <input type="date" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Set a time (24 hrs)</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <a type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
-                    <a type="button"  data-dismiss="modal" class="btn btn-primary">Ok</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 </div>
 

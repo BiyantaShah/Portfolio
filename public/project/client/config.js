@@ -85,6 +85,15 @@
                 }
             })
 
+            .when("/note/:noteId/checklist",{
+                templateUrl: "views/search/checklist.view.html",
+                controller: "CheckListController",
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
+            })
+
             .when("/search",{
                 templateUrl:"views/search/search.view.html",
                 controller: "SearchController",

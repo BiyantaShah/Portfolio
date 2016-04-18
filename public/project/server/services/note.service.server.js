@@ -1,16 +1,36 @@
 module.exports = function(app, noteModel){
     app.get("/api/project/notebook/:notebookId/note", findAllNotesForBooks);
     app.get("/api/project/note/:noteId", findNoteById);
+    app.get("/api/project/title/:title", findByTitle);
     app.delete("/api/project/note/:noteId", deleteNoteFromBook);
     app.post("/api/project/user/:userId/notebook/:notebookId/note", createNoteForBook);
     app.post("/api/project/user/:userId/note", createNoteForUser);
     app.put("/api/project/note/:noteId", updateNoteByIdForBook);
-    //app.get("/api/project/note/:noteId/content", getContent);
+    app.put("/api/project/note/:noteId/content/:newField", addItem);
     app.get("/api/project/user/:userId/title/:title", findNoteByTitle);
     app.get("/api/project/user/:userId/note", findAllNotesForUsers);
+    app.get("/api/project/search/:title", searchNote);
 
 
 
+
+    function addItem(req,res){
+        var noteId = req.params.noteId;
+
+        var newField = req.params.newField;
+
+        noteModel
+            .addItem(noteId, newField)
+            .then(
+                function(response){
+                    res.json(response);
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
 
 
     function findAllNotesForBooks(req,res){
@@ -48,6 +68,22 @@ module.exports = function(app, noteModel){
             );
 
 
+    }
+
+    function findByTitle(req,res){
+
+        var title = req.params.title;
+
+        noteModel.findByTitle(title)
+            .then(
+                function(response){
+                    res.json(response)
+                },
+
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
     function deleteNoteFromBook(req,res){
@@ -181,5 +217,21 @@ module.exports = function(app, noteModel){
             )
 
 
+    }
+
+    function searchNote(req,res){
+        var title = req.params.title;
+        var userId = req.session.projectUser._id;
+                noteModel
+                    .searchNote(title,userId)
+                    .then(
+                           function(response)
+                           {
+                               res.json(response);
+                           },
+                            function(err){
+                                res.status(400).send(err);
+                            }
+                    );
     }
 };

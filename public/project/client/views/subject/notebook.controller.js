@@ -61,8 +61,8 @@
 
         function addNotebook(notebook) {
 
-            if (notebook.notebookName == null) {
-                $scope.message = "Give a title to the subject";
+            if (notebook == null || notebook.notebookName == "" ) {
+                $scope.message = "Give a title to the Notebook";
                 return $scope.message;
             }
 
@@ -121,6 +121,12 @@
 
 
         function updateNotebook(notebook) {
+
+            if ( notebook.notebookName == "" ) {
+                $scope.message = "Give a title to the Notebook";
+                return $scope.message;
+            }
+
             if(vm.index != -1 && notebook.notebookName != null){
 
                 var selectedBook = vm.notebooks[vm.index];

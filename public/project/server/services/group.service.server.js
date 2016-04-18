@@ -3,7 +3,7 @@ module.exports = function(app, groupModel){
     app.get("api/project/group/:title",findGroupByTitle);
     app.get("/api/project/group/:groupId",findGroupById);
     app.post("/api/project/user/:userId/group", createGroupForUser);
-    app.get("/api/project/user/:userId/group", findAllGroupsForUser);
+    app.get("/api/project/user/:username/group", findAllGroupsForUser);
     app.put("/api/project/group/:groupId",updateGroupById);
     app.put("/api/project/user/:username/group", updateMembers);
    app.put("/api/project/group", updateNotes);
@@ -28,10 +28,10 @@ module.exports = function(app, groupModel){
 
     function findAllGroupsForUser(req,res){
 
-        var userId = req.params.userId;
+        var username = req.params.username;
 
         groupModel
-            .findAllGroupsForUser(userId)
+            .findAllGroupsForUser(username)
             .then(
                 function (response) {
                     res.json(response);

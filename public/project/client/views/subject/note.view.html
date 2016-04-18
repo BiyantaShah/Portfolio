@@ -20,19 +20,24 @@
                     <h4 align="center">Add, delete or edit your notes here</h4>
                     <br>
                 </div>
-                <table class="table table-striped table-bordered">
+                <table border="0" class="table ">
                     <thead>
                     <tr>
-                        <th class="small-font"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                            Notes</th>
-                        <th class="small-font"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                            Action</th>
+                        <th class="small-font">Notes</th>
+                        <th class="small-font">Type of Note </th>
+                        <th class="small-font">Action</th>
 
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td><input type="text" ng-model="model.note.noteName" class="form-control small-font"  placeholder="name"></td>
+                        <td>
+                            <select class="form-control small-font" ng-model = "model.note.typeN">
+                                <option value="Text">Text</option>
+                                <option value="CheckList">CheckList</option>
+                            </select>
+                        </td>
                         <td>
                             <a ng-click="model.addNote(model.note);"  class="btn btn-default">
                          <span class="glyphicon glyphicon-plus right-place " aria-hidden="true">
@@ -47,7 +52,8 @@
                     </tr>
 
                     <tr ng-repeat="note in model.notes">
-                        <td><a ng-click = "model.goToNoteText(note._id);" class="small-font">{{note.title}}</a></td>
+                        <td><a ng-click = "model.goToNoteText(note);" class="small-font">{{note.title}}</a></td>
+                        <td class="small-font">{{note.type}}</td>
                         <td>
                             <a ng-click="model.deleteNote($index);" class="btn btn-default">
                                 <span class="glyphicon glyphicon-remove right-place " aria-hidden="true"></span>
