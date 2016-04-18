@@ -12,6 +12,7 @@
                 resolve: {
                     checkLoggedIn: checkLoggedIn
                 }
+
             })
 
             .when("/admin",{
@@ -149,12 +150,16 @@
             .getCurrentUser()
             .then(function(response) {
                 var currentUser = response.data;
-                if((currentUser != null) || ($location.url == '/home')) {
+
+
+                if((currentUser != null && currentUser != "" )|| ($location.url() == '/home')) {
+
                     UserService.setCurrentUser(currentUser);
                     deferred.resolve();
                 } else {
                     deferred.reject();
-                    $location.url("/home");
+                    $location.url('/home');
+
                 }
             });
 
@@ -170,12 +175,12 @@
             .then(function(response) {
                 var currentUser = response.data;
                 if(((currentUser != null) && (currentUser.type == "admin"))
-                    || ($location.url == '/home')) {
+                    || ($location.url() == '/home')) {
                     UserService.setCurrentUser(currentUser);
                     deferred.resolve();
                 } else {
                     deferred.reject();
-                    $location.url("/home");
+                    $location.url('/home');
                 }
             });
 

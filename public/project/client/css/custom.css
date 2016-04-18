@@ -111,12 +111,12 @@
     width:40px;
 }
 .post{
-    font-size:40px;
-    font-weight:700;
+    font-size:30px;
+    font-weight:600;
 }
 
 .bg{
-    background: url('../views/home/wall1-blur.png') no-repeat center center;
+    background: url('../misc/wall1-blur.png') no-repeat center center;
     background-attachment: fixed;
     background-size: cover;
     display: table;
@@ -129,7 +129,30 @@
 }
 
 .back{
-    background-image: url('../views/home/wall11.jpg');
+    background: url('../misc/wall11.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+
+@media (min-width: 386px) {
+    .back {
+        background: url('../misc/wall11.jpg') no-repeat center center;
+        background-attachment: fixed;
+        background-size: cover;
+        display: table;
+        height: calc(100vh - 72px);
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        overflow-x: hidden;
+
+
+    }
+
+    .site-heading{
+        padding-top: 150px;
+    }
 }
 
 .pull-top{
