@@ -12,12 +12,12 @@ module.exports = function(app,userModel){
 
     app.post('/api/project/login', passport.authenticate('local'), login);
 
-    app.post("/api/project/admin/user",                     createUser);
-    app.delete("/api/project/admin/user/:userId",               deleteUserById);
-    app.get("/api/project/admin/user",                      findAllUsersAdmin);
-    app.put("/api/project/user/:userId",                       updateUserByID);
-    app.put("/api/project/admin/user/:id",                  updateUserAdmin);
-    app.get("/api/project/user?username=username",             findUserByUsername);
+    app.post("/api/project/admin/user",                    auth, createUser);
+    app.delete("/api/project/admin/user/:userId",             auth , deleteUserById);
+    app.get("/api/project/admin/user",                     auth, findAllUsersAdmin);
+    app.put("/api/project/user/:userId",                      auth, updateUserByID);
+    app.put("/api/project/admin/user/:id",                 auth, updateUserAdmin);
+    app.get("/api/project/user?username=username",            auth, findUserByUsername);
 
     app.get("/api/project/user?username=username&password=password",findUserByCredentials);
 
