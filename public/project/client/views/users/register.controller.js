@@ -9,7 +9,7 @@
 
         var vm = this;
 
-        //Event handler declaration
+        //function declaration
         vm.register = register;
         vm.sendEmail = sendEmail;
 
