@@ -23,7 +23,7 @@
 
         function register(user) {
             $scope.message = null;
-            console.log(user);
+
 
             if (user == null) {
                 $scope.message = "The fields cannot be empty";
