@@ -44,17 +44,12 @@
         init();
 
 
-
-
-
-
-
-
+        
         //event implementations
 
         function addSubject(subject) {
 
-            if (subject == null || subject.subjectName == "") {
+            if (subject == undefined || subject.subjectName == null ||subject.subjectName == "" ) {
                 $scope.message = "Give a title to the subject";
                 return $scope.message;
             }

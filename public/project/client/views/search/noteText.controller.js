@@ -22,6 +22,11 @@
                             vm.note.content = response.data.content;
                             vm.note.type = response.data.type;
                             vm.note.reminder = response.data.reminder;
+
+                            var d = new Date (vm.note.reminder);
+                            vm.note.rem = d.toDateString();
+
+
                         }
 
                     });

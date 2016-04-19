@@ -61,7 +61,7 @@
 
         function addNotebook(notebook) {
 
-            if (notebook == null || notebook.notebookName == "" ) {
+            if (notebook == undefined || notebook.notebookName == null || notebook.notebookName == "" ) {
                 $scope.message = "Give a title to the Notebook";
                 return $scope.message;
             }

@@ -61,17 +61,17 @@
         function addNote(note) {
             var currentUser = null;
 
-            if(note == null){
+            if(note == undefined){
                 $scope.message = "Fill in you details for your note";
                 return $scope.message;
             }
 
-            if (note.noteName == null) {
+            if (note.noteName == null || note.noteName == "") {
                 $scope.message = "Give a title to the note";
                 return $scope.message;
             }
 
-            if(note.typeN == null){
+            if(note.typeN == null || note.typeN ==""){
                 $scope.message = "A type for the note is required";
                 return $scope.message;
             }

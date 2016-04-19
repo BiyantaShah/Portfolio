@@ -23,18 +23,34 @@
 
         function register(user) {
             $scope.message = null;
+            console.log(user);
 
             if (user == null) {
                 $scope.message = "The fields cannot be empty";
                 return;
             }
 
-            if (user.username == null) {
+            if(user.firstName == null || user.firstName == "" ){
+                $scope.message = "Please Enter your First Name";
+                return;
+            }
+
+            if(user.lastName == null || user.lastName == ""){
+                $scope.message = "Please Enter your Last Name";
+                return;
+            }
+
+            if (user.email == "" || user.email == null) {
+                $scope.message = "Please Enter your Email-ID";
+                return;
+            }
+
+            if (user.username == null || user.username == "" ) {
                 $scope.message = "Please Enter your Username";
                 return;
             }
 
-            if (user.password == null || user.password2 == null) {
+            if (user.password == "" || user.password2 == "" || user.password == null || user.password2 == null) {
                 $scope.message = "Please Enter your Password";
                 return;
             }
@@ -44,17 +60,15 @@
                 return;
             }
 
-            if (user.email == null) {
-                $scope.message = "Please Enter your Email-ID";
-                return;
-            }
+
 
             if(user.type == null){
                 $scope.message = "Select type of user ";
                 return;
             }
 
-            if(user.check == null){
+
+            if(!user.check || user.check == null){
                 $scope.message = "Accept the Terms and Conditions to Register";
                 return;
             }
