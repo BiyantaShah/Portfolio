@@ -260,10 +260,10 @@ module.exports = function(app, NoteService, mongoose) {
 
     function searchNote(title,userId){
 
-        return NoteModel.find({$or: [{'title': {$regex: title, $options: 'i'}}, {'content': {$regex: title, $options: 'i'}}]});
+        //return NoteModel.find({$or: [{'title': {$regex: title, $options: 'i'}}, {'content': {$regex: title, $options: 'i'}}]});
 
-        //return NoteModel.find({$or: [{$and: [{'content': {$regex: title, $options: 'i'}},{userId: userId}]},
-        //{ $and: [{'title': {$regex: title, $options: 'i'}},{userId: userId}]}]});
+        return NoteModel.find({$or: [{$and: [{'content': {$regex: title, $options: 'i'}},{userId: userId}]},
+        { $and: [{'title': {$regex: title, $options: 'i'}},{userId: userId}]}]});
     }
 };
 

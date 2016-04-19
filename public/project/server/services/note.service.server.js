@@ -240,11 +240,12 @@ module.exports = function(app, noteModel){
 
     function searchNote(req,res){
         var title = req.params.title;
-       // var userId = req.body;
-      //  console.log(userId);
+
+        var user = req.user;
+        var userId = user._id;
 
                 noteModel
-                    .searchNote(title)
+                    .searchNote(title, userId)
                     .then(
                            function(response)
                            {
