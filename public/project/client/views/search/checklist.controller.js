@@ -35,6 +35,9 @@
                             vm.array = vm.note.content.split(",");
 
                         }
+
+                        var d = new Date (vm.note.reminder);
+                        vm.note.rem = d.toDateString();
                     }
 
                 });
