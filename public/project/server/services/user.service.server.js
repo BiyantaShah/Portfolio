@@ -29,6 +29,7 @@ module.exports = function(app,userModel){
 
 
     function authorized (req, res, next) {
+
         if (!req.isAuthenticated()) {
             res.send(401);
         } else {
@@ -333,6 +334,7 @@ module.exports = function(app,userModel){
     }
 
     function login(req, res) {
+
         var user = req.user;
         res.json(user);
     }

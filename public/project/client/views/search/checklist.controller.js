@@ -5,7 +5,7 @@
         .module("NoteTakerWebsite")
         .controller("CheckListController",CheckListController);
 
-    function CheckListController(NoteService, $routeParams){
+    function CheckListController(NoteService, $routeParams, $scope){
 
         var vm = this;
         var array = [];
@@ -66,6 +66,13 @@
 
         function addItem(note){
             vm.note = note;
+
+
+
+            if(vm.note.list == null){
+                $scope.message = "Please enter an item name";
+                return;
+            }
 
             if(vm.note.content == ""){
                 var newField = vm.note.list;

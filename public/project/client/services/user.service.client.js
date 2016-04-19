@@ -90,6 +90,7 @@
         }
 
         function login(user){
+
             return $http.post("/api/project/login", user);
         }
 
