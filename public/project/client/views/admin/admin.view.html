@@ -31,9 +31,6 @@
                     <option value="others">others</option>
                 </select></td>
                 <td class="style">
-                    <a ng-click="model.createUser(model.user)"  class="btn btn-default">
-                    <span class = "glyphicon glyphicon-plus" aria-hidden = "true" ></span>
-                        </a>
                     <a ng-click="model.updateUser(model.user)" class="btn btn-default">
                     <span class = "glyphicon glyphicon-ok" aria-hidden = "true"></span>
                 </a></td>
@@ -47,7 +44,7 @@
                 <td>{{user.lastName}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.type}}</td>
-                <td>
+                <td class="style">
                     <a ng-click="model.deleteUser($index)" class="btn btn-default">
                     <span class = "glyphicon glyphicon-remove" aria-hidden = "true" ></span>
                     </a>
