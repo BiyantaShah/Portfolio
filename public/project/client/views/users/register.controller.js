@@ -19,7 +19,7 @@
 
         init();
 
-        //Event handler implementation
+        //function implementation
 
         function register(user) {
             $scope.message = null;
