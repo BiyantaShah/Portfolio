@@ -119,7 +119,7 @@
     background: url('../misc/wall1-blur.png') no-repeat center center;
     background-attachment: fixed;
     background-size: cover;
-    display: table;
+    /*display: table;*/
     height: calc(100vh - 72px);
     width: 100%;
     position: relative;
@@ -160,4 +160,6 @@
     padding-left: 0px;
     padding-top: 0px;
 }
+
+
 
