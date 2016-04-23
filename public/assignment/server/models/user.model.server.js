@@ -150,7 +150,8 @@ module.exports = function(db,mongoose) {
             { $set: {
                 "firstName": user.firstName,
                 "lastName": user.lastName,
-                "emails": user.emails
+                "emails": user.emails,
+                "roles":user.roles
             }},
             function (err, doc) {
                 if (err) {
