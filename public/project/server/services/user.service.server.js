@@ -1,23 +1,23 @@
-var passport         = require('passport');
-var LocalStrategy    = require('passport-local').Strategy;
-var bcrypt           = require('bcrypt-nodejs');
+//var passport         = require('passport');
+//var LocalStrategy    = require('passport-local').Strategy;
+//var bcrypt           = require('bcrypt-nodejs');
 
 module.exports = function(app,userModel){
 
-    passport.use('project',   new LocalStrategy(projLocalStrategy));
+   /* passport.use('project',   new LocalStrategy(projLocalStrategy));
     var auth = authorized;
 
     passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+    passport.deserializeUser(deserializeUser);*/
 
-    app.post('/api/project/login', passport.authenticate('project'), login);
+    app.post('/api/project/login',  login);
 
-    app.post("/api/project/admin/user",                    auth, createUser);
-    app.delete("/api/project/admin/user/:userId",             auth , deleteUserById);
-    app.get("/api/project/admin/user",                     auth, findAllUsersAdmin);
-    app.put("/api/project/user/:userId",                      auth, updateUserByID);
-    app.put("/api/project/admin/user/:userId",                 auth, updateUserAdmin);
-    app.get("/api/project/user?username=username",            auth, findUserByUsername);
+    app.post("/api/project/admin/user",                    createUser);
+    app.delete("/api/project/admin/user/:userId",              deleteUserById);
+    app.get("/api/project/admin/user",                      findAllUsersAdmin);
+    app.put("/api/project/user/:userId",                      updateUserByID);
+    app.put("/api/project/admin/user/:userId",                  updateUserAdmin);
+    app.get("/api/project/user?username=username",             findUserByUsername);
 
     app.get("/api/project/user?username=username&password=password",findUserByCredentials);
 
@@ -28,7 +28,7 @@ module.exports = function(app,userModel){
     app.get("/api/project/loggedin",    loggedin);
 
 
-    function authorized (req, res, next) {
+   /* function authorized (req, res, next) {
 
         if (!req.isAuthenticated()) {
             res.send(401);
@@ -69,7 +69,7 @@ module.exports = function(app,userModel){
                     if (err) { return done(err); }
                 }
             );
-    }
+    }*/
 
     function createUser(req, res) {
         var newUser = req.body;

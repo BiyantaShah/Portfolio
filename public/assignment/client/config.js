@@ -1,5 +1,6 @@
 (function(){
     'use strict';
+
     angular
         .module("FormBuilderApp")
         .config(Configure);
@@ -45,9 +46,6 @@
                 controllerAs: "model"
             })
 
-            .when("/admin", {
-                templateUrl: "views/admin/admin.view.html"
-            })
 
             .when("/forms", {
                 templateUrl: "views/forms/forms.view.html",
@@ -95,6 +93,7 @@
             .getCurrentUser()
             .then(function(response) {
                 var currentUser = response.data;
+
 
 
                 if((currentUser != null && currentUser != "" )|| ($location.url() == '/home')) {

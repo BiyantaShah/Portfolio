@@ -191,7 +191,7 @@ module.exports = function(app,userModel) {
         if(isAdmin(req.user)) {
 
             userModel
-                .deleteUser(userId)
+                .deleteUserById(userId)
                 .then(
                     function(user){
                         return userModel.findAllUsers();
