@@ -31,7 +31,8 @@
                 "password": user.password,
                 "firstName": user.firstName,
                 "lastName":user.lastName,
-                "emails":user.emails.split(",")
+                "emails":user.emails.split(","),
+                "roles": vm.user.roles
             };
 
             UserService.updateUser(vm.user._id,userDetails)

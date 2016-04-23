@@ -53,11 +53,11 @@
                     "username":vm.user.username,
                     "password":vm.user.password,
                     "emails":vm.user.emails.split(","),
-                    "roles": []
+                    "roles": ["student"]
                 };
             }
 
-            UserService.createUser(newUser)
+            UserService.register(newUser)
                 .then(function(response){
 
                     UserService.setCurrentUser(response.data);

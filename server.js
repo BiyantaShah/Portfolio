@@ -1,18 +1,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
-
 var nodemailer = require("nodemailer");
-
+//database
+var multer = require('multer');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 // maintaining session
 var cookieParser  = require('cookie-parser');
 var session = require('express-session');
-
-//database
 var mongoose = require('mongoose');
-
-var multer = require('multer');
-var passport = require('passport');
 
 var connectionString = 'mongodb://127.0.0.1:27017/webdev2016';
 
@@ -31,6 +28,7 @@ var app = express();
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
+
 multer();
 
 if(!process.env.SESSION_SECRET){
@@ -43,7 +41,6 @@ app.use(session({
     saveUninitialized: true
 }));
 
-//app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use(cookieParser());

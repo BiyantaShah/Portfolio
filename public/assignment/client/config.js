@@ -10,7 +10,17 @@
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
                 resolve: {
-                    getLoggedIn: getLoggedIn
+                    checkLoggedIn: checkLoggedIn
+                }
+
+            })
+
+            .when("/admin",{
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController",
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedInAdmin: checkLoggedInAdmin
                 }
             })
 
@@ -77,25 +87,54 @@
         return deferred.promise;
     }
 
-        function checkLoggedIn(UserService, $q, $location) {
+    function checkLoggedIn(UserService, $q, $location) {
 
-            var deferred = $q.defer();
+        var deferred = $q.defer();
 
-            UserService
-                .getCurrentUser()
-                .then(function(response) {
-                    var currentUser = response.data;
-                    if(currentUser) {
-                        UserService.setCurrentUser(currentUser);
-                        deferred.resolve();
-                    } else {
-                        deferred.reject();
+        UserService
+            .getCurrentUser()
+            .then(function(response) {
+                var currentUser = response.data;
+
+
+                if((currentUser != null && currentUser != "" )|| ($location.url() == '/home')) {
+
+                    UserService.setCurrentUser(currentUser);
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $location.url('/home');
+
+                }
+            });
+
+        return deferred.promise;
+    }
+
+
+    function checkLoggedInAdmin(UserService, $q, $location) {
+
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function(response) {
+                var currentUser = response.data;
+
+                if(currentUser) {
+                    UserService.setCurrentUser(currentUser);
+                    deferred.resolve();
+                    if(currentUser.roles.indexOf('admin') < 0){
                         $location.url("/home");
                     }
-                });
+                } else {
+                    deferred.reject();
+                    $location.url("/home");
+                }
+            });
 
-            return deferred.promise;
-        }
+        return deferred.promise;
+    }
 
 
 

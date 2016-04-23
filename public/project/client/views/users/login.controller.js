@@ -5,7 +5,8 @@
         .module("NoteTakerWebsite")
         .controller("LoginController", LoginController);
 
-    function LoginController($scope, UserService, $location) {
+    function LoginController(UserService, $location, $scope) {
+
 
         var vm = this;
 
@@ -20,6 +21,8 @@
         //event implementation
         function login(user) {
 
+            console.log("comes here");
+            console.log(user);
             if(!user){
                 $scope.message = "Enter your Login Details!";
                 return $scope.message;
@@ -33,10 +36,11 @@
 
                 })
                 .then(function (response) {
-
+                    console.log(response.data);
                     if(response.data != null){
 
                         UserService.setCurrentUser(response.data);
+                        console.log("goes here");
                         $location.path('/profile');
                     }
 
@@ -49,6 +53,8 @@
         }
 
 
+
     }
 
 })();
+

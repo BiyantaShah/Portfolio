@@ -148,7 +148,6 @@ module.exports = function(db,mongoose) {
         UserModel.update(
             { _id : userId},
             { $set: {
-                "password": user.password,
                 "firstName": user.firstName,
                 "lastName": user.lastName,
                 "emails": user.emails

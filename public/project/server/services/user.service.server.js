@@ -1,22 +1,22 @@
 var passport         = require('passport');
-var bcrypt           = require('bcrypt-nodejs');
 var LocalStrategy    = require('passport-local').Strategy;
+var bcrypt           = require('bcrypt-nodejs');
 
 module.exports = function(app,userModel){
 
+    passport.use('project',   new LocalStrategy(projLocalStrategy));
     var auth = authorized;
 
-    passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    app.post('/api/project/login', passport.authenticate('local'), login);
+    app.post('/api/project/login', passport.authenticate('project'), login);
 
     app.post("/api/project/admin/user",                    auth, createUser);
     app.delete("/api/project/admin/user/:userId",             auth , deleteUserById);
     app.get("/api/project/admin/user",                     auth, findAllUsersAdmin);
     app.put("/api/project/user/:userId",                      auth, updateUserByID);
-    app.put("/api/project/admin/user/:id",                 auth, updateUserAdmin);
+    app.put("/api/project/admin/user/:userId",                 auth, updateUserAdmin);
     app.get("/api/project/user?username=username",            auth, findUserByUsername);
 
     app.get("/api/project/user?username=username&password=password",findUserByCredentials);
@@ -55,7 +55,7 @@ module.exports = function(app,userModel){
             );
     }
 
-    function localStrategy(username, password, done) {
+    function projLocalStrategy(username, password, done) {
         userModel
             .findUserByUsername(username)
             .then(
@@ -177,37 +177,8 @@ module.exports = function(app,userModel){
 
 
 
-
-    /*function register(req,res){
-        var newUser = req.body;
-        var users = [];
-
-        userModel
-            .register(newUser)
-            .then(
-                function (response) {
-                    req.session.projectUser = response;
-                    users = response;
-                    res.json(response);
-                },
-                // reject promise if error
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
-
-    }*/
-
-    /*function deleteUserById(req,res){
-        var userId = req.params.id;
-        userModel.deleteUser(userId);
-    }*/
-
-
     function deleteUserById(req, res){
         var userId = req.params.userId;
-
-
 
         if(isAdmin(req.user)) {
             userModel
@@ -287,7 +258,7 @@ module.exports = function(app,userModel){
     }
 
     function findUserById(req,res){
-        var userId = req.params.id;
+        var userId = req.params.userId;
         var user = null;
 
         userModel.findUserById(userId)
@@ -376,7 +347,7 @@ module.exports = function(app,userModel){
         }
 
         userModel
-            .updateUser(req.params.id, newUser)
+            .updateUser(req.params.userId, newUser)
             .then(function(doc){
                     console.log(doc);
                     res.json(doc);

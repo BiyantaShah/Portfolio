@@ -31,13 +31,15 @@
         return model;
 
         function setCurrentUser (user) {
+            console.log("Set current user");
+            console.log(user);
             $rootScope.currentUser = user;
 
         }
 
         function getCurrentUser () {
-            var projectUser = $http.get("/api/project/loggedin");
-            return projectUser;
+            var projUser = $http.get("/api/project/loggedin");
+            return projUser;
         }
 
         function register(user) {
@@ -49,7 +51,7 @@
         }
 
         function findUserByCredentials(credentials){
-            return $http.get("/api/project/user?username=" + credentials.username + "&password=" + credentials.password);
+            return $http.post("/api/project/user?username=" + credentials.username + "&password=" + credentials.password);
 
         }
 
