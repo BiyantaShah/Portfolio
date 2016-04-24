@@ -26,7 +26,7 @@
 
 
             if (user == null) {
-                $scope.message = "The fields cannot be empty";
+                $scope.message = "The fields cannot be empty, please fill them";
                 return;
             }
 
@@ -63,13 +63,13 @@
 
 
             if(user.type == null){
-                $scope.message = "Select type of user ";
+                $scope.message = "Please Select type of user ";
                 return;
             }
 
 
             if(!user.check || user.check == null){
-                $scope.message = "Accept the Terms and Conditions to Register";
+                $scope.message = "Please accept the Terms and Conditions to Register";
                 return;
             }
 

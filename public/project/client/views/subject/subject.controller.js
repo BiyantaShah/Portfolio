@@ -50,7 +50,7 @@
         function addSubject(subject) {
 
             if (subject == undefined || subject.subjectName == null ||subject.subjectName == "" ) {
-                $scope.message = "Give a title to the subject";
+                $scope.message = "Please give a title to the subject";
                 return $scope.message;
             }
 
@@ -98,7 +98,7 @@
         function updateSubject(subject) {
 
             if (subject.subjectName == "") {
-                $scope.message = "Give a title to the subject";
+                $scope.message = "Please give a title to the subject";
                 return $scope.message;
             }
 

@@ -54,7 +54,7 @@
             $scope.message = null;
 
             if(groupName == null || groupName == ""){
-                $scope.message = "Group Name cannot be empty";
+                $scope.message = "Please fill in the group name";
                 return $scope.message;
             }
 
@@ -103,7 +103,7 @@
             $scope.message = null;
 
             if(groupName == ""){
-                $scope.message = "Group Name cannot be empty";
+                $scope.message = "Please fill in the group name";
                 return;
             }
 

@@ -31,23 +31,19 @@
             $scope.message = null;
 
             if (user.firstName == "") {
-                $scope.message = "First Name cannot remain empty";
+                $scope.message = "Please do not keep First Name empty";
                 return;
             }
             if (user.lastName == "") {
-                $scope.message = "Last Name cannot remain empty";
+                $scope.message = "Please do not keep Last Name empty";
                 return;
             }
 
             if (user.email == "") {
-                $scope.message = "Email Name cannot remain empty";
+                $scope.message = "Please do not keep Email ID empty";
                 return;
             }
 
-            if (user.password == "") {
-                $scope.message = "Password cannot remain empty";
-                return;
-            }
 
             var userDetails = {
                 "_id":vm.user._id,

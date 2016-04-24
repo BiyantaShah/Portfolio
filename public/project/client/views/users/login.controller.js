@@ -22,7 +22,7 @@
         function login(user) {
 
             if(!user){
-                $scope.message = "Enter your Login Details!";
+                $scope.message = "Please enter your Login Details!";
                 return $scope.message;
             }
 
