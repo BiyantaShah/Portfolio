@@ -5,7 +5,7 @@
         .module("NoteTakerWebsite")
         .controller("NoteTextController",NoteTextController);
 
-    function NoteTextController(NoteService, $routeParams){
+    function NoteTextController(NoteService, $routeParams, $location){
 
         var vm = this;
         vm.saveContent = saveContent;
@@ -51,6 +51,7 @@
             NoteService.updateNote(vm.note._id, updateContent)
                 .then(function(response){
                     init();
+                    $location.path('/subject/:subjectId/notebook/:notebookId/note');
                 })
 
         }

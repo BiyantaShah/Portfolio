@@ -2,7 +2,7 @@
     <br>
     <div class="col-sm-1 col-lg-1 col-md-1"></div>
     <div class="col-sm-10 col-lg-10 col-md-10 col-xs-10 main bg">
-        <br> <br>
+        <br> <br> <br>
         <h3 align = "center">Find Your Notes </h3>
 
         <form class="form-horizontal"> 
@@ -25,9 +25,9 @@
                     <span class="input-group-btn">
                     <button ng-click="model.searchNote(note.originalObject);"
                             class="btn btn-primary"
-                                 type="button">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
+                            type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
                     </span>
 
                 </div>
@@ -43,11 +43,30 @@
             <h3 align="center">Search Results</h3>
             <br>
             <ul>
-               <h4 class="extreme-left">
-                <li> <a ng-click="model.showContent(model.note1);"> {{model.note1.title}} </a> </li>
-             </h4>
+                <h4 class="extreme-left">
+                   <a ng-click="model.showContent(model.note1);"> {{model.note1.title}} </a>
+                </h4>
             </ul>
         </section>
+
+        <br> <br>
+        <div class="col-sm-2 col-lg-2 col-md-2"></div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="table-responsive">
+                <table border="0" class="table">
+                    <thead>
+                    <tr class="center">
+                        <td><h3>Notes for {{currentUser.firstName}}</h3></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat = "note in model.notes">
+                        <td ng-click="model.showContent(model.note1);"><a>{{note.title}}</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
 
     </div>
@@ -55,8 +74,3 @@
 
 
 </div>
-
-
-
-
-

@@ -1,0 +1,35 @@
+<div>
+    <br>
+    <div class="col-sm-1 col-lg-1 col-md-1"></div>
+    <div class="col-sm-10 col-lg-10 col-md-10 col-xs-10 main bg">
+
+        <form class="form-horizontal style"> 
+            <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+            <div ng-controller="PreviewListController">
+                <div>
+                    <br> <br>
+                    <h2 class=" margins-bottom center">{{model.note.noteTitle}}</h2>
+
+                </div>
+
+
+                <div ng-repeat="cont in model.content">
+                    <p class="extreme-lr"><span>
+                        <i class="fa fa-arrow-circle-o-right"></i></span>
+                        {{cont}}</p>
+                </div>
+
+                <br>
+
+
+            </div>
+        </form>
+
+    </div>
+    <div class="col-sm-1 col-lg-1 col-md-1"></div>
+
+
+</div>
+
+
+

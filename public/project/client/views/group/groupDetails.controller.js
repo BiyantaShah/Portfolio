@@ -63,10 +63,10 @@
                     vm.note = curNote[0];
                     var noteId = vm.note._id;
                     if(vm.note.type == "Text"){
-                        $location.path( '/note/' + noteId + '/noteText');
+                        $location.path( '/note/' + noteId + '/previewText');
                     }
                     else if (vm.note.type == "CheckList"){
-                        $location.path('/note/' + noteId + '/checklist');
+                        $location.path('/note/' + noteId + '/previewList');
                     }
                 });
 

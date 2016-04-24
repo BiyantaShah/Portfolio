@@ -28,6 +28,11 @@
                         $location.path("/home");
                     }
 
+                    NoteService.getAllNotesForUser(currentUser._id)
+                        .then(function(response){
+                            vm.notes = response.data;
+                        })
+
                 });
         }
 
@@ -36,10 +41,10 @@
 
         function searchNote(note) {
 
-           if(note == null){
-               $scope.message = "Enter a title or the first two letters to find a Note";
-               return;
-           }
+            if(note == null){
+                $scope.message = "Enter a title or the first two letters to find a Note";
+                return;
+            }
 
             var title = note.title;
             NoteService.searchNote(note)

@@ -36,19 +36,19 @@ module.exports = function(app, NoteService, mongoose) {
 
 
 
-            NoteModel.update(
-                { _id : noteId},
-                { $set:  {
-                    "content": newField
-                }
+        NoteModel.update(
+            { _id : noteId},
+            { $set:  {
+                "content": newField
+            }
 
-                }, function (err, doc) {
-                    if (err) {
-                        deferred.reject(err);
-                    } else {
-                        deferred.resolve(doc);
-                    }
-                });
+            }, function (err, doc) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(doc);
+                }
+            });
 
 
         return deferred.promise;
@@ -263,7 +263,6 @@ module.exports = function(app, NoteService, mongoose) {
         //return NoteModel.find({$or: [{'title': {$regex: title, $options: 'i'}}, {'content': {$regex: title, $options: 'i'}}]});
 
         return NoteModel.find({$or: [{$and: [{'content': {$regex: title, $options: 'i'}},{userId: userId}]},
-        { $and: [{'title': {$regex: title, $options: 'i'}},{userId: userId}]}]});
+            { $and: [{'title': {$regex: title, $options: 'i'}},{userId: userId}]}]});
     }
 };
-

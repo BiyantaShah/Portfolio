@@ -182,25 +182,19 @@ module.exports = function(app, noteModel){
 
     }
 
-   /* function getContent (req,res){
-
-
-        var noteId = req.params.noteId;
-
-
-        noteModel
-            .getContent(noteId)
-            .then(
-                function(response){
-                    res.json(response)
-                },
-                function (err){
-                    res.status(400).send(err);
-                }
-            );
-
-
-    }*/
+    /* function getContent (req,res){
+     var noteId = req.params.noteId;
+     noteModel
+     .getContent(noteId)
+     .then(
+     function(response){
+     res.json(response)
+     },
+     function (err){
+     res.status(400).send(err);
+     }
+     );
+     }*/
 
     function findNoteByTitle(req,res){
 
@@ -244,16 +238,16 @@ module.exports = function(app, noteModel){
         var user = req.user;
         var userId = user._id;
 
-                noteModel
-                    .searchNote(title, userId)
-                    .then(
-                           function(response)
-                           {
-                               res.json(response);
-                           },
-                            function(err){
-                                res.status(400).send(err);
-                            }
-                    );
+        noteModel
+            .searchNote(title, userId)
+            .then(
+                function(response)
+                {
+                    res.json(response);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     }
 };

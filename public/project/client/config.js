@@ -108,6 +108,24 @@
                 }
             })
 
+            .when("/note/:noteId/previewList",{
+                templateUrl: "views/preview/previewList.view.html",
+                controller: "PreviewListController",
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
+            })
+
+            .when("/note/:noteId/previewText",{
+                templateUrl: "views/preview/previewText.view.html",
+                controller: "PreviewTextController",
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
+            })
+
             .when("/search",{
                 templateUrl:"views/search/search.view.html",
                 controller: "SearchController",

@@ -89,7 +89,7 @@
 }
 
 .extreme-left{
-    margin-left: 80px;
+    margin-left: 135px;
 }
 
 .container-fluid{
@@ -176,6 +176,15 @@
     text-align:center;
     margin-bottom:0
 }
+
+.extreme-lr{
+    padding-left: 20%;
+}
+
+.table .table {
+    background-color: transparent;
+}
+
 
 
 
