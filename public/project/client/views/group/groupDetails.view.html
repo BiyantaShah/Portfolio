@@ -16,7 +16,8 @@
             <div class="table-responsive " ng-controller="DetailsController">
                 <div>
                     <hr class="hr-break">
-                    <h3 align="center">{{model.group.title}}</h3>
+                    <h2 align="center">{{model.group.title}}</h2>
+                    <h3 align="center">Admin of {{model.group.title}} is {{model.admin}}</h3>
                     <br>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-4">
@@ -36,12 +37,12 @@
                         <!-- <td class="small-font" ng-click = "model.goToNoteText(model.group.shared)"><a>{{model.group.shared.toString()}}</a></td> -->
                     </tr>
 
-                    <tr>
+                    <tr ng-show = model.showMems >
                         <td><button type = "button" class = "btn btn-default form-control" data-toggle="modal" data-target="#myaddmem" ng-click="model.gro = model.group" ng-model="model.gro">
                             Add members</button></td>
                     </tr>
 
-                    <tr>
+                    <tr ng-show = model.showMems>
                         <td><button type = "button" class = "btn btn-default form-control" data-toggle="modal" data-target="#mydeletemem" ng-click="model.gro = model.group" ng-model="model.gro">
                             Delete members</button></td>
                     </tr>

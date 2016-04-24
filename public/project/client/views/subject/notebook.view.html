@@ -49,11 +49,13 @@
                     <tr ng-repeat="notebook in model.notebooks">
                         <td><a ng-click = "model.goToNote(notebook._id);" class="small-font">{{notebook.label}}</a></td>
                         <td>
-                            <a ng-click="model.deleteNotebook($index);" class="btn btn-default">
-                                <span class="glyphicon glyphicon-trash right-place " aria-hidden="true"></span>
-                            </a>
+
                             <a ng-click="model.selectNotebook($index);" ng-model="model.index" class="btn btn-default">
                                 <span class ="glyphicon glyphicon-edit right-place " aria-hidden="true"></span>
+                            </a>
+
+                            <a ng-click="model.deleteNotebook($index);" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash right-place " aria-hidden="true"></span>
                             </a>
 
 

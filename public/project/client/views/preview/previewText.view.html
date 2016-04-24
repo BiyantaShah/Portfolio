@@ -8,13 +8,13 @@
             <div ng-controller="PreviewTextController">
                 <div>
                     <br> <br>
-                    <h2 class="margins-bottom center">{{model.note.noteTitle}}</h2>
+                    <h2 class="pull-left margins-bottom">{{model.note.noteTitle}}</h2>
 
                 </div>
 
-
+                <br>
                 <div>
-                    <div ng-bind-html="model.trustAsHtml(model.note.content)" class="center"></div>
+                    <div ng-bind-html="model.trustAsHtml(model.note.content)" ></div>
                 </div>
 
                 <br>

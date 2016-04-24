@@ -39,12 +39,25 @@
                                     vm.group = response.data;
                                     vm.group._id = response.data._id;
                                     vm.group.title = response.data.title;
+                                    vm.group.createdBy = response.data.createdBy;
                                     vm.group.members = response.data.members;
                                     vm.group.shared = response.data.shared;
                                     UserService.findAllUsers()
                                         .then(function (response) {
                                             vm.users = response.data;
                                         });
+
+                                   if(vm.user._id ==  vm.group.createdBy ){
+                                       vm.showMems = true;
+                                   }
+                                    else{
+                                       vm.showMems = false;
+                                   }
+
+                                    UserService.findUserById(vm.group.createdBy)
+                                        .then(function(response){
+                                            vm.admin = response.data.firstName;
+                                        })
                                 }
 
                             });

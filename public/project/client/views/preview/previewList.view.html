@@ -8,16 +8,18 @@
             <div ng-controller="PreviewListController">
                 <div>
                     <br> <br>
-                    <h2 class=" margins-bottom center">{{model.note.noteTitle}}</h2>
+                    <h2 class="pull-left margins-bottom">{{model.note.noteTitle}}</h2>
 
                 </div>
 
-
+                <br>
+                <section ng-show="model.content">
                 <div ng-repeat="cont in model.content">
-                    <p class="extreme-lr"><span>
+                    <p><span>
                         <i class="fa fa-arrow-circle-o-right"></i></span>
                         {{cont}}</p>
                 </div>
+                </section>
 
                 <br>
 

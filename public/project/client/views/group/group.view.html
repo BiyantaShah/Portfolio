@@ -51,11 +51,12 @@
                     <td class="small-font" ng-click="model.groupDetails(group._id);"><a >{{group.title}}</a></td>
 
                     <td>
-                        <a ng-click="model.deleteGroup($index);" class="btn btn-default">
-                            <span class="glyphicon glyphicon-trash pull-right" aria-hidden="true"></span>
-                        </a>
+
                         <a ng-click="model.selectGroup($index);" ng-model="model.index" class="btn btn-default">
                             <span class ="glyphicon glyphicon-edit pull-right" aria-hidden="true"></span>
+                        </a>
+                        <a ng-if= "group.createdBy == model.user._id" ng-click="model.deleteGroup($index);" class="btn btn-default">
+                            <span class="glyphicon glyphicon-trash pull-right" aria-hidden="true"></span>
                         </a>
 
 

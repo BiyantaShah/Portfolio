@@ -21,7 +21,7 @@ module.exports = function(app,userModel){
 
     app.get("/api/project/user?username=username&password=password",findUserByCredentials);
 
-    app.get("/api/project/admin/user/:userId",  findUserById);
+    app.get("/api/project/user/:userId",  findUserById);
     app.post("/api/project/register",   register);
     app.get("/api/project/user",    findAllUsers);
     app.post("/api/project/logout",     logout);

@@ -57,11 +57,12 @@
                         <td><a ng-click = "model.goToNoteText(note);" class="small-font">{{note.title}}</a></td>
                         <td class="small-font">{{note.type}}</td>
                         <td>
-                            <a ng-click="model.deleteNote($index);" class="btn btn-default">
-                                <span class="glyphicon glyphicon-trash right-place " aria-hidden="true"></span>
-                            </a>
+
                             <a ng-click="model.selectNote($index);" ng-model="model.index" class="btn btn-default">
                                 <span class ="glyphicon glyphicon-edit right-place " aria-hidden="true"></span>
+                            </a>
+                            <a ng-click="model.deleteNote($index);" class="btn btn-default">
+                                <span class="glyphicon glyphicon-trash right-place " aria-hidden="true"></span>
                             </a>
 
 

@@ -23,6 +23,9 @@
                         vm.note.type = response.data.type;
 
                         vm.content = vm.note.content.split(",");
+                        if(vm.content == ""){
+                            vm.content = null;
+                        }
 
                     }
                 });

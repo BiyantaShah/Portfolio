@@ -54,7 +54,7 @@
         }
 
         function findUserById(userId){
-            return $http.get("/api/project/admin/user/"+ userId);
+            return $http.get("/api/project/user/"+ userId);
         }
 
         function findUserByUsername(username){
