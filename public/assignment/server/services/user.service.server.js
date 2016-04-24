@@ -1,24 +1,31 @@
-var passport = require('passport');
-var LocalStrategy    = require('passport-local').Strategy;
-var bcrypt = require('bcrypt-nodejs');
+//var passport = require('passport');
+//var LocalStrategy    = require('passport-local').Strategy;
+//var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function(app,userModel) {
 
 
-    passport.use('assignment',   new LocalStrategy(assLocalStrategy));
-    var auth = authorized;
+   // passport.use('assignment',   new LocalStrategy(assLocalStrategy));
+   // var auth = authorized;
 
 
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+   // passport.serializeUser(serializeUser);
+   // passport.deserializeUser(deserializeUser);
 
-    app.post("/api/assignment/login",passport.authenticate('assignment') , login);
+  /*  app.post("/api/assignment/login",passport.authenticate('assignment') , login);
 
     app.post("/api/assignment/admin/user",      auth, createUser);
     app.delete("/api/assignment/admin/user/:id",auth, deleteUser);
     app.get("/api/assignment/admin/user",      auth,  findAllUsers);
     app.put("/api/assignment/user/:id",        auth,  updateUser);
     app.get("/api/assignment/user?username=username",            auth, findUserByUsername);
+    app.put("/api/assignment/admin/user/:id",    updateUserAdmin); */
+
+    app.post("/api/assignment/admin/user",       createUser);
+    app.delete("/api/assignment/admin/user/:id", deleteUser);
+    app.get("/api/assignment/admin/user",       findAllUsers);
+    app.put("/api/assignment/user/:id",        updateUser);
+    app.get("/api/assignment/user?username=username",            findUserByUsername);
     app.put("/api/assignment/admin/user/:id",    updateUserAdmin);
 
     app.get("/api/assignment/user?username=username&password=password",findUserByCredentials);
@@ -31,7 +38,7 @@ module.exports = function(app,userModel) {
 
 
 
-    function authorized (req, res, next) {
+    /*function authorized (req, res, next) {
         if (!req.isAuthenticated()) {
             res.send(401);
         } else {
@@ -74,7 +81,7 @@ module.exports = function(app,userModel) {
                     if (err) { return done(err); }
                 }
             );
-    }
+    } */
 
     function createUser(req, res) {
         var newUser = req.body;

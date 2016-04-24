@@ -14,10 +14,11 @@
     }
 
     .navbar-fixed-top {
-        padding: 20px 0;
+        padding: 15px 0;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
+        background-color: #FFFFFF;
 
     }
 
@@ -49,6 +50,10 @@
 
 .hr-break{
     width:0px;
+}
+
+.full-width{
+    width:100%;
 }
 
 
@@ -111,7 +116,8 @@
     width:40px;
 }
 .post{
-    font-size:30px;
+    padding-top:0px;
+    font-size:25px;
     font-weight:600;
 }
 
@@ -159,6 +165,16 @@
     float: left;
     padding-left: 0px;
     padding-top: 0px;
+}
+
+.bg-light-gray {
+    background-color: #f7f7f7;
+}
+
+.copyright{
+    font-size:14px;
+    text-align:center;
+    margin-bottom:0
 }
 
 

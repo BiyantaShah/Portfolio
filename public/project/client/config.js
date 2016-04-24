@@ -42,6 +42,10 @@
 
             })
 
+            .when("/terms",{
+                templateUrl: "views/users/terms.view.html"
+            })
+
             .when("/register", {
                 templateUrl: "views/users/register.view.html",
                 controller:"RegisterController",
@@ -151,8 +155,6 @@
             .then(function(response) {
                 var currentUser = response.data;
 
-                console.log("in config");
-                console.log(response.data);
                 if((currentUser != null && currentUser != "" )|| ($location.url() == '/home')) {
 
                     UserService.setCurrentUser(currentUser);
