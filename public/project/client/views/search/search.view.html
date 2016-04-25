@@ -2,7 +2,7 @@
     <br>
     <div class="col-sm-1 col-lg-1 col-md-1"></div>
     <div class="col-sm-10 col-lg-10 col-md-10 col-xs-10 main bg">
-        <br> <br> <br>
+        <br> <br>
         <h3 align = "center">Find Your Notes </h3>
 
         <form class="form-horizontal"> 
@@ -61,7 +61,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat = "note in model.notes">
-                        <td ng-click="model.showContent(model.note1);"><a>{{note.title}}</a></td>
+                        <td ng-click="model.showContent(note);"><a>{{note.title}}</a></td>
                     </tr>
                     </tbody>
                 </table>

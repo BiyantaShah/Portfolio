@@ -69,6 +69,7 @@
         }
 
         function showContent(note){
+
             vm.note = note;
             if(note.type == "Text"){
                 var noteId = vm.note._id;
