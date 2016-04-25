@@ -48,7 +48,6 @@
                 "lastName": vm.users[index].lastName,
                 "username": vm.users[index].username,
                 "password": "",
-                "email": vm.users[index].email,
                 "type": vm.users[index].type
             };
         }

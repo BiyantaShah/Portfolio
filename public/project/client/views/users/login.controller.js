@@ -35,17 +35,18 @@
                 })
                 .then(function (response) {
 
-                    if(response.data != null){
+                    if(response.data){
 
                         UserService.setCurrentUser(response.data);
                         $location.path('/profile');
                     }
 
-                    else {
-                        vm.password = null;
+                },
+                    function(err){
                         $scope.message = "Invalid Credentials";
+                        return;
                     }
-                });
+                );
 
         }
 

@@ -11,7 +11,6 @@
 
         //function declaration
         vm.register = register;
-        vm.sendEmail = sendEmail;
 
         function init() {
 
@@ -88,18 +87,19 @@
 
             UserService.register(newUser)
                 .then(function (response) {
-                    UserService.setCurrentUser(response.data);
-                    $location.path('/profile');
+                    if(response.data){
+                        UserService.setCurrentUser(response.data);
+                        $location.path('/profile');
+                    }
+                    else{
+                        $scope.message = "User is already registered";
+                        return;
+                    }
+
+
                 });
         }
 
-        function sendEmail(emailId){
-
-            $scope.message = "An email has been sent to "+ emailId + ". Please check your inbox!";
-            return $scope.message;
-
-
-        }
     }
 
 })();

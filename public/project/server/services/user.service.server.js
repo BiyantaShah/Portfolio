@@ -307,6 +307,7 @@ module.exports = function(app,userModel){
     function login(req, res) {
 
         var user = req.user;
+        console.log(user);
         res.json(user);
     }
 
