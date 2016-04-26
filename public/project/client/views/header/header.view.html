@@ -21,36 +21,38 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-hide = "currentUser">
+                    <li ng-hide = "currentUser" data-toggle= "collapse" data-target="#bs-example-navbar-collapse-1">
                         <a href="#/home">Home</a>
                     </li>
 
-                    <li ng-hide = "currentUser">
+                    <li ng-hide = "currentUser" data-toggle= "collapse" data-target="#bs-example-navbar-collapse-1">
                         <a href= " ../client/misc/Projectproposal.pdf">
                             Documentation</a>
                     </li>
 
-                    <li ng-hide = "currentUser">
+                    <li ng-hide = "currentUser" data-toggle= "collapse" data-target="#bs-example-navbar-collapse-1">
                         <a href="#/login">Login</a>
                     </li>
 
-                    <li ng-hide = "currentUser">
+                    <li ng-hide = "currentUser" data-toggle= "collapse" data-target="#bs-example-navbar-collapse-1">
                         <a href="#/register">Register</a>
                     </li>
 
-                    <li ng-show = "currentUser.type == 'admin' ">
+                    <li ng-show = "currentUser.type == 'admin' " data-toggle= "collapse" data-target="#bs-example-navbar-collapse-1">
                         <a href="#/admin">Admin </a>
                     </li>
-                    <li ng-show ="currentUser">
+                    <li ng-show ="currentUser" data-toggle= "collapse" data-target="#bs-example-navbar-collapse-1">
                         <a href="#/profile">Welcome, {{currentUser.username}}!</a>
                     </li>
-                    <li ng-show ="currentUser">
+                    <li ng-show ="currentUser" data-toggle= "collapse" data-target="#bs-example-navbar-collapse-1">
                         <a href="#/search">Search</a>
                     </li>
-                    <li ng-show ="currentUser">
+                    <li ng-show ="currentUser" data-toggle= "collapse" data-target="#bs-example-navbar-collapse-1">
                         <a href="#/group">Groups</a>
                     </li>
-                    <li ng-show = "currentUser" ng-click = "model.logout()"><a href="#/home">Logout</a></li>
+                    <li ng-show = "currentUser" ng-click = "model.logout()" data-toggle= "collapse" data-target="#bs-example-navbar-collapse-1">
+                        <a href="#/home">Logout</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
