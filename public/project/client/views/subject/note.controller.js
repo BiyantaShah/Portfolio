@@ -62,17 +62,17 @@
             var currentUser = null;
 
             if(note == undefined){
-                $scope.message = "Please fill in you details for your note";
+                vm.message = "Please fill in you details for your note";
                 return $scope.message;
             }
 
             if (note.noteName == null || note.noteName == "") {
-                $scope.message = "Please give a title to the note";
+                vm.message = "Please give a title to the note";
                 return $scope.message;
             }
 
             if(note.typeN == null || note.typeN ==""){
-                $scope.message = "Please select a type for the note";
+                vm.message = "Please select a type for the note";
                 return $scope.message;
             }
 
@@ -140,8 +140,8 @@
 
         function updateNote(note) {
             if (note.noteName == "") {
-                $scope.message = "Please give a title to the note";
-                return $scope.message;
+                vm.message = "Please give a title to the note";
+                return vm.message;
             }
 
 

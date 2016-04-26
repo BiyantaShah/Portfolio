@@ -22,7 +22,7 @@
         function login(user) {
 
             if(!user){
-                $scope.message = "Please enter your Login Details!";
+                vm.message = "Please enter your Login Details!";
                 return $scope.message;
             }
 
@@ -43,7 +43,7 @@
 
                 },
                     function(err){
-                        $scope.message = "Invalid Credentials";
+                        vm.message = "Invalid Credentials";
                         return;
                     }
                 );

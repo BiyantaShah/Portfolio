@@ -25,50 +25,50 @@
 
 
             if (user == null) {
-                $scope.message = "The fields cannot be empty, please fill them";
+                vm.message = "The fields cannot be empty, please fill them";
                 return;
             }
 
             if(user.firstName == null || user.firstName == "" ){
-                $scope.message = "Please Enter your First Name";
+                vm.message = "Please Enter your First Name";
                 return;
             }
 
             if(user.lastName == null || user.lastName == ""){
-                $scope.message = "Please Enter your Last Name";
+                vm.message = "Please Enter your Last Name";
                 return;
             }
 
             if (user.email == "" || user.email == null) {
-                $scope.message = "Please Enter your Email-ID";
+                vm.message = "Please Enter your Email-ID";
                 return;
             }
 
             if (user.username == null || user.username == "" ) {
-                $scope.message = "Please Enter your Username";
+                vm.message = "Please Enter your Username";
                 return;
             }
 
             if (user.password == "" || user.password2 == "" || user.password == null || user.password2 == null) {
-                $scope.message = "Please Enter your Password";
+                vm.message = "Please Enter your Password";
                 return;
             }
 
             if (user.password !== user.password2) {
-                $scope.message = "Passwords do not match!";
+                vm.message = "Passwords do not match!";
                 return;
             }
 
 
 
             if(user.type == null){
-                $scope.message = "Please Select type of user ";
+                vm.message = "Please Select type of user ";
                 return;
             }
 
 
             if(!user.check || user.check == null){
-                $scope.message = "Please accept the Terms and Conditions to Register";
+                vm.message = "Please accept the Terms and Conditions to Register";
                 return;
             }
 
@@ -92,7 +92,7 @@
                         $location.path('/profile');
                     }
                     else{
-                        $scope.message = "User is already registered";
+                        vm.message = "User is already registered";
                         return;
                     }
 

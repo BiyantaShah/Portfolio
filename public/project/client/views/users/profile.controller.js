@@ -28,19 +28,19 @@
         //Event handler implementation
         function update(user){
             //var currentUser = UserService.getCurrentUser();
-            $scope.message = null;
+            vm.message = null;
 
             if (user.firstName == "") {
-                $scope.message = "Please do not keep First Name empty";
+                vm.message = "Please do not keep First Name empty";
                 return;
             }
             if (user.lastName == "") {
-                $scope.message = "Please do not keep Last Name empty";
+                vm.message = "Please do not keep Last Name empty";
                 return;
             }
 
             if (user.email == "") {
-                $scope.message = "Please do not keep Email ID empty";
+                vm.message = "Please do not keep Email ID empty";
                 return;
             }
 

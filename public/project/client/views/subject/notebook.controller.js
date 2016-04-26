@@ -62,8 +62,8 @@
         function addNotebook(notebook) {
 
             if (notebook == undefined || notebook.notebookName == null || notebook.notebookName == "" ) {
-                $scope.message = "Please give a title to the Notebook";
-                return $scope.message;
+                vm.message = "Please give a title to the Notebook";
+                return vm.message;
             }
 
             else{
@@ -123,8 +123,8 @@
         function updateNotebook(notebook) {
 
             if ( notebook.notebookName == "" ) {
-                $scope.message = "Please give a title to the Notebook";
-                return $scope.message;
+                vm.message = "Please give a title to the Notebook";
+                return vm.message;
             }
 
             if(vm.index != -1 && notebook.notebookName != null){

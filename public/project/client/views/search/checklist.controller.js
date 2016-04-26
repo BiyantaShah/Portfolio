@@ -73,7 +73,7 @@
 
 
             if(vm.note.list == null){
-                $scope.message = "Please enter an item name";
+                vm.message = "Please enter an item name";
                 return;
             }
 

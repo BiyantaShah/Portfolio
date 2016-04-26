@@ -93,7 +93,7 @@
 
                for(var i in vm.group.members){
                    if(vm.group.members[i] == vm.use){
-                       $scope.message = "Please do not add the same member twice";
+                       vm.message = "Please do not add the same member twice";
                        return;
                    }
                }
@@ -157,7 +157,7 @@
 
                 for(var i in vm.group.shared){
                     if(vm.group.shared[i] == vm.note){
-                        $scope.message = "Please do not add the same note twice";
+                        vm.message = "Please do not add the same note twice";
                         return;
                     }
                 }

@@ -42,7 +42,7 @@
         function searchNote(note) {
 
             if(note == null){
-                $scope.message = "Please do not leave the search field empty";
+                vm.message = "Please do not leave the search field empty";
                 return;
             }
 
@@ -61,8 +61,8 @@
                             }
                         }
                         else{
-                            $scope.message = "Please check for spelling errors! Note not found";
-                            return $scope.message;
+                            vm.message = "Please check for spelling errors! Note not found";
+                            return vm.message;
                         }
                     }
                 });

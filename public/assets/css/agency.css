@@ -224,7 +224,7 @@ fieldset[disabled] .btn-xl.active {
     }
 }
 header {
-    background-image: url('../images/wall1.jpg');
+    background-image: url('../images/wallpaper.jpg');
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -546,7 +546,7 @@ section h3.section-subheading {
 }
 .team-member img {
     margin: 0 auto;
-    border: 7px solid white;
+    border: 0px solid white;
 }
 .team-member h4 {
     margin-top: 25px;
