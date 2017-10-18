@@ -16,7 +16,7 @@ var connectionString = 'mongodb://127.0.0.1:27017/webdev2016';
 if(process.env.MLAB_USER_BIYANTA) {
 
     var username = process.env.MLAB_USER_BIYANTA; // get from environment
-    var password = process.env.MLAB_PASSWORD_BIYANTA;
+    var password = process.env.MLAB_PASSWORD_BIYANTA; // get from environment
     connectionString = 'mongodb://' + username + ':' + password;
     connectionString += '@ds141534.mlab.com:41534/heroku_rq8bm6xt';
 }
