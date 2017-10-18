@@ -13,6 +13,8 @@ var mongoose = require('mongoose');
 
 var connectionString = 'mongodb://127.0.0.1:27017/webdev2016';
 
+console.log("goes into making a connection");
+
 if(process.env.MLAB_USER_BIYANTA) {
 
     var username = process.env.MLAB_USER_BIYANTA; // get from environment
@@ -20,7 +22,7 @@ if(process.env.MLAB_USER_BIYANTA) {
     connectionString = 'mongodb://' + username + ':' + password;
     connectionString += '@ds141534.mlab.com:41534/heroku_rq8bm6xt';
 }
-
+console.log("makes a connection");
 
 var db = mongoose.connect(connectionString);
 
