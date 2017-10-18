@@ -14,11 +14,6 @@ var mongoose = require('mongoose');
 var connectionString = 'mongodb://127.0.0.1:27017/webdev2016';
 
 if(process.env.MLAB_USER_BIYANTA) {
-    //connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-    //    process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
-    //    process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
-    //    process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-    //    process.env.OPENSHIFT_APP_NAME;
 
     var username = process.env.MLAB_USER_BIYANTA; // get from environment
     var password = process.env.MLAB_PASSWORD_BIYANTA;
