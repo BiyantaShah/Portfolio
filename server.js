@@ -17,8 +17,8 @@ console.log("goes into making a connection");
 
 if(process.env.MLAB_USER_BIYANTA) {
 
-    var username = process.env.MLAB_USER_BIYANTA; // get from environment
-    var password = process.env.MLAB_PASSWORD_BIYANTA; // get from environment
+    var username = "biyanta"; // get from environment
+    var password = "root"; // get from environment
     connectionString = 'mongodb://' + username + ':' + password;
     connectionString += '@ds125335.mlab.com:25335/heroku_93lwck8w';
 
