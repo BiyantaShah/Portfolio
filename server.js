@@ -19,8 +19,9 @@ if(process.env.MLAB_USER_BIYANTA) {
 
     var username = process.env.MLAB_USER_BIYANTA; // get from environment
     var password = process.env.MLAB_PASSWORD_BIYANTA; // get from environment
-    connectionString = 'mongodb://' + username + ':' + password;
-    connectionString += '@ds125335.mlab.com:25335/heroku_93lwck8w';
+    connectionString = process.env.MONGODB_URI;
+    // connectionString = 'mongodb://' + username + ':' + password;
+    // connectionString += '@ds125335.mlab.com:25335/heroku_93lwck8w';
 
 }
 console.log("makes a connection");
@@ -28,7 +29,6 @@ console.log("makes a connection");
 var db = mongoose.connect(connectionString);
 
 var app = express();
-
 
 
 app.use(express.static(__dirname + '/public'));
